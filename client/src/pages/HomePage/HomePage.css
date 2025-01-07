@@ -1,0 +1,531 @@
+/* CSS */
+:root {
+  --main-bg-color: #fffaf5;
+  --primary-color: #322C74;
+  --secondary-color: #d4a373;
+  --text-color: #333;
+  --heading-color: #674f36;
+  --border-radius: 10px;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --transition: 0.3s ease;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Rubik', sans-serif;
+  background-color: var(--main-bg-color);
+  color: var(--text-color);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header */
+.home-header {
+  background-color: rgba(232, 232, 232, 0.553);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--box-shadow);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+}
+
+.nav-links li a {
+  color: var(--text-color);
+  font-size: 1rem;
+  transition: color var(--transition);
+}
+
+.nav-links li a:hover {
+  color: var(--secondary-color);
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('/src/assets/cover.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 6rem 2rem;
+  text-align: center;
+  color: #fff;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  color: #fff;
+  text-shadow: 2px 2px 4px #000; /* גבול שחור לכיתוב */
+}
+
+.hero p {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  color: #fff;
+  text-shadow: 1px 1px 3px #000; /* גבול שחור לכיתוב */
+}
+
+.btn-primary {
+  padding: 1rem 2.5rem;
+  background: var(--secondary-color);
+  color: #fff;
+  border-radius: var(--border-radius);
+  font-weight: bold;
+  border: none;
+  box-shadow: var(--box-shadow);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Highlighted Support Section */
+.highlighted-support-section {
+  padding: 4rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* יישור במרכז לרוחב מלא */
+  gap: 2rem;
+  background-color: var(--main-bg-color);
+  width: 100%; /* פריסה על כל רוחב העמוד */
+}
+
+.support-content {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.support-image {
+  width: 350px; /* גודל מוגדל למראה מרשים יותר */
+  height: 350px;
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow); /* תוספת הצללה לתמונה */
+}
+
+.support-text {
+  max-width: 500px;
+  text-align: right;
+  line-height: 1.8; /* שיפור קריאות הטקסט */
+}
+
+.support-text h2 {
+  font-size: 2.5rem;
+  color: var(--heading-color);
+  margin-bottom: 1rem;
+}
+
+.support-text p {
+  font-size: 1.2rem;
+  color: var(--text-color);
+}
+
+/* Highlighted Report Section */
+.highlighted-report-section {
+  padding: 4rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* יישור במרכז לרוחב מלא */
+  gap: 2rem;
+  background-color: var(--main-bg-color);
+  width: 100%; /* פריסה על כל רוחב העמוד */
+}
+
+.report-content {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.report-image {
+  width: 350px; /* גודל מוגדל למראה מרשים יותר */
+  height: 350px;
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow); /* תוספת הצללה לתמונה */
+}
+
+.report-text {
+  max-width: 500px;
+  text-align: left;
+  line-height: 1.8; /* שיפור קריאות הטקסט */
+}
+
+.report-text h2 {
+  font-size: 2.5rem;
+  color: var(--heading-color);
+  margin-bottom: 1rem;
+}
+
+.report-text p {
+  font-size: 1.2rem;
+  color: var(--text-color);
+}
+
+/* Support Lines Section */
+.support-lines-section {
+  padding: 4rem 2rem;
+  text-align: center;
+  background-color: var(--main-bg-color);
+}
+
+.support-lines-section h2 {
+  font-size: 2.5rem;
+  color: var(--heading-color);
+  margin-bottom: 1rem;
+}
+
+.support-lines-section p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: var(--text-color);
+}
+
+.support-lines {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.support-line {
+  background-color: #f6f6f6;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  text-align: center;
+  flex: 1 1 200px;
+  max-width: 300px;
+}
+
+.support-line h3 {
+  font-size: 2rem;
+  color: var(--heading-color);
+  margin-bottom: 0.5rem;
+}
+
+.support-line p {
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+/* Articles Section */
+.articles-section h2{
+  font-size: 2.5rem;
+  color: var(--heading-color);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.article-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.article-item {
+  background-color: var(--primary-color);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--box-shadow);
+}
+
+.article-image {
+  background-color: #fff;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  border-bottom: 5px solid var(--primary-color);
+}
+
+.article-image img {
+  max-height: 80px;
+  object-fit: contain;
+}
+
+.article-content {
+  padding: 1rem;
+  color: #fff;
+  text-align: center;
+}
+
+.article-content h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.article-content p {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.article-content a {
+  color: #fff;
+  text-decoration: underline;
+  font-size: 0.9rem;
+}
+/* Tips Section */
+.tips-section {
+  padding: 4rem 2rem;
+  background-color: var(--main-bg-color);
+  text-align: right; /* טקסט מימין לשמאל */
+}
+
+.tips-section h2 {
+  font-size: 2.5rem;
+  color: var(--heading-color);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.tips-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 800px;
+  text-align: right; /* טקסט מימין לשמאל */
+}
+
+.tips-list li {
+  font-size: 1.2rem;
+  color: var(--text-color);
+  margin-bottom: 1rem;
+  position: relative;
+  padding-right: 2rem; /* הוספת רווח בצד ימין */
+  direction: rtl; /* כיוון מימין לשמאל */
+}
+
+.tips-list li:before {
+  content: '✔';
+  position: absolute;
+  right: 0; /* סימן בצד ימין */
+  color: var(--secondary-color);
+  font-size: 1.5rem;
+}
+/* Call-to-Action Section */
+.cta-section {
+  padding: 4rem 2rem;
+  text-align: center;
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.cta-section h2 {
+  color: whitesmoke;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* הוספת צל לכותרת */
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+ 
+  text-align: center; /* יישור לימין */
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.cta-buttons a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px; /* גודל קבוע לעיגול */
+  height: 80px;
+  background-color: var(--secondary-color);
+  color: #fff;
+  border-radius: 50%; /* יוצר עיגול */
+  box-shadow: var(--box-shadow);
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.cta-buttons a:hover {
+  transform: scale(1.1); /* הגדלה בעת ריחוף */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* הצללה חזקה יותר */
+}
+
+/* FAQ Section */
+.faq-section {
+  padding: 4rem 2rem;
+  background-color: var(--main-bg-color);
+  text-align: right; /* יישור טקסט לימין */
+  direction: rtl; /* כיוון מימין לשמאל */
+}
+
+.faq-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--heading-color);
+  text-align: center; /* יישור לימין */
+}
+
+.faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: right; /* יישור טקסט לימין */
+}
+
+.faq-item {
+  border: 1px solid var(--secondary-color);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #fff;
+  box-shadow: var(--box-shadow);
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+.faq-item:hover {
+  background-color: rgba(212, 163, 115, 0.1);
+}
+
+.faq-item h3 {
+  font-size: 1.2rem;
+  margin: 0;
+  color: var(--primary-color);
+  display: flex;
+  justify-content: space-between; /* פלוס/מינוס בצד שמאל */
+  align-items: center;
+}
+
+.faq-item h3 span {
+  margin-left: 10px; /* רווח בין הכיתוב לפלוס/מינוס */
+}
+
+.faq-item p {
+  margin: 0.5rem 0 0;
+  font-size: 1rem;
+  color: var(--text-color);
+  text-align: right; /* יישור לימין */
+}
+
+.footer {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 2rem;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  text-align: center;
+}
+
+.footer-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.footer-section p,
+.footer-section ul {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a {
+  color: #fff;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.footer-section ul li a:hover {
+  color: var(--secondary-color);
+}
+
+.social-links a {
+  color: #fff;
+  font-size: 1.5rem;
+  margin: 0 0.5rem;
+  transition: color var(--transition);
+}
+
+.social-links a:hover {
+  color: var(--secondary-color);
+}
+
+.footer-section form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-section form input {
+  padding: 0.5rem;
+  border: none;
+  border-radius: var(--border-radius);
+  outline: none;
+}
+
+.footer-section form button {
+  padding: 0.5rem 1rem;
+  background-color: var(--secondary-color);
+  color: #fff;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+.footer-section form button:hover {
+  background-color: #c58960;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}
