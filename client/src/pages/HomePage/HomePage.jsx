@@ -111,7 +111,8 @@ const Home = () => {
       <section className="cta-section">
         <h2>בואו נעשה שינוי יחד</h2>
         <div className="cta-buttons">
-          <a href="/report" className="btn-primary">הגש תלונה</a>
+        
+          <a href="/memory-game" className="btn-primary">משחק זיכרון</a>
           <a href="/support" className="btn-primary">קבל עזרה רגשית</a>
           <a href="/cyber-laws" className="btn-primary">למד על זכויותיך</a>
         </div>
