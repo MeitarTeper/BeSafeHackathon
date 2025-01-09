@@ -1,8 +1,6 @@
 import './HomePage.css';
 import { useState } from 'react';
-import descriptionIcon from '../../assets/description.png';
-import infoIcon from '../../assets/info.png';
-import shieldIcon from '../../assets/shield.png';
+
 import govIcon from '../../assets/Gov.png';
 import hinoohIcon from '../../assets/Hinooh.png';
 import tlvUniIcon from '../../assets/TLV_Uni.png';
@@ -68,11 +66,11 @@ const Home = () => {
         <div className="support-lines">
           <div className="support-line">
             <h3>1202</h3>
-            <p>קו סיוע ע"י נשים</p>
+            <p>קו סיוע על ידי נשים</p>
           </div>
           <div className="support-line">
             <h3>1203</h3>
-            <p>קו סיוע ע"י גברים</p>
+            <p>קו סיוע על ידי גברים</p>
           </div>
         </div>
       </section>
