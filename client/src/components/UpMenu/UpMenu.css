@@ -5,6 +5,7 @@
     justify-content: space-between;
     align-items: center;
     box-shadow: var(--box-shadow);
+    position: sticky;
   }
   
   .navbar {
