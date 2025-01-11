@@ -75,7 +75,7 @@ const MemoryGame = () => {
 
             // בדיקה אם לפחות אחד מהכרטיסים הוא "danger"
             if (cards[first].type === 'danger' || cards[second].type === 'danger') {
-                setPopupContent(`זיהית פריט מסוכן: ${cards[first].text} ⚠️`);
+                setPopupContent(`זיהית פריט מסוכן ⚠️`);
                 setShowPopup(true);
 
                 // סגירה אוטומטית של הפופ-אפ לאחר 2 שניות
@@ -136,8 +136,8 @@ const MemoryGame = () => {
             {showEndPopup && (
                 <div className="popup-overlay">
                     <div className="popup">
-                        <h2>🎉 כל הכבוד! 🎉</h2>
-                        <p>עברתם את השלב בהצלחה!</p>
+                        <h2>🎉 !כל הכבוד 🎉</h2>
+                        <p>!עברתם את השלב בהצלחה</p>
                     </div>
                 </div>
             )}
