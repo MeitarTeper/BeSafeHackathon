@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './MemoryGame.css';
 import { Link } from 'react-router-dom';
-import logoImage from 'C:/Users/noamo/Desktop/Hackaton/BeSafeHackathon/client/src/assets/Logo.png';
+import logoImage from '../../assets/Logo.png';
 
 
 
