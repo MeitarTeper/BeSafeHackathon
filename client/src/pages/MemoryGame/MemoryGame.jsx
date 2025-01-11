@@ -6,7 +6,9 @@ import logoImage from "../../assets/Logo.png";
 const MemoryGame = () => {
     const [cards, setCards] = useState([]);
     const [flippedCards, setFlippedCards] = useState([]);
-    const [matchedPairs, setMatchedPairs] = useState(0);
+    // eslint-disable-next-line no-unused-vars
+const [matchedPairs, setMatchedPairs] = useState(0);
+
     const [showPopup, setShowPopup] = useState(false);
     const [popupContent, setPopupContent] = useState('');
     const [showEndPopup, setShowEndPopup] = useState(false);
@@ -30,6 +32,7 @@ const MemoryGame = () => {
             .map((card, index) => ({ ...card, id: index, flipped: false }));
 
         setCards(shuffledCards);
+        
         setMatchedPairs(0);
         setShowPopup(false);
         setShowEndPopup(false);
@@ -120,7 +123,6 @@ const MemoryGame = () => {
                 ))}
             </div>
 
-            {/* פופ-אפ סכנה */}
             {/* פופ-אפ סכנה */}
             {showPopup && (
                 <div className="popup-overlay">
