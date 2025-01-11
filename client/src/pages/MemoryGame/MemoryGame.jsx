@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import './MemoryGame.css';
-import { Link } from 'react-router-dom';
-import logoImage from 'C:/Users/noamo/Desktop/Hackaton/BeSafeHackathon/client/src/assets/Logo.png';
-
+import logoImage from "../../assets/Logo.png";
 
 
 const MemoryGame = () => {
@@ -14,26 +12,22 @@ const MemoryGame = () => {
     const [popupContent, setPopupContent] = useState('');
     const [showEndPopup, setShowEndPopup] = useState(false);
 
-    const cardData = [
+    const cardData = useMemo(() => [
         { text: "אל תשתף כתובת בית", type: "danger" },
         { text: "סיסמה חזקה כוללת מספרים ותווים", type: "safe" },
         { text: "אל תלחץ על קישורים לא מוכרים", type: "danger" },
         { text: "דווח על בריונות רשת", type: "safe" },
         { text: "שמור על הפרטיות שלך ברשת", type: "safe" },
         { text: "זהה ניסיונות פישינג", type: "danger" },
-    ];
+    ], []);
 
-    const difficulties = {
+    const difficulties = useMemo(() => ({
         easy: 6,
         medium: 8,
         hard: 12,
-    };
+    }), []);
 
-    useEffect(() => {
-        startGame();
-    }, [difficulty]);
-
-    const startGame = () => {
+    const startGame = useCallback(() => {
         const numPairs = difficulties[difficulty] / 2;
         const selectedCards = cardData.slice(0, numPairs);
         const shuffledCards = [...selectedCards, ...selectedCards]
@@ -44,7 +38,11 @@ const MemoryGame = () => {
         setMatchedPairs(0);
         setShowPopup(false);
         setShowEndPopup(false);
-    };
+    }, [difficulty, cardData, difficulties]);
+
+    useEffect(() => {
+        startGame();
+    }, [startGame]);
 
     const handleCardClick = (index) => {
         if (flippedCards.length === 2 || cards[index].flipped) return;
@@ -96,20 +94,17 @@ const MemoryGame = () => {
     };
 
     return (
-
         <div className="memory-game-container">
-            {/* Header */}
             <header className="home-header">
                 <nav className="navbar">
                     <div className="logo">SafeNet</div>
                     <ul className="nav-links">
-                        <li><Link to="/">דף הבית</Link></li>
+                        <li><a href="/">דף הבית</a></li>
                         <li><a href="#services">שירותים</a></li>
                         <li><a href="#contact">צור קשר</a></li>
                     </ul>
                 </nav>
             </header>
-            
             <h1>משחק זיכרון - בטיחות ברשת</h1>
             <div className="difficulty-selector">
                 <button
@@ -130,8 +125,6 @@ const MemoryGame = () => {
                 >
                     קל
                 </button>
-
-
                 <p>:בחר רמת קושי</p>
             </div>
             {showPopup && (
@@ -160,7 +153,6 @@ const MemoryGame = () => {
                         <div className="front-face">
                             <img src={logoImage} alt="Logo" className="logo-image" />
                         </div>
-
                         <div className="back-face">{card.text}</div>
                     </div>
                 ))}
@@ -192,7 +184,6 @@ const MemoryGame = () => {
                     <p>© 2025 BeSafe. כל הזכויות שמורות.</p>
                 </div>
             </footer>
-
         </div>
     );
 };
