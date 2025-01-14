@@ -10,8 +10,13 @@
     "preview": "eslint . && vite preview"
   },
   "dependencies": {
+    "@types/react": "^19.0.5",
+    "@types/react-dom": "^19.0.3",
     "aos": "^2.3.4",
     "axios": "^1.7.9",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.2",
+    "lucide-react": "^0.471.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router": "^7.0.2",
