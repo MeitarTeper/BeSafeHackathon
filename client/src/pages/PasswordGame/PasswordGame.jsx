@@ -1,8 +1,6 @@
 import "./PasswordGame.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import UpMenu from "../../components/UpMenu/UpMenu";
-import BottomMenu from "../../components/BottomMenu/BottomMenu";
 import PasswordRules from "./PasswordRules";
 
 const PasswordGame = () => {
@@ -109,90 +107,78 @@ const PasswordGame = () => {
     };
 
     return (
-        <div className="password-game-container">
-            <div className="up-menu">
-                <UpMenu />
-            </div>
+        <div className="game-frame">
 
-            <div className="password-challenge-container">
-                {currentScreen === "start" && (
-                    <div className="password-rules-container">
-                        <PasswordRules setCurrentScreen={setCurrentScreen} />
-                    </div>
-                )}
+        <div className="password-challenge-container">
+            {currentScreen === "start" && (
+                <div className="password-rules-container">
+                    <PasswordRules setCurrentScreen={setCurrentScreen} />
+                </div>
+            )}
 
-                {currentScreen === "game" && (
-                    <><button className="instructions-btn" onClick={handleShowInstructions}>הוראות</button>
-                    <h1 className="title">אתגר הסיסמה החזקה</h1><div className="form-group">
-                            <p>בחר סיסמה ותראה כמה חזקה היא</p>
-                            <form onSubmit={handleSubmit}>
+            {currentScreen === "game" && (
+                <><button className="instructions-btn" onClick={handleShowInstructions}>הוראות</button>
+                <h1 id="title">אתגר הסיסמה החזקה</h1><div className="form-group">
+                        <h1 id="subtitle">בחר סיסמה ותראה כמה חזקה היא</h1>
+                        <form onSubmit={handleSubmit}>
+                            <input
+                                type="text"
+                                className="input-group"
+                                value={userName}
+                                onChange={handleUserNameChange}
+                                placeholder="הכנס שם משתמש" />
+                            <div className="password-wrapper">
                                 <input
-                                    type="text"
+                                    type={showPassword ? "text" : "password"}
                                     className="input-group"
-                                    value={userName}
-                                    onChange={handleUserNameChange}
-                                    placeholder="הכנס שם משתמש" />
-                                <div className="password-wrapper">
+                                    value={password}
+                                    onChange={handlePasswordChange}
+                                    placeholder="הכנס סיסמה" />
+                                <label className="show-password">
                                     <input
-                                        type={showPassword ? "text" : "password"}
-                                        className="input-group"
-                                        value={password}
-                                        onChange={handlePasswordChange}
-                                        placeholder="הכנס סיסמה" />
-                                    <label className="show-password">
-                                        <input
-                                            type="checkbox"
-                                            checked={showPassword}
-                                            onChange={(e) => setShowPassword(e.target.checked)} />
-                                        הצג סיסמה
-                                    </label>
-                                </div>
-                                <button type="submit" className="btn">בדוק סיסמה</button>
-                            </form>
-                        </div>
-                    
-
-                    {submitted && (
-                        <div className="password-feedback">
-                            <h3>הסיסמה שנבחרה: {password}</h3>
-                            <h3>ציון הסיסמה: {strengthScore}/{checksCount}</h3>
-                            <div
-                                className="strength-bar"
-                                style={{width: `${(strengthScore / checksCount) * 100}%`}}
-                            ></div>
-                            <ul className="feedback-list">
-                                {feedback.map((msg, index) => (
-                                    <li key={index} className="feedback-item">
-                                        {msg}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}</>
-                )}
-
-                {currentScreen === "end" && (
-                    <><div class="firework-container">
-                        <div class="firework"></div>
-                        <div class="firework"></div>
-                        
+                                        type="checkbox"
+                                        checked={showPassword}
+                                        onChange={(e) => setShowPassword(e.target.checked)} />
+                                    הצג סיסמה
+                                </label>
+                            </div>
+                            <button type="submit" className="btn">בדוק סיסמה</button>
+                        </form>
                     </div>
-                    <h1 className="title">אתגר הסיסמה החזקה</h1>
-                    <div className="completion-screen">
-                            <h2>כל הכבוד! סיימת את האתגר!</h2>
-                            <button className="btn" onClick={handleTryAgain}>נסה שוב</button>
-                            <button className="btn" onClick={handleNextLevel}>המשך לשלב הבא</button>
-                            <div className="kids-img"></div>
-                    </div></>
-                    
-                )}    
-            </div>
+                
 
-            <div className="bottom-menu">
-                <BottomMenu />
-            </div>
+                {submitted && (
+                    <div className="password-feedback">
+                        <h3>הסיסמה שנבחרה: {password}</h3>
+                        <h3>ציון הסיסמה: {strengthScore}/{checksCount}</h3>
+                        <div
+                            className="strength-bar"
+                            style={{width: `${(strengthScore / checksCount) * 100}%`}}
+                        ></div>
+                        <ul className="feedback-list">
+                            {feedback.map((msg, index) => (
+                                <li key={index} className="feedback-item">
+                                    {msg}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}</>
+            )}
+
+            {currentScreen === "end" && (
+                <>
+                <h1 id="title">אתגר הסיסמה החזקה</h1>
+                <div className="completion-screen">
+                        <h1 id="subtitle">כל הכבוד! סיימת את האתגר!</h1>
+                        <button className="btn" onClick={handleTryAgain}>נסה שוב</button>
+                        <button className="btn" onClick={handleNextLevel}>המשך לשלב הבא</button>
+                        <div className="kids-img"></div>
+                </div></>
+                
+            )}    
         </div>
-        
+        </div>
 
     );
 };
