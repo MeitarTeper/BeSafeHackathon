@@ -9,7 +9,7 @@ function PasswordRules({setCurrentScreen}) {
             <div className="lock-photo"></div>
             <h1 id="title">ברוכים הבאים לאתגר הסיסמה החזקה</h1>
             <h1 id="subtitle">המטרה שלכם היא לבחור סיסמה חזקה למשתמש שלכם</h1>
-            <div class = "mt-6 pt-4 border-t border-grey/20">
+            <div className = "mt-6 pt-4 border-t border-grey/20">
                 <h1 id="subtitle2">:לפני שתתחילו, בואו ניזכר בהמלצות </h1>
                 <p>1. על הסיסמה להיות באורך של 8 תווים לפחות</p>
                 <p>2. על הסיסמה להכיל אותיות גדולות וקטנות</p>

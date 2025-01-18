@@ -76,7 +76,7 @@ const MemoryGame = () => {
                     setTimeout(() => {
                         if (currentStage === 1) {
                             setCurrentStage((prevStage) => prevStage + 1);
-                            navigate('/phishing-hunter'); // מעבר לשלב 2
+                            navigate('/password-game'); // מעבר לשלב 2
                         } else {
                             navigate('/completion'); // סיום המשחק
                         }

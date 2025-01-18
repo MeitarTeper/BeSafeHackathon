@@ -2,6 +2,11 @@ import "./PasswordGame.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PasswordRules from "./PasswordRules";
+import logoImage from "../../assets/Logo.png"; // ייבוא נכון של התמונה
+import annieImage from "../../assets/Annie.png"; // ייבוא הדמות
+
+const totalStages = 3;
+const currentStage = 2;
 
 const PasswordGame = () => {
     const [userName, setUserName] = useState("");
@@ -11,6 +16,9 @@ const PasswordGame = () => {
     const [strengthScore, setStrengthScore] = useState(0);
     const [feedback, setFeedback] = useState([]);
     const [currentScreen, setCurrentScreen] = useState("start");
+    const [annieComment, setAnnieComment] = useState("");
+    const [showAnnie, setShowAnnie] = useState(false);
+
     let checksCount = 5;
     const navigate = useNavigate();
 
@@ -58,18 +66,25 @@ const PasswordGame = () => {
 
         if (score === checksCount) {
             setCurrentScreen("end");
+            setShowAnnie(false);
+        } else {
+            setAnnieComment("אני רואה שיש עוד מקום לשיפור. נסה שוב!");
         }
       };
     
     const handleUserNameChange = (e) => {
         setUserName(e.target.value);
         setSubmitted(false); 
+        setShowAnnie(false);
+        setAnnieComment("");
         
     };
 
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
         setSubmitted(false);
+        setShowAnnie(false);
+        setAnnieComment("");
     };
 
     const handleSubmit = (e) => {
@@ -87,6 +102,7 @@ const PasswordGame = () => {
             evaluatePassword();
         }
         setSubmitted(true);
+        setShowAnnie(true);
       };
     
       const handleShowInstructions = () => {
@@ -103,13 +119,22 @@ const PasswordGame = () => {
     };
 
     const handleNextLevel = () => {
-        navigate("/memory-game");
+        navigate("/phishing-hunter");
     };
 
     return (
         <div className="game-frame">
-
         <div className="password-challenge-container">
+                {/* סרגל התקדמות */}
+        <div className="progress-container">
+          <div className="progress-bar">
+            <div
+              className="progress"
+              style={{ width: `${(currentStage / totalStages) * 100}%` }}
+            ></div>
+          </div>
+          <p className="progress-text">שלב {currentStage} מתוך {totalStages}</p>
+        </div>
             {currentScreen === "start" && (
                 <div className="password-rules-container">
                     <PasswordRules setCurrentScreen={setCurrentScreen} />
@@ -146,7 +171,12 @@ const PasswordGame = () => {
                         </form>
                     </div>
                 
-
+                    {showAnnie && (
+                          <div className={`annie-container ${showAnnie ? 'show' : ''}`}>
+                            <img src={annieImage} alt="Annie" className="annie-image" />
+                            <div className="speech-bubble">{annieComment}</div>
+                          </div>
+                        )}  
                 {submitted && (
                     <div className="password-feedback">
                         <h3>הסיסמה שנבחרה: {password}</h3>
@@ -176,7 +206,8 @@ const PasswordGame = () => {
                         <div className="kids-img"></div>
                 </div></>
                 
-            )}    
+            )}  
+            
         </div>
         </div>
 
