@@ -8,7 +8,10 @@ import Blog from './pages/BlogPage/BlogPage';
 import BlogPost from './pages/BlogPage/BlogPost';
 import Error from './pages/ErrorPage/ErrorPage';
 import Header from './components/Header';
-import Footer from './components/Footer';
+import Footer from './components/footer';
+import CookieBanner from './components/CookieBanner/CookieBanner';
+import TeacherPage from './pages/TeacherPage/TeacherPage';
+import AccessibilityButton from './components/Accessibility/AccessibilityButton';
 
 function App() {
   return (
@@ -24,10 +27,14 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/teacher" element={<TeacherPage />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </main>
         <Footer />
+        <AccessibilityButton />
+        <CookieBanner />
+        
       </div>
     </BrowserRouter>
   );

@@ -94,17 +94,27 @@ const AboutPage = () => {
             {/* Add team members here */}
             <div className="text-center">
               <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-4"></div>
-              <h3 className="text-xl font-semibold">שם חבר צוות</h3>
+              <h3 className="text-xl font-semibold">נעה מוסקטו</h3>
               <p className="text-gray-600">תפקיד</p>
             </div>
             <div className="text-center">
               <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-4"></div>
-              <h3 className="text-xl font-semibold">שם חבר צוות</h3>
+              <h3 className="text-xl font-semibold">הדר דבוש</h3>
               <p className="text-gray-600">תפקיד</p>
             </div>
             <div className="text-center">
               <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-4"></div>
-              <h3 className="text-xl font-semibold">שם חבר צוות</h3>
+              <h3 className="text-xl font-semibold">אסתי כהן</h3>
+              <p className="text-gray-600">תפקיד</p>
+            </div>
+            <div className="text-center">
+              <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-4"></div>
+              <h3 className="text-xl font-semibold">חן</h3>
+              <p className="text-gray-600">תפקיד</p>
+            </div>
+            <div className="text-center">
+              <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-4"></div>
+              <h3 className="text-xl font-semibold">מיתר טפר</h3>
               <p className="text-gray-600">תפקיד</p>
             </div>
           </div>

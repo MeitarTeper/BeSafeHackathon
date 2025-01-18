@@ -1,0 +1,122 @@
+/* כללי */
+.font-rubik {
+    font-family: 'Rubik', sans-serif;
+  }
+ /* שמירת מרווח מה-Header */
+.text-center {
+    margin-top: 30px; /* התאמה למרחק מה-Header */
+  }
+  
+  /* עיצוב הכותרת */
+  h1.text-4xl {
+    line-height: 1.2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    margin-bottom: 20px; /* להבטיח מרווח תחתון */
+  }  
+  
+  /* שדה חיפוש */
+  input[type="text"] {
+    font-family: 'Rubik', sans-serif;
+    font-size: 1rem;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 100%;
+  }
+  
+  input[type="text"]:focus {
+    outline: none;
+    border-color: #1A659E;
+    box-shadow: 0 0 4px rgba(26, 101, 158, 0.6);
+  }
+  
+  /* כרטיסי בלוג */
+  .grid {
+    display: grid;
+    gap: 16px;
+  }
+  
+  .grid-cols-1 {
+    grid-template-columns: 1fr;
+  }
+  
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .bg-white {
+    background-color: #ffffff;
+  }
+  
+  .rounded-lg {
+    border-radius: 8px;
+  }
+  
+  .shadow-sm {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .hover\:shadow-md:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .transition-shadow {
+    transition: box-shadow 0.2s ease-in-out;
+  }
+  
+  .overflow-hidden {
+    overflow: hidden;
+  }
+  
+  /* תמונות */
+  .w-full {
+    width: 100%;
+  }
+  
+  .h-48 {
+    height: 12rem;
+  }
+  
+  .object-cover {
+    object-fit: cover;
+  }
+  
+  /* כותרת כתבות */
+  .text-xl {
+    font-size: 1.25rem;
+  }
+  
+  .font-semibold {
+    font-weight: 600;
+  }
+  
+  .text-gray-900 {
+    color: #1A202C;
+  }
+  
+  /* תיאורי כתבות */
+  .text-gray-600 {
+    color: #718096;
+  }
+  
+  /* קטגוריות ותאריכים */
+  .text-sm {
+    font-size: 0.875rem;
+  }
+  
+  .text-blue-600 {
+    color: #1A659E;
+  }
+  
+  .text-gray-500 {
+    color: #A0AEC0;
+  }
+  

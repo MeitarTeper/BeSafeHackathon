@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Search } from 'lucide-react';
+import './BlogPage.css';
 
 const BlogPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [isSearching, setIsSearching] = useState(false);
   
   const blogPosts = [
     {
@@ -120,29 +122,41 @@ const BlogPage = () => {
     post.category.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const handleSearchToggle = () => {
+    setIsSearching(true);
+  };
+
+  const handleBlur = () => {
+    if (!searchTerm) setIsSearching(false);
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-gray-50 py-12 font-rubik">
       <div className="max-w-7xl mx-auto px-4">
         {/* Blog Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            הבלוג שלנו
-          </h1>
-          <p className="text-lg text-gray-600 mb-8">
-            טיפים, מדריכים ומידע חשוב על בטיחות ילדים ברשת
-          </p>
-          
-          {/* Search Bar */}
-          <div className="max-w-xl mx-auto relative">
-            <input
-              type="text"
-              placeholder="חיפוש כתבות..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full px-4 py-3 pr-12 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-          </div>
+          {isSearching ? (
+            <div className="max-w-xl mx-auto relative">
+              <input
+                type="text"
+                placeholder="חיפוש כתבות..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                onBlur={handleBlur}
+                autoFocus
+                className="w-full px-4 py-3 pr-12 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            </div>
+          ) : (
+            <h1
+              className="text-4xl font-bold text-gray-900 mb-4 flex justify-center items-center gap-2 cursor-pointer flex-row-reverse"
+              onClick={handleSearchToggle}
+            >
+              הבלוג של SafeNet
+              <Search className="w-6 h-6 text-blue-600" />
+            </h1>
+          )}
         </div>
 
         {/* Blog Grid */}

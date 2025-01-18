@@ -1,172 +1,216 @@
+import React, { useState, useEffect } from 'react';
+import { ChevronDown } from 'lucide-react';
 import './HomePage.css';
-import { useState } from 'react';
 
-import govIcon from '../../assets/Gov.png';
-import hinoohIcon from '../../assets/Hinooh.png';
-import tlvUniIcon from '../../assets/TLV_Uni.png';
-import supportImage from '../../assets/support.jpg';
-import reportImage from '../../assets/report.jpg';
+const HomePage = () => {
+  const [openFaq, setOpenFaq] = useState(null);
 
-const Home = () => {
-  const [openQuestion, setOpenQuestion] = useState(null);
+  // Scroll reveal effect
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1
+    };
 
-  const toggleQuestion = (index) => {
-    setOpenQuestion(openQuestion === index ? null : index);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.scroll-reveal').forEach(element => {
+      observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const toggleFaq = (index) => {
+    setOpenFaq(openFaq === index ? null : index);
   };
 
+  const faqItems = [
+    {
+      question: "איך מתחילים להשתמש במערכת?",
+      answer: "התהליך פשוט - נרשמים דרך האתר, בוחרים את המסלול המתאים לגיל הילד, ומתחילים בלמידה חווייתית."
+    },
+    {
+      question: "האם התכנים מותאמים לכל הגילאים?",
+      answer: "כן, המערכת מציעה תכנים מותאמים לקבוצות גיל שונות, מגיל בית ספר יסודי ועד תיכון."
+    },
+    {
+      question: "כמה זמן לוקח לסיים את המסלול?",
+      answer: "משך הלמידה גמיש ומותאם אישית. בממוצע, ניתן לסיים את המסלול הבסיסי תוך כחודש."
+    },
+    {
+      question: "האם מקבלים תעודה בסיום?",
+      answer: "כן, בסיום המסלול מקבלים תעודת הסמכה רשמית המעידה על השלמת הקורס בהצלחה."
+    },
+    {
+      question: "האם יש ליווי במהלך הלמידה?",
+      answer: "בהחלט! צוות התמיכה שלנו זמין לכל שאלה, והמערכת מספקת משוב מיידי לאורך כל הדרך."
+    },
+    {
+      question: "האם התכנים מתעדכנים?",
+      answer: "כן, אנחנו מעדכנים את התכנים באופן שוטף בהתאם להתפתחויות הטכנולוגיות ואתגרי האינטרנט המשתנים."
+    }
+  ];
+
   return (
-    <div className="home-container">
-      {/* Header */}
-      <header className="home-header">
-        <nav className="navbar">
-          <div className="logo">SafeNet</div>
-          <ul className="nav-links">
-            <li><a href="#about">אודות</a></li>
-            <li><a href="#services">שירותים</a></li>
-            <li><a href="#contact">צור קשר</a></li>
-          </ul>
-        </nav>
-      </header>
-
+    <div className="font-rubik" dir="rtl">
       {/* Hero Section */}
-      <section className="hero">
-        <div className="hero-content">
-          <h1>SafeNet</h1>
-          <p>המקום הבטוח שלך להתמודדות עם בריונות ופגיעות ברשת.</p>
-          
-        </div>
-      </section>
-
-      {/* Highlighted Support Section */}
-      <section className="highlighted-support-section">
-        <div className="support-content">
-          <div className="support-image" style={{ backgroundImage: `url(${supportImage})` }}></div>
-          <div className="support-text">
-            <h2>תמיכה רגשית</h2>
-            <p>חיבור לשירותי חירום, עמותות ומומחים שיעזרו לך להתמודד עם אתגרי החיים.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Highlighted Report Section */}
-      <section className="highlighted-report-section">
-        <div className="report-content">
-          <div className="report-text">
-            <h2>הגשת תלונה</h2>
-            <p>העלאת ראיות וקבלת מסמך תלונה מסודר להגשה לרשויות הרלוונטיות.</p>
-          </div>
-          <div className="report-image" style={{ backgroundImage: `url(${reportImage})` }}></div>
-        </div>
-      </section>
-
-      {/* Support Lines Section */}
-      <section className="support-lines-section">
-        <h2>אל תישארו עם זה לבד.</h2>
-        <p>מרכזי הסיוע לנפגעות ולנפגעי תקיפה מינית זמינים לתמיכה, ליווי והכוונה.</p>
-        <div className="support-lines">
-          <div className="support-line">
-            <h3>1202</h3>
-            <p>קו סיוע על ידי נשים</p>
-          </div>
-          <div className="support-line">
-            <h3>1203</h3>
-            <p>קו סיוע על ידי גברים</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Articles Section */}
-      <section className="articles-section">
-        <h2>מאמרים מומלצים לגלישה בטוחה</h2>
-        <div className="article-list">
-          {[{ img: govIcon, title: "עצות לגלישה בטוחה", text: "קבלו טיפים מממשלת ישראל לשמירה על גלישה בטוחה.", link: "https://www.gov.il/he/pages/safe_surfing_tips" },
-          { img: hinoohIcon, title: "התנהלות נכונה ברשת", text: "הנחיות ממשרד החינוך לגלישה בטוחה.", link: "https://parents.education.gov.il/prhnet/gov-education/safety/safe-surfing/optimal-conduct" },
-          { img: tlvUniIcon, title: "כללי זהירות ברשת", text: "המלצות מהמכון לחקר החברה באוניברסיטת תל אביב.", link: "https://social-sciences.tau.ac.il/Surfingtips" }].map((article, index) => (
-            <div key={index} className="article-item">
-              <div className="article-image" style={{ backgroundImage: `url(${article.img})` }}></div>
-              <div className="article-content">
-                <h3>{article.title}</h3>
-                <p>{article.text}</p>
-                <a href={article.link} target="_blank" rel="noopener noreferrer">קרא עוד</a>
+      <section className="pt-32 pb-16 relative overflow-hidden section-animate">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex flex-row-reverse items-center justify-between">
+            <div className="w-1/2 relative">
+              <div className="absolute w-full h-full rounded-3xl bg-[#F7C59F] transform rotate-6 top-6 left-6 -z-10" />
+              <div className="absolute w-full h-full rounded-3xl bg-[#1A659E] transform -rotate-3 top-3 left-3 -z-20" />
+              <img 
+                src="/hero-image.jpg" 
+                alt="ילד לומד עם הורה" 
+                className="rounded-3xl relative z-10 w-full h-[400px] object-cover"
+              />
+            </div>
+            <div className="w-1/2 text-right">
+              <h1 className="text-5xl font-bold mb-6">
+                מגנים על הדור הבא<br />בעולם הדיגיטלי
+              </h1>
+              <p className="text-gray-600 text-lg mb-8">
+                המערכת עוזרת לילדים ללמוד בבטחה באינטרנט דרך<br />משחק וחוויה לימודית מהנה
+              </p>
+              <div className="flex gap-4">
+                <button className="button-hover bg-[#1A659E] text-white px-8 py-3 rounded-full">
+                  התחילו עכשיו
+                </button>
+                <button className="button-hover bg-white border-2 border-[#1A659E] text-[#1A659E] px-8 py-3 rounded-full">
+                  קרא עוד
+                </button>
               </div>
             </div>
-          ))}
+          </div>
         </div>
       </section>
 
-      <hr className="section-divider" />
-
-      {/* Tips Section */}
-      <section className="tips-section">
-        <h2>המלצות לשימוש בטוח</h2>
-        <ul className="tips-list">
-          <li>הימנע משיתוף מידע אישי עם זרים ברשת.</li>
-          <li>השתמש בסיסמאות חזקות וייחודיות לחשבונות שלך.</li>
-          <li>אל תפתח קישורים או קבצים מאנשים שאינך מכיר.</li>
-          <li>דווח על תוכן פוגעני או חשוד לפלטפורמה הרלוונטית.</li>
-        </ul>
+      {/* Features Section */}
+      <section className="py-20 relative scroll-reveal">
+        <img 
+          src="/illustration.png" 
+          alt="" 
+          className="absolute right-0 top-1/2 transform -translate-y-1/2 w-48"
+        />
+        <img 
+          src="/illustration.png" 
+          alt="" 
+          className="absolute left-0 top-1/2 transform -translate-y-1/2 w-48"
+        />
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-3 gap-16">
+            {[
+              {
+                icon: 'icon-security.svg',
+                title: 'בטיחות מעל הכל',
+                description: 'סביבת למידה מאובטחת ובטוחה\nהמותאמת לילדים ונוער'
+              },
+              {
+                icon: 'icon-learning.svg',
+                title: 'למידה חווייתית',
+                description: 'שילוב של למידה עם משחק\nלהטמעה אפקטיבית יותר'
+              },
+              {
+                icon: 'icon-certificate.svg',
+                title: 'תעודת הסמכה',
+                description: 'קבלת תעודה רשמית בסיום\nהמסלול הלימודי'
+              }
+            ].map((feature, index) => (
+              <div key={index} className="text-center feature-card">
+                <div className="w-20 h-20 bg-[#EFEFD0] rounded-full flex items-center justify-center mx-auto mb-6">
+                  <img src={feature.icon} alt="" className="w-10 h-10" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
+                <p className="text-gray-600 whitespace-pre-line">
+                  {feature.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
-      {/* Call-to-Action Section */}
-      <section className="cta-section">
-        <h2>בואו נעשה שינוי יחד</h2>
-        <div className="cta-buttons">
-        
-          <a href="/memory-game" className="btn-primary">משחק זיכרון</a>
-          <a href="/support" className="btn-primary">קבל עזרה רגשית</a>
-          <a href="/cyber-laws" className="btn-primary">למד על זכויותיך</a>
+      {/* Call to Action Section */}
+      <section className="py-16 scroll-reveal">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="bg-[#EFEFD0] rounded-3xl p-12 flex">
+            <div className="w-1/2 pl-12">
+              <img 
+                src="/cta-image.jpg"
+                alt="למידה משפחתית"
+                className="rounded-3xl w-full h-[300px] object-cover"
+              />
+            </div>
+            <div className="w-1/2 text-right">
+              <h2 className="text-3xl font-bold mb-6">מוכנים להתחיל?</h2>
+              <p className="text-gray-600 mb-8">
+                הצטרפו לתוכנית שכבר עזרה לאלפי ילדים ללמוד על בטיחות ברשת בדרך מהנה ואפקטיבית
+              </p>
+              <button className="button-hover bg-[#1A659E] text-white px-8 py-3 rounded-full">
+                התחילו עכשיו
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Statistics Section */}
+      <section className="py-16 scroll-reveal">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-3 gap-12">
+            {[
+              { value: '95%', label: 'שביעות רצון' },
+              { value: '100+', label: 'בתי ספר משתתפים' },
+              { value: '500+', label: 'תלמידים מוסמכים' }
+            ].map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="text-[#FF6B35] text-5xl font-bold mb-2">
+                  {stat.value}
+                </div>
+                <div className="text-gray-600">{stat.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section className="faq-section">
-        <h2>שאלות ותשובות</h2>
-        <div className="faq-list">
-          {[{ question: "איך מגישים תלונה באתר?", answer: "היכנסו לעמוד הגשת תלונה, מלאו את הטופס והעלו ראיות במידת הצורך." },
-          { question: "איך אפשר לקבל תמיכה רגשית?", answer: "ניתן לפנות לעמוד תמיכה רגשית ולקבל קישור לעמותות או מומחים." },
-          { question: "מהי מדיניות הפרטיות של האתר?", answer: "אנו מתחייבים לשמור על פרטיותך. כל המידע נשמר בצורה מאובטחת." },
-          { question: "איך אני מגן על החשבון שלי?", answer: "השתמש בסיסמאות חזקות, הפעל אימות דו-שלבי, ואל תשתף פרטים אישיים." }].map((faq, index) => (
-            <div key={index} className={`faq-item ${openQuestion === index ? "open" : ""}`}>
-              <h3 onClick={() => toggleQuestion(index)}>
-                {faq.question}
-                <span>{openQuestion === index ? "-" : "+"}</span>
-              </h3>
-              {openQuestion === index && <p>{faq.answer}</p>}
-            </div>
-          ))}
+      <section className="py-16 scroll-reveal">
+        <div className="max-w-3xl mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-8 text-right">שאלות נפוצות</h2>
+          <div className="space-y-4">
+            {faqItems.map((faq, index) => (
+              <div key={index} className="border-b border-gray-200 faq-item">
+                <button
+                  className="w-full py-4 text-right flex justify-between items-center"
+                  onClick={() => toggleFaq(index)}
+                >
+                  <span className="font-medium">{faq.question}</span>
+                  <ChevronDown 
+                    className={`transform transition-transform ${
+                      openFaq === index ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
+                {openFaq === index && (
+                  <div className="pb-4 text-gray-600 text-right">
+                    {faq.answer}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
-
-      <footer id="contact" className="footer">
-        <div className="footer-content">
-          <div className="footer-section">
-            <h3>יצירת קשר</h3>
-            <p>:אימייל</p>
-            <p>:טלפון</p>
-          </div>
-          <div className="footer-section">
-            <h3>קישורים מהירים</h3>
-            <ul>
-              <li><a href="#about">אודות</a></li>
-              <li><a href="#services">שירותים</a></li>
-              <li><a href="#contact">צור קשר</a></li>
-            </ul>
-          </div>
-          <div className="footer-section">
-            <h3>הרשמה לעדכונים</h3>
-            <form>
-              <input type="email" placeholder="הכנס כתובת אימייל" />
-              <button type="submit">הרשם</button>
-            </form>
-          </div>
-        </div>
-        <div className="footer-bottom">
-          <p>© 2025 BeSafe. כל הזכויות שמורות.</p>
-        </div>
-      </footer>
-
     </div>
   );
 };
 
-export default Home;
+export default HomePage;
