@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import scoreRoutes from './routes/score.js'; // Import the routes
+import userRoutes from './routes/user.js'; // Import the routes
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -21,6 +22,8 @@ app.use(cors({
 
 // Use the routes file for all `/scores` routes
 app.use('/scores', scoreRoutes);
+// Use the routes file for all `/users` routes
+app.use('/users', userRoutes);
 
 // Start server
 const PORT = process.env.PORT;
