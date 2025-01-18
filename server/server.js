@@ -19,7 +19,7 @@ app.use(cors({
   origin: process.env.CLIENT_URL
 }));
 
-// Use the routes file for all `/ducks` routes
+// Use the routes file for all `/scores` routes
 app.use('/scores', scoreRoutes);
 
 // Start server
