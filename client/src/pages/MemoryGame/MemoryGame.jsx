@@ -15,7 +15,7 @@ const MemoryGame = () => {
     const [showEndPopup, setShowEndPopup] = useState(false);
     const [currentStage, setCurrentStage] = useState(1);
     const [showIntro, setShowIntro] = useState(true); // מצב עבור מסך הפתיחה
-    const totalStages = 3;
+    const totalStages = 3; 
     const navigate = useNavigate();
 
     const cardData = useMemo(() => [
@@ -74,11 +74,11 @@ const MemoryGame = () => {
 
                     setShowEndPopup(true);
                     setTimeout(() => {
-                        if (currentStage < totalStages) {
+                        if (currentStage === 1) {
                             setCurrentStage((prevStage) => prevStage + 1);
-                            startGame();
+                            navigate('/phishing-hunter'); // מעבר לשלב 2
                         } else {
-                            navigate('/completion');
+                            navigate('/completion'); // סיום המשחק
                         }
                     }, 3000);
                 }
