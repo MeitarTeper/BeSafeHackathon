@@ -1,0 +1,139 @@
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import styles from "./PhishingHunter.module.css";
+import logoImage from "../../assets/Logo.png"; // ייבוא נכון של התמונה
+import annieImage from "../../assets/Annie.png"; // ייבוא הדמות
+
+const totalStages = 3;
+const currentStage = 2;
+
+const messages = [
+  { id: 1, text: "וואו! זכית במנוי חינם לכל החיים למשחק Minecraft! לחץ כאן כדי לדרוש את הפרס שלך.", isPhishing: true },
+  { id: 2, text: "מישהו פרסם תמונה שלך בקבוצה! לחץ כאן כדי לראות.", isPhishing: true },
+  { id: 3, text: "נזכרת שהיום שיעור ספורט? אל תשכח להביא נעלי ספורט.", isPhishing: false },
+  { id: 4, text: "החשבון שלך ב-Roblox נסגר זמנית. לחץ כאן כדי לשחזר אותו.", isPhishing: true },
+  { id: 5, text: "חבר שלך שלח לך קובץ: חופשה_בפארק.zip.", isPhishing: false },
+  { id: 6, text: "חדש! קבל חבילה עם 1,000 V-Bucks חינם ב-Fortnite! לחץ כאן עכשיו.", isPhishing: true },
+  { id: 7, text: "תזכורת: מחר הטיול השנתי. אל תשכח להביא מים וכובע.", isPhishing: false },
+  { id: 8, text: "התגלתה בעיה עם החשבון שלך ב-TikTok. לחץ כאן כדי לפתור.", isPhishing: true },
+  { id: 9, text: "חבר שלך שלח לך מתנה ב-Brawl Stars! לחץ כאן כדי לקבל אותה.", isPhishing: true },
+  { id: 10, text: "המורה הזכירה שבשבוע הבא מבחן במדעים. כדאי להתכונן.", isPhishing: false },
+];
+
+const PhishingHunter = () => {
+  const [score, setScore] = useState(0);
+  const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
+  const [annieComment, setAnnieComment] = useState("");
+  const [showAnnie, setShowAnnie] = useState(false);
+  const [finished, setFinished] = useState(false);
+  const navigate = useNavigate();
+
+  const handleGuess = (isSafe) => {
+    const currentMessage = messages[currentMessageIndex];
+
+    if ((isSafe && !currentMessage.isPhishing) || (!isSafe && currentMessage.isPhishing)) {
+      setScore((prevScore) => prevScore + 1);
+      setAnnieComment("נכון! כל הכבוד!");
+    } else {
+      setAnnieComment("שגוי! שים לב יותר.");
+    }
+
+    setShowAnnie(true);
+
+    setTimeout(() => {
+      setShowAnnie(false);
+      if (currentMessageIndex === messages.length - 1) {
+        setFinished(true);
+      } else {
+        setCurrentMessageIndex((prevIndex) => prevIndex + 1);
+      }
+    }, 2000);
+  };
+
+  useEffect(() => {
+    if (finished) {
+      const timeout = setTimeout(() => {
+        navigate("/completion"); // מעבר לעמוד התעודה
+      }, 5000);
+      return () => clearTimeout(timeout);
+    }
+  }, [finished, navigate]);
+
+  const restartGame = () => {
+    setScore(0);
+    setCurrentMessageIndex(0);
+    setFinished(false);
+    setAnnieComment("");
+  };
+
+  const getFinalMessage = () => {
+    const percentage = (score / messages.length) * 100;
+    if (percentage > 70) {
+      return "כל הכבוד! אתה מלך הפישינג!";
+    } else if (percentage >= 60) {
+      return "עבודה טובה, אבל יש לך עוד מה ללמוד!";
+    } else {
+      return "יש לך עוד על מה לעבוד! נסה שוב.";
+    }
+  };
+
+  return (
+    <div className="game-frame">
+      <div className={styles.container}>
+        {/* סרגל התקדמות */}
+        <div className="progress-container">
+          <div className="progress-bar">
+            <div
+              className="progress"
+              style={{ width: `${(currentStage / totalStages) * 100}%` }}
+            ></div>
+          </div>
+          <p className="progress-text">שלב {currentStage} מתוך {totalStages}</p>
+        </div>
+        <h1 className={styles.title}>צייד הפישינג</h1>
+        <p className={styles.instructions}>קרא את ההודעה והחליט אם היא בטוחה או מסוכנת!</p>
+
+        {!finished ? (
+          <>
+            <div className={styles.progressBar}>
+              <div
+                className={styles.progress}
+                style={{ width: `${(currentMessageIndex / messages.length) * 100}%` }}
+              ></div>
+            </div>
+
+            <div className={styles.messageBox}>
+              <img src={logoImage} alt="Logo" className={styles.logo} />
+              {messages[currentMessageIndex].text}
+            </div>
+
+            <div className={styles.buttons}>
+              <button onClick={() => handleGuess(false)} className={styles.phishingButton}>
+                מסוכן
+              </button>
+              <button onClick={() => handleGuess(true)} className={styles.safeButton}>
+                בטוח
+              </button>
+            </div>
+
+            {showAnnie && (
+              <div className={styles.annieContainer}>
+                <img src={annieImage} alt="Annie" className={styles.annieImage} />
+                <div className={styles.speechBubble}>{annieComment}</div>
+              </div>
+            )}
+
+            <p className={styles.score}>ניקוד: {score}</p>
+          </>
+        ) : (
+          <div className={styles.messageBox}>
+            <img src={logoImage} alt="Logo" className={styles.logo} />
+            <p>{getFinalMessage()}</p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default PhishingHunter;
