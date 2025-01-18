@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/HomePage/HomePage';
+
 import MemoryGame from './pages/MemoryGame/MemoryGame';
 import PhishingHunter from './pages/PhishingHunter/PhishingHunter'; // ייבוא המשחק
 import Completion from './pages/Completion/Completion';
@@ -13,6 +14,8 @@ import Footer from './components/footer';
 import CookieBanner from './components/CookieBanner/CookieBanner';
 import TeacherPage from './pages/TeacherPage/TeacherPage';
 import AccessibilityButton from './components/Accessibility/AccessibilityButton';
+import PasswordGame from './pages/PasswordGame/PasswordGame';
+
 
 function App() {
   return (
@@ -24,6 +27,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/memory-game" element={<MemoryGame />} />
             <Route path="/phishing-hunter" element={<PhishingHunter />} /> {/* נתיב לשלב השני */}
+            <Route path="/password-game" element={<PasswordGame />} />
+
             <Route path="/completion" element={<Completion />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />

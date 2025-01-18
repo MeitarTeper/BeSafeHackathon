@@ -1,0 +1,144 @@
+.up-menu{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .4);
+
+}
+
+/* Container */
+.checklist-container {
+    max-width: 80%;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Noto Sans Hebrew', sans-serif;
+    font-weight: 400;
+    font-size: 1.4rem;
+    
+}
+  
+  /* Title */
+.title {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+  
+  /* Progress Bar */
+.progress-bar-container {
+    height: 20px;
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+  
+.progress-bar {
+    height: 100%;
+    background-color: #4caf50;
+    transition: width 0.3s ease;
+}
+  
+  
+  /* Checklist */
+.checklist {
+    list-style-type: none;
+    padding: 0;
+}
+  
+.checklist-item {
+    display: block;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.checklist-item:last-child {
+    border-bottom: none;
+}
+  
+.checklist-header {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    cursor: pointer;
+}
+  
+.checklist-title {
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+    margin-left: 10px;
+}
+  
+.checklist-title:hover {
+    color: #388e3c;
+}
+
+  /* Checklist Info */
+.checklist-info {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    color: #555;
+    line-height: 1.6rem;
+    cursor: pointer;
+    margin-left: 10px;
+}
+  
+  /* Finish Button */
+.finish-button {
+    background-color: #4caf50;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+  
+.finish-button:hover {
+    background-color: #388e3c;
+}
+  
+  /*Mark item as finished*/
+.checklist-item.completed {
+    background-color: #e8f5e9;
+    
+}
+  
+.checklist-item.completed .checklist-title {
+    color: #66bb6a;
+    text-decoration: line-through;
+}
+
+   /* .checklist-item:last-child {
+    border-bottom: none;
+  }
+  
+  .checklist-item label {
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  .checklist-item input[type="checkbox"] {
+    transform: scale(1.2);
+    cursor: pointer;
+  }
+  
+ 
+.completed label {
+    text-decoration: line-through;
+    color: #999;
+}  */
+  
