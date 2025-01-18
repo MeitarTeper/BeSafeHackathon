@@ -5,7 +5,7 @@ import logoImage from "../../assets/Logo.png"; // ייבוא נכון של הת�
 import annieImage from "../../assets/Annie.png"; // ייבוא הדמות
 
 const totalStages = 3;
-const currentStage = 2;
+const currentStage = 3;
 
 const messages = [
   { id: 1, text: "וואו! זכית במנוי חינם לכל החיים למשחק Minecraft! לחץ כאן כדי לדרוש את הפרס שלך.", isPhishing: true },
