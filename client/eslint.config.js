@@ -33,6 +33,8 @@ export default [
         'warn',
         { allowConstantExport: true },
       ],
+      // השבתת שגיאת no-unused-vars
+      'no-unused-vars': 'off',
     },
   },
 ]

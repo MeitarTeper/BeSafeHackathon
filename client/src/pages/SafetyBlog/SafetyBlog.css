@@ -1,0 +1,265 @@
+.safety-blog {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    direction: rtl;
+  }
+  
+  /* פס עליון */
+  .header {
+    width: 100%;
+    background-color: #1a237e;
+    color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    margin-bottom: 32px;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: 500;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  /* חיפוש וכותרת */
+  .search-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .title-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+  }
+  
+  .main-title {
+    font-size: 32px;
+    font-weight: 300;
+    text-align: center;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'DM Sans', sans-serif;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.5s ease;
+  }
+  
+  .search-icon {
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.5s ease;
+  }
+  
+  .search-input {
+    width: 400px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 18px;
+    outline: none;
+    transition: all 0.5s ease;
+    animation: slideIn 0.5s ease;
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* תוכן הבלוג */
+  .blog-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  
+  .article-row {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+  
+  .main-article {
+    flex: 2;
+  }
+  
+  .side-articles {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  .article-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .article-card:hover {
+    transform: translateY(-4px);
+  }
+  
+  .article-card.large {
+    height: 400px;
+  }
+  
+  .article-card.small {
+    height: 188px;
+  }
+  
+  .article-image {
+    width: 40%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .article-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .article-content {
+    width: 60%;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .article-title {
+    font-family: 'Courier New', monospace;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+  
+  .small .article-title {
+    font-size: 18px;
+  }
+  
+  .article-preview {
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.5);
+    line-height: 1.6;
+    margin-bottom: auto;
+  }
+  
+  .small .article-preview {
+    font-size: 14px;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 14px;
+    color: #666;
+    margin-top: 16px;
+  }
+  
+  .menu-button {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    padding: 8px;
+    transition: color 0.3s ease;
+  }
+  
+  .menu-button:hover {
+    color: white;
+  }
+  
+  .sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 250px;
+    background: white;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    z-index: 1000;
+    animation: slideIn 0.3s ease;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sidebar li {
+    margin-bottom: 16px;
+  }
+  
+  .sidebar a {
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+  }
+  
+  .sidebar a:hover {
+    color: #1a237e;
+  }
+  
+  /* רספונסיביות */
+  @media (max-width: 768px) {
+    .article-row {
+      flex-direction: column;
+    }
+  
+    .article-card.large,
+    .article-card.small {
+      height: auto;
+      flex-direction: column;
+    }
+  
+    .article-image {
+      width: 100%;
+      height: 200px;
+    }
+  
+    .article-content {
+      width: 100%;
+    }
+  
+    .search-input {
+      width: 100%;
+      max-width: 300px;
+    }
+  
+    .main-title {
+      font-size: 24px;
+    }
+  
+    .side-articles {
+      gap: 16px;
+    }
+  }
