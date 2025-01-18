@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import './MemoryGame.css';
+
 import logoImage from "../../assets/Logo.png";
 import annieImage from "../../assets/Annie.png"; // ייבוא הדמות
+
 
 const MemoryGame = () => {
     const [cards, setCards] = useState([]);
