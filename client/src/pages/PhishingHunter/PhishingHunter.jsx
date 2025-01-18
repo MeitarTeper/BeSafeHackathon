@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef  } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./PhishingHunter.module.css";
 import logoImage from "../../assets/Logo.png"; // ייבוא נכון של התמונה
-import annieImage from "../../assets/Annie.png"; // ייבוא הדמות
+import Annie from '../../components/Annie';
+import ProgressBar from '../../components/ProgressBar';
 
 const totalStages = 3;
 const currentStage = 3;
@@ -23,25 +24,24 @@ const messages = [
 const PhishingHunter = () => {
   const [score, setScore] = useState(0);
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
-  const [annieComment, setAnnieComment] = useState("");
-  const [showAnnie, setShowAnnie] = useState(false);
   const [finished, setFinished] = useState(false);
   const navigate = useNavigate();
+  const annieRef = useRef();
 
   const handleGuess = (isSafe) => {
     const currentMessage = messages[currentMessageIndex];
 
     if ((isSafe && !currentMessage.isPhishing) || (!isSafe && currentMessage.isPhishing)) {
       setScore((prevScore) => prevScore + 1);
-      setAnnieComment("נכון! כל הכבוד!");
+      annieRef.current.show("נכון! כל הכבוד!");
     } else {
-      setAnnieComment("שגוי! שים לב יותר.");
+      annieRef.current.show("שגוי! שים לב יותר.");
     }
 
-    setShowAnnie(true);
+
 
     setTimeout(() => {
-      setShowAnnie(false);
+      annieRef.current.hide();
       if (currentMessageIndex === messages.length - 1) {
         setFinished(true);
       } else {
@@ -63,7 +63,8 @@ const PhishingHunter = () => {
     setScore(0);
     setCurrentMessageIndex(0);
     setFinished(false);
-    setAnnieComment("");
+    //setAnnieComment("");
+    annieRef.current.hide();
   };
 
   const getFinalMessage = () => {
@@ -80,16 +81,7 @@ const PhishingHunter = () => {
   return (
     <div className="game-frame">
       <div className={styles.container}>
-        {/* סרגל התקדמות */}
-        <div className="progress-container">
-          <div className="progress-bar">
-            <div
-              className="progress"
-              style={{ width: `${(currentStage / totalStages) * 100}%` }}
-            ></div>
-          </div>
-          <p className="progress-text">שלב {currentStage} מתוך {totalStages}</p>
-        </div>
+        <ProgressBar currentStage={currentStage} totalStages={totalStages} />
         <h1 className={styles.title}>צייד הפישינג</h1>
         <p className={styles.instructions}>קרא את ההודעה והחליט אם היא בטוחה או מסוכנת!</p>
 
@@ -115,13 +107,7 @@ const PhishingHunter = () => {
                 בטוח
               </button>
             </div>
-
-            {showAnnie && (
-              <div className={styles.annieContainer}>
-                <img src={annieImage} alt="Annie" className={styles.annieImage} />
-                <div className={styles.speechBubble}>{annieComment}</div>
-              </div>
-            )}
+            <Annie ref={annieRef} />
 
             <p className={styles.score}>ניקוד: {score}</p>
           </>

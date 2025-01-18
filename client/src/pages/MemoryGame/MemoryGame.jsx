@@ -1,22 +1,22 @@
 import { useNavigate } from 'react-router-dom';
-import React, { useState, useMemo, useCallback, useEffect } from 'react';
+import React, { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import './MemoryGame.css';
 
 import logoImage from "../../assets/Logo.png";
 import annieImage from "../../assets/Annie.png"; // ייבוא הדמות
+import Annie from '../../components/Annie';
+import ProgressBar from '../../components/ProgressBar';
 
 
 const MemoryGame = () => {
     const [cards, setCards] = useState([]);
     const [flippedCards, setFlippedCards] = useState([]);
     const [matchedPairs, setMatchedPairs] = useState(0);
-    const [showPopup, setShowPopup] = useState(false);
-    const [popupContent, setPopupContent] = useState('');
-    const [showEndPopup, setShowEndPopup] = useState(false);
     const [currentStage, setCurrentStage] = useState(1);
     const [showIntro, setShowIntro] = useState(true); // מצב עבור מסך הפתיחה
     const totalStages = 3; 
     const navigate = useNavigate();
+    const annieRef = useRef();
 
     const cardData = useMemo(() => [
         { text: "אל תשתף כתובת בית", type: "danger" },
@@ -37,8 +37,6 @@ const MemoryGame = () => {
 
         setCards(shuffledCards);
         setMatchedPairs(0);
-        setShowPopup(false);
-        setShowEndPopup(false);
     }, [cardData]);
 
     useEffect(() => {
@@ -70,11 +68,10 @@ const MemoryGame = () => {
 
                 if (newMatchedPairs === 6) {
                     // ביטול הודעת פריט מסוכן אם המשחק מסתיים
-                    setShowPopup(false);
-
-                    setShowEndPopup(true);
+                    annieRef.current.show('כל הכבוד 🎉\nהשלמת את השלב בהצלחה!');
                     setTimeout(() => {
                         if (currentStage === 1) {
+                            annieRef.current.hide();
                             setCurrentStage((prevStage) => prevStage + 1);
                             navigate('/password-game'); // מעבר לשלב 2
                         } else {
@@ -93,11 +90,10 @@ const MemoryGame = () => {
             ) {
                 // הצגת הודעה רק אם המשחק לא הסתיים
                 if (matchedPairs + 1 < 6) {
-                    setPopupContent(`זיהית פריט מסוכן ⚠️`);
-                    setShowPopup(true);
+                    annieRef.current.show('זיהית פריט מסוכן ⚠️');
 
                     setTimeout(() => {
-                        setShowPopup(false);
+                        annieRef.current.hide();
                     }, 2000);
                 }
             }
@@ -134,15 +130,7 @@ const MemoryGame = () => {
         <div className="game-frame">
             <div className="memory-game-container">
                 {/* סרגל התקדמות */}
-                <div className="progress-container">
-                    <div className="progress-bar">
-                        <div
-                            className="progress"
-                            style={{ width: `${(currentStage / totalStages) * 100}%` }}
-                        ></div>
-                    </div>
-                    <p className="progress-text">שלב {currentStage} מתוך {totalStages}</p>
-                </div>
+                <ProgressBar currentStage={currentStage} totalStages={totalStages} />
 
                 <h1>משחק זיכרון</h1>
                 <div className="memory-game">
@@ -161,22 +149,7 @@ const MemoryGame = () => {
                 </div>
 
                 {/* דמות עם בועת דיבור */}
-                <div className={`annie-container ${showPopup ? 'show' : ''}`}>
-                    <img src={annieImage} alt="Annie" className="annie-image" />
-                    <div className="speech-bubble">
-                        {popupContent}
-                    </div>
-                </div>
-
-                {/* דמות עם בועת דיבור בסיום */}
-                {showEndPopup && (
-                    <div className="annie-container show">
-                        <img src={annieImage} alt="Annie" className="annie-image" />
-                        <div className="speech-bubble">
-                            כל הכבוד 🎉<br />השלמת את השלב בהצלחה!
-                        </div>
-                    </div>
-                )}
+                <Annie ref={annieRef} />
             </div>
         </div>
     );

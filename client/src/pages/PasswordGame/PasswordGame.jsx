@@ -1,9 +1,10 @@
 import "./PasswordGame.css";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import PasswordRules from "./PasswordRules";
-import logoImage from "../../assets/Logo.png"; // ייבוא נכון של התמונה
-import annieImage from "../../assets/Annie.png"; // ייבוא הדמות
+import Annie from '../../components/Annie';
+import ProgressBar from '../../components/ProgressBar';
+
 
 const totalStages = 3;
 const currentStage = 2;
@@ -16,8 +17,7 @@ const PasswordGame = () => {
     const [strengthScore, setStrengthScore] = useState(0);
     const [feedback, setFeedback] = useState([]);
     const [currentScreen, setCurrentScreen] = useState("start");
-    const [annieComment, setAnnieComment] = useState("");
-    const [showAnnie, setShowAnnie] = useState(false);
+    const annieRef = useRef();
 
     let checksCount = 5;
     const navigate = useNavigate();
@@ -66,25 +66,23 @@ const PasswordGame = () => {
 
         if (score === checksCount) {
             setCurrentScreen("end");
-            setShowAnnie(false);
+            annieRef.current.hide();
         } else {
-            setAnnieComment("אני רואה שיש עוד מקום לשיפור. נסה שוב!");
+            annieRef.current.show("אני רואה שיש עוד מקום לשיפור. נסה שוב!");
         }
       };
     
     const handleUserNameChange = (e) => {
         setUserName(e.target.value);
         setSubmitted(false); 
-        setShowAnnie(false);
-        setAnnieComment("");
+        annieRef.current.hide();
         
     };
 
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
         setSubmitted(false);
-        setShowAnnie(false);
-        setAnnieComment("");
+        annieRef.current.hide();
     };
 
     const handleSubmit = (e) => {
@@ -102,7 +100,6 @@ const PasswordGame = () => {
             evaluatePassword();
         }
         setSubmitted(true);
-        setShowAnnie(true);
       };
     
       const handleShowInstructions = () => {
@@ -125,16 +122,8 @@ const PasswordGame = () => {
     return (
         <div className="game-frame">
         <div className="password-challenge-container">
-                {/* סרגל התקדמות */}
-        <div className="progress-container">
-          <div className="progress-bar">
-            <div
-              className="progress"
-              style={{ width: `${(currentStage / totalStages) * 100}%` }}
-            ></div>
-          </div>
-          <p className="progress-text">שלב {currentStage} מתוך {totalStages}</p>
-        </div>
+          {/* ProgressBar Component */}
+            <ProgressBar currentStage={currentStage} totalStages={totalStages} />
             {currentScreen === "start" && (
                 <div className="password-rules-container">
                     <PasswordRules setCurrentScreen={setCurrentScreen} />
@@ -171,12 +160,7 @@ const PasswordGame = () => {
                         </form>
                     </div>
                 
-                    {showAnnie && (
-                          <div className={`annie-container ${showAnnie ? 'show' : ''}`}>
-                            <img src={annieImage} alt="Annie" className="annie-image" />
-                            <div className="speech-bubble">{annieComment}</div>
-                          </div>
-                        )}  
+                        <Annie ref={annieRef} />
                 {submitted && (
                     <div className="password-feedback">
                         <h3>הסיסמה שנבחרה: {password}</h3>
@@ -203,13 +187,12 @@ const PasswordGame = () => {
                         <h1 id="subtitle">כל הכבוד! סיימת את האתגר!</h1>
                         <button className="btn" onClick={handleTryAgain}>נסה שוב</button>
                         <button className="btn" onClick={handleNextLevel}>המשך לשלב הבא</button>
-                        <div className="kids-img"></div>
                 </div></>
                 
             )}  
             
         </div>
-        </div>
+         </div>
 
     );
 };

@@ -218,56 +218,6 @@ body, html {
   border: 2px solid #032a44;
 }
 
-/* דמות עם בועת דיבור */
-.annie-container {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  display: flex;
-  align-items: center;
-  z-index: 1000;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.5s ease-out;
-  pointer-events: none; /* מניעת חסימת קליקים */
-}
-
-.annie-container.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.annie-image {
-  width: 600px; /* גודל הדמות */
-  height: auto;
-}
-
-.speech-bubble {
-  position: relative;
-  background: #fff;
-  border-radius: 10px;
-  padding: 10px 15px;
-  margin-right: 15px; /* מרווח בין הדמות לבועה */
-  color: #333;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-width: 250px;
-  border: 1px solid black;
-  pointer-events: none; /* מניעת חסימת קליקים */
-}
-
-.speech-bubble:after {
-  content: '';
-  position: absolute;
-  bottom: 10px;
-  left: 100%;
-  width: 0;
-  height: 0;
-  border: 10px solid transparent;
-  border-right: 0;
-  border-bottom: 0;
-  margin-top: -5px;
-}
-
 /* סרגל התקדמות */
 .progress-container {
   width: 100%;
