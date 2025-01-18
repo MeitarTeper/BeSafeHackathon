@@ -2,16 +2,18 @@ import { useNavigate } from 'react-router-dom';
 import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import './MemoryGame.css';
 import logoImage from "../../assets/Logo.png";
+import annieImage from "../../assets/Annie.png"; // ייבוא הדמות
 
 const MemoryGame = () => {
     const [cards, setCards] = useState([]);
     const [flippedCards, setFlippedCards] = useState([]);
-    // eslint-disable-next-line no-unused-vars
-const [matchedPairs, setMatchedPairs] = useState(0);
-
+    const [matchedPairs, setMatchedPairs] = useState(0);
     const [showPopup, setShowPopup] = useState(false);
     const [popupContent, setPopupContent] = useState('');
     const [showEndPopup, setShowEndPopup] = useState(false);
+    const [currentStage, setCurrentStage] = useState(1);
+    const [showIntro, setShowIntro] = useState(true); // מצב עבור מסך הפתיחה
+    const totalStages = 3;
     const navigate = useNavigate();
 
     const cardData = useMemo(() => [
@@ -32,7 +34,6 @@ const [matchedPairs, setMatchedPairs] = useState(0);
             .map((card, index) => ({ ...card, id: index, flipped: false }));
 
         setCards(shuffledCards);
-        
         setMatchedPairs(0);
         setShowPopup(false);
         setShowEndPopup(false);
@@ -65,26 +66,38 @@ const [matchedPairs, setMatchedPairs] = useState(0);
             setMatchedPairs((prevMatchedPairs) => {
                 const newMatchedPairs = prevMatchedPairs + 1;
 
-                // בדיקה אם כל הזוגות נמצאו
                 if (newMatchedPairs === 6) {
-                    setShowEndPopup(true); // מציג את הפופ-אפ בסיום
+                    // ביטול הודעת פריט מסוכן אם המשחק מסתיים
+                    setShowPopup(false);
+
+                    setShowEndPopup(true);
                     setTimeout(() => {
-                        navigate('/completion'); // מעבר לעמוד Completion
-                    }, 3000); // המתנה של 3 שניות
+                        if (currentStage < totalStages) {
+                            setCurrentStage((prevStage) => prevStage + 1);
+                            startGame();
+                        } else {
+                            navigate('/completion');
+                        }
+                    }, 3000);
                 }
 
                 return newMatchedPairs;
             });
 
             // בדיקה אם לפחות אחד מהכרטיסים הוא "danger"
-            if (cards[first].type === 'danger' || cards[second].type === 'danger') {
-                setPopupContent(`זיהית פריט מסוכן ⚠️`);
-                setShowPopup(true);
+            if (
+                cards[first].type === 'danger' ||
+                cards[second].type === 'danger'
+            ) {
+                // הצגת הודעה רק אם המשחק לא הסתיים
+                if (matchedPairs + 1 < 6) {
+                    setPopupContent(`זיהית פריט מסוכן ⚠️`);
+                    setShowPopup(true);
 
-                // סגירה אוטומטית של הפופ-אפ לאחר 2 שניות
-                setTimeout(() => {
-                    setShowPopup(false);
-                }, 2000);
+                    setTimeout(() => {
+                        setShowPopup(false);
+                    }, 2000);
+                }
             }
         } else {
             const newCards = [...cards];
@@ -95,54 +108,74 @@ const [matchedPairs, setMatchedPairs] = useState(0);
         setFlippedCards([]);
     };
 
-    return (
-        <div className="memory-game-container">
-            <header className="home-header">
-                <nav className="navbar">
-                    <div className="logo">SafeNet</div>
-                    <ul className="nav-links">
-                        <li><a href="/">דף הבית</a></li>
-                        <li><a href="#services">שירותים</a></li>
-                        <li><a href="#contact">צור קשר</a></li>
-                    </ul>
-                </nav>
-            </header>
-            <h1>משחק זיכרון - בטיחות ברשת</h1>
-            <div className="memory-game">
-                {cards.map((card, index) => (
-                    <div
-                        key={index}
-                        className={`memory-card ${card.flipped ? "flipped" : ""}`}
-                        onClick={() => handleCardClick(index)}
-                    >
-                        <div className="front-face">
-                            <img src={logoImage} alt="Logo" className="logo-image" />
-                        </div>
-                        <div className="back-face">{card.text}</div>
+    if (showIntro) {
+        return (
+            <div className="intro-screen">
+                <div className="annie-intro-container">
+                    <img src={annieImage} alt="Annie" className="annie-intro-image" />
+                    <div className="annie-speech-bubble">
+                        ברוכים הבאים להכשרתכם כמומחי בטיחות ברשת!<br />
+                        במהלך המסלול תלמדו לזהות איומים ולהגן על פרטיותכם ברשת.
                     </div>
-                ))}
+                </div>
+                <button
+                    className="start-button"
+                    onClick={() => setShowIntro(false)}
+                >
+                    בואו נתחיל
+                </button>
             </div>
+        );
+    }
 
-            {/* פופ-אפ סכנה */}
-            {showPopup && (
-                <div className="popup-overlay">
-                    <div className="popup">
-                        <button className="close-popup" onClick={() => setShowPopup(false)}>✖</button>
-                        <p>{popupContent}</p>
+    return (
+        <div className="game-frame">
+            <div className="memory-game-container">
+                {/* סרגל התקדמות */}
+                <div className="progress-container">
+                    <div className="progress-bar">
+                        <div
+                            className="progress"
+                            style={{ width: `${(currentStage / totalStages) * 100}%` }}
+                        ></div>
+                    </div>
+                    <p className="progress-text">שלב {currentStage} מתוך {totalStages}</p>
+                </div>
+
+                <h1>משחק זיכרון</h1>
+                <div className="memory-game">
+                    {cards.map((card, index) => (
+                        <div
+                            key={index}
+                            className={`memory-card ${card.flipped ? "flipped" : ""}`}
+                            onClick={() => handleCardClick(index)}
+                        >
+                            <div className="front-face">
+                                <img src={logoImage} alt="Logo" className="logo-image" />
+                            </div>
+                            <div className="back-face">{card.text}</div>
+                        </div>
+                    ))}
+                </div>
+
+                {/* דמות עם בועת דיבור */}
+                <div className={`annie-container ${showPopup ? 'show' : ''}`}>
+                    <img src={annieImage} alt="Annie" className="annie-image" />
+                    <div className="speech-bubble">
+                        {popupContent}
                     </div>
                 </div>
-            )}
 
-
-            {/* פופ-אפ הצלחה */}
-            {showEndPopup && (
-                <div className="popup-overlay">
-                    <div className="popup">
-                        <h2>🎉 !כל הכבוד 🎉</h2>
-                        <p>!עברתם את השלב בהצלחה</p>
+                {/* דמות עם בועת דיבור בסיום */}
+                {showEndPopup && (
+                    <div className="annie-container show">
+                        <img src={annieImage} alt="Annie" className="annie-image" />
+                        <div className="speech-bubble">
+                            כל הכבוד 🎉<br />השלמת את השלב בהצלחה!
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
+            </div>
         </div>
     );
 };

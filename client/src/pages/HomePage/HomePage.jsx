@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
 import './HomePage.css';
+import { Link } from 'react-router-dom';
+
 
 const HomePage = () => {
   const [openFaq, setOpenFaq] = useState(null);
@@ -80,9 +82,9 @@ const HomePage = () => {
                 המערכת עוזרת לילדים ללמוד בבטחה באינטרנט דרך<br />משחק וחוויה לימודית מהנה
               </p>
               <div className="flex gap-4">
-                <button className="button-hover bg-[#1A659E] text-white px-8 py-3 rounded-full">
+                <Link to="/memory-game" className="button-hover bg-[#1A659E] text-white px-8 py-3 rounded-full">
                   התחילו עכשיו
-                </button>
+                 </Link>
                 <button className="button-hover bg-white border-2 border-[#1A659E] text-[#1A659E] px-8 py-3 rounded-full">
                   קרא עוד
                 </button>
@@ -153,9 +155,9 @@ const HomePage = () => {
               <p className="text-gray-600 mb-8">
                 הצטרפו לתוכנית שכבר עזרה לאלפי ילדים ללמוד על בטיחות ברשת בדרך מהנה ואפקטיבית
               </p>
-              <button className="button-hover bg-[#1A659E] text-white px-8 py-3 rounded-full">
-                התחילו עכשיו
-              </button>
+              <Link to="/memory-game" className="button-hover bg-[#1A659E] text-white px-8 py-3 rounded-full">
+                  התחילו עכשיו
+                 </Link>
             </div>
           </div>
         </div>

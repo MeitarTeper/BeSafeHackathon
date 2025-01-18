@@ -1,330 +1,320 @@
+/* כללי */
 body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow-x: hidden;
-  }
-  
-/* Header */
-.home-header {
-    background-color: rgba(232, 232, 232, 0.553);
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: var(--box-shadow);
-  }
-  .logo-image {
-    width: 80%;
-    height: 80%;
-    object-fit: contain;
-  }
-  
-  
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-  }
-  
-  .logo {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: var(--primary-color);
-  }
-  
-  .nav-links {
-    display: flex;
-    gap: 1.5rem;
-    list-style: none;
-    margin: 0;
-  }
-  
-  .nav-links li a {
-    color: var(--text-color);
-    font-size: 1rem;
-    transition: color var(--transition);
-  }
-  
-  .nav-links li a:hover {
-    color: var(--secondary-color);
-  }
-  .memory-game-container {
-    min-height: calc(100vh - 120px); /* התאמת הגובה כך שהתוכן לא יסתיר את הפוטר */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .memory-game-container h1{
-    text-align: center;
-  }
-  
-  .difficulty-selector {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-    background-color: #bdd0dd;
-    padding: 15px;
-    border-radius: 8px;
-  }
-  
-  .difficulty-selector p {
-    font-size: 1.2em;
-    font-weight: bold;
-    margin: 0;
-    color: #333;
-  }
-  
-  .difficulty-buttons {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .difficulty-btn {
-    background-color: #2980b9;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 12px;
-    font-size: 1.1em;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  
-  .difficulty-btn:hover {
-    background-color: #3498db;
-    transform: scale(1.05);
-  }
-  
-  .difficulty-btn.active {
-    background-color: #032a44;
-    box-shadow: 0 0 10px rgba(84, 114, 211, 0.5);
-  }
-
-  
-  
-  
-  .memory-game {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: 600px;
-    margin: 20px auto;
-  }
-  
-  .memory-card {
-    width: 130px;
-    height: 180px;
-    margin: 10px;
-    position: relative;
-    transform-style: preserve-3d;
-    transform: rotateY(0deg);
-    transition: transform 0.5s;
-    cursor: pointer;
-    text-align: center;
-  }
-  
-  .memory-card.flipped {
-    transform: rotateY(180deg);
-  }
-  
-  .memory-card .front-face,
-  .memory-card .back-face {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2em;
-    font-weight: bold;
-  }
-  
-  .memory-card .front-face {
-    background-color: #2f719d;
-    color: #fff;
-  }
-  
-  .memory-card .back-face {
-    background-color: whitesmoke;
-    color: #2f719d;
-    transform: rotateY(180deg);
-    border: 2px solid #032a44;
-  }
-  
-  .popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Rubik', sans-serif;
+  background-color: #f9f9f9;
+}
+.intro-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f9f9f9;
+  text-align: center;
 }
 
-.popup {
-    position: relative;
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    max-width: 400px;
-    width: 90%;
+.annie-intro-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
 
-.popup h2 {
-    font-size: 2rem;
-    color: #007bff;
-    margin-bottom: 10px;
+.annie-intro-image {
+  width: 700px; /* גודל גדול לדמות */
+  height: auto;
 }
 
-.popup p {
-    font-size: 1.2rem;
-    color: #333;
+.annie-speech-bubble {
+  position: absolute;
+  top: 50px;
+  left: 320px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  text-align: center;
+  font-size: 30px;
+  border: 2px solid #1A659E;
+  opacity: 0; /* מתחיל בלתי נראה */
+  transform: translateY(20px); /* מיקום התחלתי */
+  animation: fadeInBubble 0.8s ease-out forwards; /* אנימציה */
 }
 
-/* עיצוב לכפתור ✖ */
-.close-popup {
-    background-color: transparent;
-    border: none;
-    font-size: 1.5rem;
-    color: #333; /* צבע כהה */
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    cursor: pointer;
+/* אנימציה של Fade In */
+@keyframes fadeInBubble {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.close-popup:hover {
-    color: #007bff; /* שינוי צבע בכפתור בריחוף */
+
+.start-button {
+  margin-top: 20px;
+  padding: 15px 30px;
+  background-color: #1A659E;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
+.start-button:hover {
+  background-color: #144d7e;
+}
+
+/* מסגרת המשחק */
+.game-frame {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9f9;
+ 
+}
+
+.memory-game-container {
+  width: 90%; /* התאמה למסגרת */
+  max-width: 1200px;
+  height: 90%; /* התאמת הגובה */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  background-color: #fff;
+  padding: 20px;
+}
+
+/* כותרת המשחק */
+.memory-game-container h1 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1A659E;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* כללי */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+ 
+  font-family: 'Rubik', sans-serif;
+  background-color: #f9f9f9;
+}
+
+/* מסגרת המשחק */
+.game-frame {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9f9;
+ 
+}
+
+.memory-game-container {
+  width: 90%;
+  max-width: 1200px;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
   
-  .next-level-btn {
-    background-color: #27ae60;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
+}
+
+/* כותרת המשחק */
+.memory-game-container h1 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1A659E;
+}
+
+/* משחק הזיכרון */
+.memory-game {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* 6 קלפים בכל שורה */
+  grid-gap: 10px; /* מרווחים בין הקלפים */
+  justify-content: center;
+  align-items: center;
+  max-width: 100%; /* מבטיח שהרשת לא תחרוג מהמסגרת */
+  height: calc(100% - 100px); /* משאיר מקום לסרגל התקדמות */
+  padding: 10px; /* ריווח פנימי בתוך המסגרת */
+  box-sizing: border-box; /* כולל את הריווח בחישוב הגודל */
+}
+
+.memory-card {
+  width: 90%; /* מקטין את רוחב הקלפים */
+  aspect-ratio: 4 / 5; /* יחס גובה-רוחב רספונסיבי */
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateY(0deg);
+  transition: transform 0.5s, box-shadow 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 10px;
+  margin: auto; /* מבטיח שהקלפים ממוקמים במרכז */
+}
+
+.memory-card:hover {
+  transform: scale(1.05); /* מגדיל מעט את הקלף בריחוף */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+
+
+.memory-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.memory-card .front-face,
+.memory-card .back-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.memory-card .front-face {
+  background-color: #1A659E;
+  color: #fff;
+}
+
+.memory-card .back-face {
+  background-color: #F7C59F;
+  color: #1A659E;
+  transform: rotateY(180deg);
+  border: 2px solid #032a44;
+}
+
+/* דמות עם בועת דיבור */
+.annie-container {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease-out;
+  pointer-events: none; /* מניעת חסימת קליקים */
+}
+
+.annie-container.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.annie-image {
+  width: 600px; /* גודל הדמות */
+  height: auto;
+}
+
+.speech-bubble {
+  position: relative;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px 15px;
+  margin-right: 15px; /* מרווח בין הדמות לבועה */
+  color: #333;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 250px;
+  border: 1px solid black;
+  pointer-events: none; /* מניעת חסימת קליקים */
+}
+
+.speech-bubble:after {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  left: 100%;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-right: 0;
+  border-bottom: 0;
+  margin-top: -5px;
+}
+
+/* סרגל התקדמות */
+.progress-container {
+  width: 100%;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.progress-bar {
+  width: 80%;
+  height: 20px;
+  background-color: #ddd;
+  border-radius: 10px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  background-color: #1A659E;
+  width: 0; /* התקדמות הסרגל */
+  transition: width 0.3s ease-in-out;
+}
+
+.progress-text {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* אנימציות */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  .next-level-btn:hover {
-    background-color: #2ecc71;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .close-popup {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 1.5em;
-    cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  /* עיצוב הפוטר */
-.footer {
-    background-color: var(--primary-color);
-    color: #fff;
-    padding: 1rem;
-    width: 100%;
-    position: relative;
-    bottom: 0;
-    left: 0;
-    text-align: center;
+  to {
+    opacity: 1;
   }
-  
-  .footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    text-align: center;
-    width: 100%;
-  }
-  
-  .footer-section h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .footer-section p,
-  .footer-section ul {
-    font-size: 1rem;
-    margin: 0.5rem 0;
-  }
-  
-  .footer-section ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .footer-section ul li {
-    margin-bottom: 0.5rem;
-  }
-  
-  .footer-section ul li a {
-    color: #fff;
-    text-decoration: none;
-    transition: color var(--transition);
-  }
-  
-  .footer-section ul li a:hover {
-    color: var(--secondary-color);
-  }
-  
-  .social-links a {
-    color: #fff;
-    font-size: 1.5rem;
-    margin: 0 0.5rem;
-    transition: color var(--transition);
-  }
-  
-  .social-links a:hover {
-    color: var(--secondary-color);
-  }
-  
-  .footer-section form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  .footer-section form input {
-    padding: 0.5rem;
-    border: none;
-    border-radius: var(--border-radius);
-    outline: none;
-  }
-  
-  .footer-section form button {
-    padding: 0.5rem 1rem;
-    background-color: var(--secondary-color);
-    color: #fff;
-    border: none;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    transition: background-color var(--transition);
-  }
-  
-  .footer-section form button:hover {
-    background-color: #c58960;
-  }
-  
-  .footer-bottom {
-    text-align: center;
-    margin-top: 2rem;
-    font-size: 0.9rem;
-  }
+}
