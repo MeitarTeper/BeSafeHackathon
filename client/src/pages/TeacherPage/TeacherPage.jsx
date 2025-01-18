@@ -6,41 +6,36 @@ import { Download, ChevronDown } from 'lucide-react';
 
 const lessonPlan = [
     {
-      time: "0-5 דקות",
+      time: "0-10 דקות",
       activity: "פתיחה והצגת הנושא",
-      description: "הצגת נושא השיעור: בטיחות ברשת",
-      tips: "שאלו את התלמידים כמה זמן הם מבלים באינטרנט וכיצד הם משתמשים בו"
+      description: "הצגת הנושא- בטיחות ברשת תוך מתן דוגמאות מעולמם של התלמידים",
+      tips: "שאלו את התלמידים כמה זמן הם מבלים באינטרנט ואילו כללים חשובים הם מכירים?"
     },
     {
-      time: "5-15 דקות",
-      activity: "משחק פתיחה אינטראקטיבי",
-      description: "משחק זיכרון עם כרטיסיות המציגות מצבים שונים ברשת",
-      tips: "עודדו דיון על המצבים השונים שהתלמידים רואים במשחק"
+      time: "10-20 דקות",
+      activity: "משחק זיכרון",
+      description: "משחק זיכרון שבו התלמידים לומדים להבחין בין פריטים מסוכנים ובטוחים ברשת",
+      tips: "בקשו מהתלמידים להסביר לאחר כל התאמה למה הפריט מסוכן"
     },
     {
-      time: "15-25 דקות",
-      activity: "הצגת מקרים ודיון",
-      description: "הצגת סיטואציות אמיתיות של סכנות ברשת",
-      tips: "איך הייתם מגיבים במצב כזה? מה הייתם עושים אחרת?"
+      time: "20-30 דקות",
+      activity: "אתגר הסיסמא",
+      description: "משחק שמטרתו ללמד את התלמידים כיצד ליצור סיסמאות חזקות ובטוחות",
+      tips: "הסבירו מדוע חשוב לשלב אותיות, מספרים ותווים מיוחדים, קראו איתם את ההוראות ורשמו על הלוח לפני תחילת המשחק"
     },
     {
-      time: "25-35 דקות",
-      activity: "עבודה בקבוצות",
-      description: "התלמידים מתחלקים לקבוצות ומקבלים תרחיש לניתוח",
-      tips: "תנו לכל קבוצה תרחיש שונה ובקשו מהם להציג פתרונות"
+      time: "30-40 דקות",
+      activity: "צייד הפישינג",
+      description: "משחק זיהוי הודעות פישינג שהילדים עלולים לקבל וצריכים לחשוד",
+      tips: "ציינו את החשיבות של שימת לב לפרטים הקטנים כמו קישורים, שגיאות כתיב ומידע אישי כשנדרש"
     },
     {
-      time: "35-42 דקות",
-      activity: "הצגת פתרונות",
-      description: "כל קבוצה מציגה את התרחיש שלה ואת הפתרונות שהציעה",
-      tips: "עודדו את שאר הכיתה להציע פתרונות נוספים"
+      time: "40-45 דקות",
+      activity: "סיכום ותעודת הסמכה",
+      description: "יצירת תעודת הסמכה כיתתית וסיכום החומר",
+      tips: "שאלו את התלמידים מה הם למדו היום, איך יישמו זאת ותמלאו איתם את שם הכיתה"
     },
-    {
-      time: "42-45 דקות",
-      activity: "סיכום",
-      description: "סיכום הנקודות העיקריות ומתן טיפים מעשיים",
-      tips: "חזרו על הכללים העיקריים לבטיחות ברשת"
-    }
+   
   ];
 
 const TeacherPage = () => {
@@ -98,30 +93,38 @@ const TeacherPage = () => {
         </div>
       </section>
 
-      {/* Presentation Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8">מצגת מותאמת למערך השיעור</h2>
-          <p className="text-gray-600 mb-8">
-            כדי להפוך את ההדרכה לפשוטה עבורך, הכנו מצגת שמלווה את השיעור מההתחלה ועד הסוף. המצגת כוללת את כל הנקודות החשובות, שאלות לדיון ודוגמאות ויזואליות.
-          </p>
+   {/* Presentation Section */}
+<section className="py-16 bg-gray-50">
+  <div className="max-w-7xl mx-auto px-4">
+    <h2 className="text-3xl font-bold mb-8">מצגת מותאמת למערך השיעור</h2>
+    <p className="text-gray-600 mb-8">
+      כדי להפוך את ההדרכה לפשוטה עבורך, הכנו מצגת שמלווה את השיעור מההתחלה ועד הסוף. המצגת כוללת את כל הנקודות החשובות, שאלות לדיון ודוגמאות ויזואליות.
+    </p>
 
-          <div className="bg-white rounded-xl shadow-lg p-8 text-center">
-            <div className="aspect-video bg-gray-100 mb-8 rounded-lg">
-              {/* כאן תהיה תצוגה מקדימה של המצגת */}
-            </div>
-            
-            <button
-              onClick={() => setIsSlideModalOpen(true)}
-              className="bg-[#1A659E] text-white px-8 py-3 rounded-full hover:bg-[#004E89] transition-colors inline-flex items-center gap-2"
-            >
-              <Download size={20} />
-              להורדת המצגת
-            </button>
-          </div>
-        </div>
-      </section>
+    <div className="bg-white rounded-xl shadow-lg p-8 text-center">
+      {/* תצוגת PDF בתוך iframe */}
+      <div className="aspect-video bg-gray-100 mb-8 rounded-lg overflow-hidden">
+        <iframe
+          src="/src/assets/presentations/For_teachers.pdf#toolbar=0" // הוספת #toolbar=0 לכתובת ה-URL
+          width="100%"
+          height="500"
+          className="rounded-lg"
+          title="מצגת בטיחות ברשת"
+        />
+      </div>
 
+      {/* כפתור להורדת המצגת */}
+      <a
+        href="/src/assets/presentations/For_teachers.pptx" // נתיב ל-PPTX
+        download
+        className="bg-[#1A659E] text-white px-8 py-3 rounded-full hover:bg-[#004E89] transition-colors inline-flex items-center gap-2"
+      >
+        <Download size={20} />
+        להורדת המצגת
+      </a>
+    </div>
+  </div>
+</section>
       {/* Contact Section */}
       <section className="py-16 bg-[#EFEFD0]">
         <div className="max-w-7xl mx-auto px-4 text-center">

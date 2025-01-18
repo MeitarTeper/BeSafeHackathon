@@ -15,6 +15,8 @@ import CookieBanner from './components/CookieBanner/CookieBanner';
 import TeacherPage from './pages/TeacherPage/TeacherPage';
 import AccessibilityButton from './components/Accessibility/AccessibilityButton';
 import PasswordGame from './pages/PasswordGame/PasswordGame';
+const totalStages = 3;
+const currentStage = 1;
 
 
 function App() {
@@ -25,10 +27,9 @@ function App() {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/memory-game" element={<MemoryGame />} />
-            <Route path="/phishing-hunter" element={<PhishingHunter />} /> {/* נתיב לשלב השני */}
-            <Route path="/password-game" element={<PasswordGame />} />
-
+            <Route path="/memory-game" element={<MemoryGame currentStage={currentStage} totalStages={totalStages} />} />
+            <Route path="/phishing-hunter" element={<PhishingHunter currentStage={currentStage+1} totalStages={totalStages}  />} />
+            <Route path="/password-game" element={<PasswordGame currentStage={currentStage+1} totalStages={totalStages} />} />
             <Route path="/completion" element={<Completion />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />

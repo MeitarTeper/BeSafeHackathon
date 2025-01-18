@@ -1,5 +1,9 @@
 import React from 'react';
 import { Shield, Users, BookOpen, Award } from 'lucide-react';
+import noaImage from "../../assets/images/us/noa.jpeg";
+
+
+
 
 const AboutPage = () => {
   const features = [
@@ -35,7 +39,7 @@ const AboutPage = () => {
               אודות SafeNet
             </h1>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              אנחנו מאמינים שכל ילד צריך לדעת כיצד להתנהל בבטחה ברשת. 
+              אנחנו מאמינים שכל ילד צריך לדעת כיצד להתנהל בבטחה ברשת.
               המשימה שלנו היא להנגיש את הידע הזה בצורה חווייתית ומהנה.
             </p>
           </div>
@@ -73,9 +77,9 @@ const AboutPage = () => {
               החזון שלנו
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              אנו שואפים ליצור סביבת אינטרנט בטוחה יותר עבור ילדינו, 
+              אנו שואפים ליצור סביבת אינטרנט בטוחה יותר עבור ילדינו,
               באמצעות חינוך, העלאת מודעות וכלים פרקטיים להתמודדות עם אתגרי העולם הדיגיטלי.
-              אנחנו מאמינים שבאמצעות שיתוף פעולה עם מערכת החינוך, 
+              אנחנו מאמינים שבאמצעות שיתוף פעולה עם מערכת החינוך,
               נוכל להגיע לכל ילד וילדה ולהעניק להם את הכלים הנחוצים לגלישה בטוחה.
             </p>
           </div>
@@ -93,7 +97,14 @@ const AboutPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {/* Add team members here */}
             <div className="text-center">
-              <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-4"></div>
+              <div className="w-32 h-32 rounded-full mx-auto mb-4 overflow-hidden">
+                <img
+                  src={noaImage} // שימוש בייבוא
+                  alt="נעה מוסקטו"
+                  className="w-full h-full object-cover"
+                />
+
+              </div>
               <h3 className="text-xl font-semibold">נעה מוסקטו</h3>
               <p className="text-gray-600">תפקיד</p>
             </div>
