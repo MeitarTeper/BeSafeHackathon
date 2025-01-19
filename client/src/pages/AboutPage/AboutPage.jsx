@@ -4,6 +4,7 @@ import noaImage from "../../assets/images/us/noa.jpeg";
 import estiImage from "../../assets/images/us/Esti.jpg";
 import hadarImage from "../../assets/images/us/Hadar.jpg";
 import meitarImage from "../../assets/images/us/Meitar.jpg";
+import chenImage from "../../assets/images/us/Chen.jpg";
 
 const AboutPage = () => {
   const features = [
@@ -88,7 +89,7 @@ const AboutPage = () => {
             <TeamMember name="נעה מוסקטו" role="תפקיד" image={noaImage} />
             <TeamMember name="הדר דבוש" role="תפקיד" image={hadarImage} />
             <TeamMember name="אסתי כהן" role="תפקיד" image={estiImage} />
-            <TeamMember name="חן" role="תפקיד" />
+            <TeamMember name="חן" role="תפקיד" image={chenImage} />
             <TeamMember name="מיתר טפר" role="תפקיד" image={meitarImage} />
           </div>
         </div>
