@@ -1,5 +1,5 @@
 import React from 'react';
-// Optional if you want to have specific styling
+import PropTypes from 'prop-types';
 
 const ProgressBar = ({ currentStage, totalStages }) => {
   const progressWidth = (currentStage / totalStages) * 100;
@@ -17,6 +17,11 @@ const ProgressBar = ({ currentStage, totalStages }) => {
       </p>
     </div>
   );
+};
+
+ProgressBar.propTypes = {
+  currentStage: PropTypes.number.isRequired,
+  totalStages: PropTypes.number.isRequired,
 };
 
 export default ProgressBar;
