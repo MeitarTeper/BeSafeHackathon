@@ -1,10 +1,10 @@
 import api from './api';
 
-const login = async (usename, password) => {
+const login = async (username, password) => {
     var response = {}
     try {
         response = await api.post('/users/login', {
-            usename: usename,
+            username: username,
             password: password
         });
         response = response.data.message;
@@ -14,14 +14,12 @@ const login = async (usename, password) => {
     return response;
 };
 
-const signUp = async (usename, password) => {
+const signUp = async (username, password) => {
     var response = {}
     try {
         response = await api.post('/users/signup', {
-            params: {
-                usename: usename,
-                password: password
-            }
+            username: username,
+            password: password
         });
         response = response.data.message;
     } catch (error) {

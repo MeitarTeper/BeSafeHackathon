@@ -16,6 +16,8 @@ import TeacherPage from './pages/TeacherPage/TeacherPage';
 import AccessibilityButton from './components/Accessibility/AccessibilityButton';
 import PasswordGame from './pages/PasswordGame/PasswordGame';
 import SupportPage from './pages/SupportPage/SupportPage';
+import LoginPage from './pages/LoginPage/LoginPage';
+import SignupPage from './pages/SignupPage/SignupPage';
 const totalStages = 3;
 const currentStage = 1;
 
@@ -39,6 +41,8 @@ function App() {
             <Route path="/teacher" element={<TeacherPage />} />
             <Route path="*" element={<Error />} />
             <Route path="/support" element={<SupportPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
           </Routes>
         </main>
         <Footer />

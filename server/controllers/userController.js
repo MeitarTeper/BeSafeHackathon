@@ -16,6 +16,7 @@ const login = async (req, res) => {
     const sql = `SELECT username FROM users WHERE username =? and password =?`;
     try {
         const user = await fetchAll(sql, [username, password]);
+        console.log(user);
         if (user.length > 0)
         {
             req.session.user = user[0];
@@ -34,7 +35,7 @@ const login = async (req, res) => {
 
 const signUp = async (req, res) => {
     try{
-        var { username, password } = req.body;
+        var {username, password} = req.body;
         if (!username || !password) {
             res.status(400).json({ "message": "Missing required fields" });
             return;

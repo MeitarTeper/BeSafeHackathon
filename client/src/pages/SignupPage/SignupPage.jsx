@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { login } from "../services/user_api";
+import { signUp } from "../../services/user_api";
+import { Link } from 'react-router-dom';
 
 function LoginForm() {
     const [username, setusername] = useState('');
@@ -7,16 +8,16 @@ function LoginForm() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log('Login submitted:', { username, password });
-        login(username, password);
+        console.log('Signup submitted:', { username, password });
+        signUp(username, password);
     };
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
             <form onSubmit={handleSubmit} style={{ padding: '20px', border: '1px solid #ccc', borderRadius: '10px', width: '300px' }}>
-                <h2 style={{ textAlign: 'center' }}>Login</h2>
+                <h2 style={{ textAlign: 'center' }}>הרשמה</h2>
                 <div style={{ marginBottom: '15px' }}>
-                    <label htmlFor="username" style={{ display: 'block', marginBottom: '5px' }}>Username:</label>
+                    <label htmlFor="username" style={{ display: 'block', marginBottom: '5px' }}>משתמש:</label>
                     <input
                         type="username"
                         id="username"
@@ -27,7 +28,7 @@ function LoginForm() {
                     />
                 </div>
                 <div style={{ marginBottom: '15px' }}>
-                    <label htmlFor="password" style={{ display: 'block', marginBottom: '5px' }}>Password:</label>
+                    <label htmlFor="password" style={{ display: 'block', marginBottom: '5px' }}>סיסמה:</label>
                     <input
                         type="password"
                         id="password"
@@ -41,8 +42,12 @@ function LoginForm() {
                     type="submit"
                     style={{ width: '100%', padding: '10px', backgroundColor: '#007BFF', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}
                 >
-                    Login
+                    להרשמה
                 </button>
+                <div>
+
+                </div>
+                <Link key='/login' to='/login'>להתחברות</Link>
             </form>
         </div>
     );
