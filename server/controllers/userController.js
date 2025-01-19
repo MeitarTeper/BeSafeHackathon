@@ -13,11 +13,12 @@ try {
 
 const login = async (req, res) => {
     var {username, password} = req.body;
-    const sql = `SELECT * FROM users WHERE username =? and password =?`;
+    const sql = `SELECT username FROM users WHERE username =? and password =?`;
     try {
         const user = await fetchAll(sql, [username, password]);
         if (user.length > 0)
         {
+            req.session.user = user[0];
             res.status(200).json({ "message": "successfully logged in" });
         }
         else
@@ -50,6 +51,7 @@ const signUp = async (req, res) => {
         console.log("Adding user: " + username + " " + password);
         const sql2 = `INSERT INTO users (username, password) VALUES(?, ?)`;
         await execute(sql2, [username, password]);
+        req.session.user = username;
         res.status(201).json({ "message": "user added successfully" });
     }
     catch (err) {

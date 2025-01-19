@@ -5,6 +5,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import scoreRoutes from './routes/score.js'; // Import the routes
 import userRoutes from './routes/user.js'; // Import the routes
+var session = require('express-session')
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -12,6 +13,10 @@ const __dirname = path.dirname(__filename);
 dotenv.config();
 
 const app = express();
+app.use(session({
+  secret: 'keyboard cat',
+  cookie: {}
+}));
 
 app.use(express.json());
 app.use('/images', express.static(path.join(__dirname, 'images'))); // Serve static images
