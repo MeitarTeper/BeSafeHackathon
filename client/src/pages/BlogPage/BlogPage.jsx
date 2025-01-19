@@ -11,7 +11,7 @@ const BlogPage = () => {
       id: 1,
       title: "איך להגן על ילדים מפני הונאות פישינג?",
       excerpt: "מדריך מקיף להורים על זיהוי והתמודדות עם הונאות פישינג",
-      image: "/api/placeholder/400/250",
+      image: "/Blog/Dad and Boy with Laptop 1.png ",
       category: "אבטחת מידע",
       date: "14 ינואר, 2025",
       slug: "phishing-protection-guide"
@@ -20,7 +20,7 @@ const BlogPage = () => {
       id: 2,
       title: "בריונות ברשת: כיצד לזהות ולהתמודד",
       excerpt: "טיפים חשובים לזיהוי מוקדם והתמודדות עם תופעת הבריונות ברשת",
-      image: "/api/placeholder/400/250",
+      image: "/Blog/Medium Shot Boy Woman Laptop 1.png",
       category: "יחסים חברתיים",
       date: "12 ינואר, 2025",
       slug: "cyberbullying-guide"
@@ -29,7 +29,7 @@ const BlogPage = () => {
       id: 3,
       title: "הגדרות פרטיות ברשתות חברתיות",
       excerpt: "מדריך מעשי להגדרת פרטיות בטוחה ברשתות החברתיות הפופולריות",
-      image: "/api/placeholder/400/250",
+      image: "/Blog/Mother Working from Home 1.png",
       category: "פרטיות",
       date: "10 ינואר, 2025",
       slug: "social-media-privacy"
@@ -38,7 +38,7 @@ const BlogPage = () => {
       id: 4,
       title: "סיסמאות חזקות: למה זה חשוב?",
       excerpt: "הסבר על חשיבות הסיסמאות החזקות וכיצד ליצור אותן",
-      image: "/api/placeholder/400/250",
+      image: "/Blog/Teacher Geometric Shapes 1.png",
       category: "אבטחת מידע",
       date: "8 ינואר, 2025",
       slug: "strong-passwords"
@@ -47,7 +47,7 @@ const BlogPage = () => {
       id: 5,
       title: "שיתוף תמונות ברשת: מה מותר ומה אסור",
       excerpt: "כללים חשובים לשיתוף תמונות ברשת בצורה בטוחה ואחראית",
-      image: "/api/placeholder/400/250",
+      image: "/Blog/Mother Helping Son Homework 1.png",
       category: "פרטיות",
       date: "6 ינואר, 2025",
       slug: "safe-image-sharing"
@@ -56,7 +56,7 @@ const BlogPage = () => {
       id: 6,
       title: "זמן מסך: איך לשמור על איזון",
       excerpt: "טיפים להורים על ניהול זמן המסך של ילדים בצורה בריאה",
-      image: "/api/placeholder/400/250",
+      image: "/Blog/Happy Mother Helping Daughter 1.png",
       category: "אורח חיים דיגיטלי",
       date: "4 ינואר, 2025",
       slug: "screen-time-balance"
@@ -65,7 +65,7 @@ const BlogPage = () => {
       id: 7,
       title: "משחקים מקוונים: בטיחות והגנה",
       excerpt: "מדריך להורים על בטיחות ילדים במשחקים מקוונים",
-      image: "/api/placeholder/400/250",
+      image: "/Blog/Child with Parents (1) 1.png",
       category: "משחקים",
       date: "2 ינואר, 2025",
       slug: "online-gaming-safety"
@@ -74,7 +74,7 @@ const BlogPage = () => {
       id: 8,
       title: "הכרויות ברשת: סכנות והתמודדות",
       excerpt: "מידע חשוב על סכנות הכרויות ברשת וכיצד להימנע מהן",
-      image: "/api/placeholder/400/250",
+      image: "/Blog/Mother and Daughter Home Interior 1.png",
       category: "יחסים חברתיים",
       date: "31 דצמבר, 2024",
       slug: "online-relationships"
@@ -83,7 +83,7 @@ const BlogPage = () => {
       id: 9,
       title: "הגנה מפני וירוסים ותוכנות זדוניות",
       excerpt: "כיצד להגן על המחשב והמכשירים הניידים מפני תוכנות זדוניות",
-      image: "/api/placeholder/400/250",
+      image: "/Blog/Teacher and Child Unsplash 1.png",
       category: "אבטחת מידע",
       date: "29 דצמבר, 2024",
       slug: "malware-protection"
@@ -92,7 +92,7 @@ const BlogPage = () => {
       id: 10,
       title: "שימוש בטוח ברשתות WiFi ציבוריות",
       excerpt: "טיפים חשובים לגלישה בטוחה ברשתות WiFi ציבוריות",
-      image: "/api/placeholder/400/250",
+      image: "/Blog/Teacher Student Computer 1.png",
       category: "אבטחת מידע",
       date: "27 דצמבר, 2024",
       slug: "public-wifi-safety"
@@ -101,7 +101,7 @@ const BlogPage = () => {
       id: 11,
       title: "דיווח על תוכן פוגעני",
       excerpt: "מדריך לזיהוי ודיווח על תכנים פוגעניים ברשת",
-      image: "/api/placeholder/400/250",
+      image: "/Blog/Mother Helping Son Homework 1.png",
       category: "בטיחות",
       date: "25 דצמבר, 2024",
       slug: "report-harmful-content"
@@ -110,7 +110,7 @@ const BlogPage = () => {
       id: 12,
       title: "הורים מול טכנולוגיה: טיפים להדרכה נכונה",
       excerpt: "כיצד להדריך ילדים לשימוש נכון בטכנולוגיה",
-      image: "/api/placeholder/400/250",
+      image: "/Blog/Mother Helping Daughter Study 1.png",
       category: "חינוך",
       date: "23 דצמבר, 2024",
       slug: "parent-tech-guide"

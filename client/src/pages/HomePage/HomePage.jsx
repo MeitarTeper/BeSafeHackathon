@@ -69,7 +69,7 @@ const HomePage = () => {
               <div className="absolute w-full h-full rounded-3xl bg-[#F7C59F] transform rotate-6 top-6 left-6 -z-10" />
               <div className="absolute w-full h-full rounded-3xl bg-[#1A659E] transform -rotate-3 top-3 left-3 -z-20" />
               <img 
-                src="/hero-image.jpg" 
+                src="/Home/hero-image.png" 
                 alt="ילד לומד עם הורה" 
                 className="rounded-3xl relative z-10 w-full h-[400px] object-cover"
               />
@@ -97,7 +97,7 @@ const HomePage = () => {
       {/* Features Section */}
       <section className="py-20 relative scroll-reveal">
         <img 
-          src="/illustration.png" 
+          src="/icons/illustration.svg" 
           alt="" 
           className="absolute right-0 top-1/2 transform -translate-y-1/2 w-48"
         />
@@ -110,17 +110,17 @@ const HomePage = () => {
           <div className="grid grid-cols-3 gap-16">
             {[
               {
-                icon: 'icon-security.svg',
+                icon: "/Home/icons/icon-security.svg",
                 title: 'בטיחות מעל הכל',
                 description: 'סביבת למידה מאובטחת ובטוחה\nהמותאמת לילדים ונוער'
               },
               {
-                icon: 'icon-learning.svg',
+                icon: "/Home/icons/icon-learning.svg",
                 title: 'למידה חווייתית',
                 description: 'שילוב של למידה עם משחק\nלהטמעה אפקטיבית יותר'
               },
               {
-                icon: 'icon-certificate.svg',
+                icon: "/Home/icons/icon-certificate.svg",
                 title: 'תעודת הסמכה',
                 description: 'קבלת תעודה רשמית בסיום\nהמסלול הלימודי'
               }
@@ -145,7 +145,7 @@ const HomePage = () => {
           <div className="bg-[#EFEFD0] rounded-3xl p-12 flex">
             <div className="w-1/2 pl-12">
               <img 
-                src="/cta-image.jpg"
+                src="/Home/cta-image.png"
                 alt="למידה משפחתית"
                 className="rounded-3xl w-full h-[300px] object-cover"
               />
