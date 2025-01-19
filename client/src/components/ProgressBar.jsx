@@ -25,3 +25,4 @@ ProgressBar.propTypes = {
 };
 
 export default ProgressBar;
+

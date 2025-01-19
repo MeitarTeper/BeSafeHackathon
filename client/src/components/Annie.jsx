@@ -8,23 +8,22 @@ const Annie = forwardRef((props, ref) => {
 
     // Expose `show` and `hide` methods to parent component via `ref`
     useImperativeHandle(ref, () => ({
-        show: (comment) => {
-            console.log('showing Annie with comment:', comment);
-            setAnnieComment(comment);
-            setShowAnnie(true);
-            console.log('annieComment:', annieComment);
-        },
-        hide: () => {
-            setShowAnnie(false);
-            setAnnieComment('');
-        },
+
+      show: (comment) => {
+        setAnnieComment(comment);
+        setShowAnnie(true);
+      },
+      hide: () => {
+        setShowAnnie(false);
+        setAnnieComment('');
+      },
     }));
 
-    // Log when annieComment changes
-    useEffect(() => {
-        console.log('annieComment updated:', annieComment);
-    }, [annieComment]);
-
+     // Log when annieComment changes
+  // useEffect(() => {
+  //   console.log('annieComment updated:', annieComment);
+  // }, [annieComment]);
+  
     return (
         showAnnie && (
             <div className="annieContainer">
@@ -33,9 +32,8 @@ const Annie = forwardRef((props, ref) => {
             </div>
         )
     );
-});
+  });
+  
+  Annie.displayName = "Annie";
+  export default Annie;
 
-
-Annie.displayName = "Annie";
-
-export default Annie;

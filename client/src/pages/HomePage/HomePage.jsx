@@ -68,7 +68,7 @@ const HomePage = () => {
               <div className="absolute w-full h-full rounded-3xl bg-[#F7C59F] transform rotate-6 top-6 left-6 -z-10" />
               <div className="absolute w-full h-full rounded-3xl bg-[#1A659E] transform -rotate-3 top-3 left-3 -z-20" />
               <img 
-                src="/hero-image.jpg" 
+                src="/Home/hero-image.png" 
                 alt="ילד לומד עם הורה" 
                 className="rounded-3xl relative z-10 w-full h-[400px] object-cover"
               />
@@ -90,6 +90,95 @@ const HomePage = () => {
                
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-20 relative scroll-reveal">
+        <img 
+          src="/icons/illustration.svg" 
+          alt="" 
+          className="absolute right-0 top-1/2 transform -translate-y-1/2 w-48"
+        />
+        <img 
+          src="/illustration.png" 
+          alt="" 
+          className="absolute left-0 top-1/2 transform -translate-y-1/2 w-48"
+        />
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-3 gap-16">
+            {[
+              {
+                icon: "/Home/icons/icon-security.svg",
+                title: 'בטיחות מעל הכל',
+                description: 'סביבת למידה מאובטחת ובטוחה\nהמותאמת לילדים ונוער'
+              },
+              {
+                icon: "/Home/icons/icon-learning.svg",
+                title: 'למידה חווייתית',
+                description: 'שילוב של למידה עם משחק\nלהטמעה אפקטיבית יותר'
+              },
+              {
+                icon: "/Home/icons/icon-certificate.svg",
+                title: 'תעודת הסמכה',
+                description: 'קבלת תעודה רשמית בסיום\nהמסלול הלימודי'
+              }
+            ].map((feature, index) => (
+              <div key={index} className="text-center feature-card">
+                <div className="w-20 h-20 bg-[#EFEFD0] rounded-full flex items-center justify-center mx-auto mb-6">
+                  <img src={feature.icon} alt="" className="w-10 h-10" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
+                <p className="text-gray-600 whitespace-pre-line">
+                  {feature.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action Section */}
+      <section className="py-16 scroll-reveal">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="bg-[#EFEFD0] rounded-3xl p-12 flex">
+            <div className="w-1/2 pl-12">
+              <img 
+                src="/Home/cta-image.png"
+                alt="למידה משפחתית"
+                className="rounded-3xl w-full h-[300px] object-cover"
+              />
+            </div>
+            <div className="w-1/2 text-right">
+              <h2 className="text-3xl font-bold mb-6">מוכנים להתחיל?</h2>
+              <p className="text-gray-600 mb-8">
+                הצטרפו לתוכנית שכבר עזרה לאלפי ילדים ללמוד על בטיחות ברשת בדרך מהנה ואפקטיבית
+              </p>
+              <Link to="/memory-game" className="button-hover bg-[#1A659E] text-white px-8 py-3 rounded-full">
+                  התחילו עכשיו
+                 </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Statistics Section */}
+      <section className="py-16 scroll-reveal">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-3 gap-12">
+            {[
+              { value: '95%', label: 'שביעות רצון' },
+              { value: '100+', label: 'בתי ספר משתתפים' },
+              { value: '500+', label: 'תלמידים מוסמכים' }
+            ].map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="text-[#FF6B35] text-5xl font-bold mb-2">
+                  {stat.value}
+                </div>
+                <div className="text-gray-600">{stat.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

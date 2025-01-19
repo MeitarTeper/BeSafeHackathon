@@ -3,6 +3,7 @@ import { Download, ChevronDown } from 'lucide-react';
 //import Reveal from 'reveal.js';
 //import 'reveal.js/dist/reveal.css';
 //import 'reveal.js/dist/theme/white.css';
+import LessonPlanUpload from "./LessonPlanUpload";
 
 const lessonPlan = [
     {
@@ -40,6 +41,13 @@ const lessonPlan = [
 
 const TeacherPage = () => {
   const [isSlideModalOpen, setIsSlideModalOpen] = useState(false);
+  const [lessonPlans, setLessonPlans] = useState([]); // State to store uploaded files
+
+  // Handler for adding a new lesson plan
+  const handleAddLessonPlan = (newLessonPlan) => {
+    console.log('Adding new lesson plan:', newLessonPlan);
+    setLessonPlans((prevLessonPlans) => [...prevLessonPlans, newLessonPlan]);
+  };
 
   return (
     <div className="font-rubik min-h-screen bg-gray-50" dir="rtl">
@@ -125,6 +133,59 @@ const TeacherPage = () => {
     </div>
   </div>
 </section>
+{/* Lesson Plan Upload Section */}
+<section className="py-16">
+  <div className="max-w-7xl mx-auto px-4">
+    <h2 className="text-3xl font-bold mb-8">העלאת מערכי שיעור</h2>
+    <p className="text-gray-600 mb-8">
+      שתפו את מערכי השיעור שלכם עם מורים אחרים כדי לעזור להם ללמד בצורה יצירתית ומגוונת!
+    </p>
+    <div className="bg-white rounded-xl shadow-lg p-8 text-center">
+    {/* Embed the LessonPlanUpload component here */}
+    <LessonPlanUpload onAddLessonPlan={handleAddLessonPlan} />
+
+{/* List of Uploaded Lesson Plans */}
+<section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-8">רשימת מערכי שיעור</h2>
+          {lessonPlans.length > 0 ? (
+            <ul className="space-y-4">
+              {lessonPlans.map((plan, index) => (
+                <li key={index} className="bg-white shadow rounded-lg p-4">
+                  <div className="flex items-center space-x-4">
+                    {plan.previewPhoto && (
+                      <img
+                        src={plan.previewPhoto}
+                        alt={`Preview of ${plan.name}`}
+                        className="w-20 h-20 object-cover rounded-md"
+                      />
+                    )}
+                    <div>
+                      <h3 className="text-xl font-bold">{plan.lessonName}</h3>
+                      <p>גילאים: {plan.ageGroup}</p>
+                      <p>זמן: {plan.time}</p>
+                    </div>
+                    <a
+                      href={plan.url}
+                      download={plan.fileName}
+                      className="bg-[#1A659E] text-white px-8 py-3 rounded-full hover:bg-[#004E89] transition-colors inline-flex items-center gap-2"
+                    >
+                      <Download size={20} />
+                      הורד
+                    </a>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-gray-600">עדיין לא הועלו מערכי שיעור.</p>
+          )}
+        </div>
+      </section>
+      </div>
+  </div>
+</section>
+
       {/* Contact Section */}
       <section className="py-16 bg-[#EFEFD0]">
         <div className="max-w-7xl mx-auto px-4 text-center">
