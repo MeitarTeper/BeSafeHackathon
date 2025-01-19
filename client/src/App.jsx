@@ -15,6 +15,7 @@ import CookieBanner from './components/CookieBanner/CookieBanner';
 import TeacherPage from './pages/TeacherPage/TeacherPage';
 import AccessibilityButton from './components/Accessibility/AccessibilityButton';
 import PasswordGame from './pages/PasswordGame/PasswordGame';
+import SupportPage from './pages/SupportPage/SupportPage';
 const totalStages = 3;
 const currentStage = 1;
 
@@ -37,6 +38,7 @@ function App() {
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/teacher" element={<TeacherPage />} />
             <Route path="*" element={<Error />} />
+            <Route path="/support" element={<SupportPage />} />
           </Routes>
         </main>
         <Footer />
