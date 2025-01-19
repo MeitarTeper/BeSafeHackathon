@@ -84,9 +84,9 @@ const HomePage = () => {
                 <Link to="/memory-game" className="button-hover bg-[#1A659E] text-white px-8 py-3 rounded-full">
                   התחילו עכשיו
                 </Link>
-                <button className="button-hover bg-white border-2 border-[#1A659E] text-[#1A659E] px-8 py-3 rounded-full">
+                <Link to="/about" className="button-hover bg-white border-2 border-[#1A659E] text-[#1A659E] px-8 py-3 rounded-full">
                   קרא עוד
-                </button>
+                </Link>
                
               </div>
             </div>

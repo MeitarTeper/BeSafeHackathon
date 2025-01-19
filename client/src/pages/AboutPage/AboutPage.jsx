@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'; // ייבוא PropTypes
 import { Shield, Users, BookOpen, Award } from 'lucide-react';
 import noaImage from "../../assets/images/us/noa.jpeg";
 import estiImage from "../../assets/images/us/Esti.jpg";
@@ -89,7 +90,7 @@ const AboutPage = () => {
             <TeamMember name="נעה מוסקטו" role="תפקיד" image={noaImage} />
             <TeamMember name="הדר דבוש" role="תפקיד" image={hadarImage} />
             <TeamMember name="אסתי כהן" role="תפקיד" image={estiImage} />
-            <TeamMember name="חן" role="תפקיד" image={chenImage} />
+            <TeamMember name="חן קושלביץ'" role="תפקיד" image={chenImage} />
             <TeamMember name="מיתר טפר" role="תפקיד" image={meitarImage} />
           </div>
         </div>
@@ -107,5 +108,12 @@ const TeamMember = ({ name, role, image }) => (
     <p className="text-gray-600">{role}</p>
   </div>
 );
+
+// הגדרת propTypes
+TeamMember.propTypes = {
+  name: PropTypes.string.isRequired,
+  role: PropTypes.string.isRequired,
+  image: PropTypes.string,
+};
 
 export default AboutPage;
