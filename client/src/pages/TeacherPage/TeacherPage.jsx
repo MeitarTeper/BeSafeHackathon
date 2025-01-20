@@ -60,7 +60,6 @@ const TeacherPage = () => {
     console.log('Adding new lesson plan:', newLessonPlan);
     setLessonPlans((prevLessonPlans) => [...prevLessonPlans, newLessonPlan]);
   };
-
   return (
     <div className="font-rubik min-h-screen bg-gray-50" dir="rtl">
       {/* Hero Section */}
@@ -79,21 +78,20 @@ const TeacherPage = () => {
           </p>
         </div>
         <div className="flex justify-center mt-8">
-      <button
-        className="bg-[#1A659E] text-white px-8 py-3 rounded-full hover:bg-[#004E89] transition-colors inline-flex items-center gap-2"
-        onClick={() => {
-          const pdfSection = document.getElementById("pdf-section");
-          if (pdfSection) {
-            pdfSection.scrollIntoView({ behavior: "smooth" });
-          }
-        }}
-      >
-       
-       פוסטר לזיהוי חרם
-      </button>
-    </div>
+          <button
+            className="bg-[#1A659E] text-white px-8 py-3 rounded-full hover:bg-[#004E89] transition-colors inline-flex items-center gap-2"
+            onClick={() => {
+              const pdfSection = document.getElementById("pdf-section");
+              if (pdfSection) {
+                pdfSection.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
+          >
+            פוסטר לזיהוי חרם
+          </button>
+        </div>
       </section>
-
+  
       {/* Lesson Plan Section */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4">
@@ -101,7 +99,7 @@ const TeacherPage = () => {
           <p className="text-gray-600 mb-8">
             מתחת מופיע מערך שיעור קליל וממוקד שאפשר להעביר ב-45 דקות. השיעור כולל משחקים, דיונים ופעילויות שיעזרו לתלמידים ללמוד לזהות סכנות ברשת ולהגיב אליהן בצורה נכונה.
           </p>
-
+  
           <div className="bg-white rounded-xl shadow-lg overflow-hidden">
             <table className="w-full">
               <thead className="bg-[#1A659E] text-white">
@@ -126,54 +124,59 @@ const TeacherPage = () => {
           </div>
         </div>
       </section>
-
-   {/* Presentation Section */}
-<section className="py-16 bg-gray-50">
-  <div className="max-w-7xl mx-auto px-4">
-    <h2 className="text-3xl font-bold mb-8">מצגת מותאמת למערך השיעור</h2>
-    <p className="text-gray-600 mb-8">
-      כדי להפוך את ההדרכה לפשוטה עבורך, הכנו מצגת שמלווה את השיעור מההתחלה ועד הסוף. המצגת כוללת את כל הנקודות החשובות, שאלות לדיון ודוגמאות ויזואליות.
-    </p>
-
-    <div className="bg-white rounded-xl shadow-lg p-8 text-center">
-      {/* תצוגת PDF בתוך iframe */}
-      <div className="aspect-video bg-gray-100 mb-8 rounded-lg overflow-hidden">
-        <iframe
-          src="/src/assets/presentations/For_teachers.pdf#toolbar=0" // הוספת #toolbar=0 לכתובת ה-URL
-          width="100%"
-          height="500"
-          className="rounded-lg"
-          title="מצגת בטיחות ברשת"
-        />
-      </div>
-
-      {/* כפתור להורדת המצגת */}
-      <a
-        href="/src/assets/presentations/For_teachers.pptx" // נתיב ל-PPTX
-        download
-        className="bg-[#1A659E] text-white px-8 py-3 rounded-full hover:bg-[#004E89] transition-colors inline-flex items-center gap-2"
-      >
-        <Download size={20} />
-        להורדת המצגת
-      </a>
-    </div>
-  </div>
-</section>
-{/* Lesson Plan Upload Section */}
-<section className="py-16">
-  <div className="max-w-7xl mx-auto px-4">
-    <h2 className="text-3xl font-bold mb-8">העלאת מערכי שיעור</h2>
-    <p className="text-gray-600 mb-8">
-      שתפו את מערכי השיעור שלכם עם מורים אחרים כדי לעזור להם ללמד בצורה יצירתית ומגוונת!
-    </p>
-    <div className="bg-white rounded-xl shadow-lg p-8 text-center">
-    {/* Embed the LessonPlanUpload component here */}
-    <LessonPlanUpload onAddLessonPlan={handleAddLessonPlan} />
-
-{/* List of Uploaded Lesson Plans */}
-<section className="py-16 bg-gray-50">
-  <LessonPlansList lessonPlans={lessonPlans} />
+  
+      {/* Presentation Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-8">מצגת מותאמת למערך השיעור</h2>
+          <p className="text-gray-600 mb-8">
+            כדי להפוך את ההדרכה לפשוטה עבורך, הכנו מצגת שמלווה את השיעור מההתחלה ועד הסוף. המצגת כוללת את כל הנקודות החשובות, שאלות לדיון ודוגמאות ויזואליות.
+          </p>
+  
+          <div className="bg-white rounded-xl shadow-lg p-8 text-center">
+            {/* תצוגת PDF בתוך iframe */}
+            <div className="aspect-video bg-gray-100 mb-8 rounded-lg overflow-hidden">
+              <iframe
+                src="/src/assets/presentations/For_teachers.pdf#toolbar=0"
+                width="100%"
+                height="500"
+                className="rounded-lg"
+                title="מצגת בטיחות ברשת"
+              />
+            </div>
+  
+            {/* כפתור להורדת המצגת */}
+            <a
+              href="/src/assets/presentations/For_teachers.pptx"
+              download
+              className="bg-[#1A659E] text-white px-8 py-3 rounded-full hover:bg-[#004E89] transition-colors inline-flex items-center gap-2"
+            >
+              <Download size={20} />
+              להורדת המצגת
+            </a>
+          </div>
+        </div>
       </section>
+  
+      {/* Lesson Plan Upload Section */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-8">העלאת מערכי שיעור</h2>
+          <p className="text-gray-600 mb-8">
+            שתפו את מערכי השיעור שלכם עם מורים אחרים כדי לעזור להם ללמד בצורה יצירתית ומגוונת!
+          </p>
+          <div className="bg-white rounded-xl shadow-lg p-8 text-center">
+            {/* Embed the LessonPlanUpload component here */}
+            <LessonPlanUpload onAddLessonPlan={handleAddLessonPlan} />
+          </div>
+        </div>
+      </section>
+  
+      {/* List of Uploaded Lesson Plans */}
+      <section className="py-16 bg-gray-50">
+        <LessonPlansList lessonPlans={lessonPlans} />
+      </section>
+  
       {/* PDF Section */}
       <section id="pdf-section" className="py-16">
         <div className="max-w-7xl mx-auto px-4">
@@ -181,7 +184,7 @@ const TeacherPage = () => {
           <p className="text-gray-600 mb-8">
             כאן תוכלו למצוא PDF המכיל מידע נוסף שיעזור לכם בהוראה על בטיחות ברשת.
           </p>
-
+  
           <div className="bg-white rounded-xl shadow-lg p-8">
             <div className="w-full h-[500px] bg-gray-100 rounded-lg overflow-hidden">
               <iframe
@@ -192,7 +195,7 @@ const TeacherPage = () => {
                 title="PDF להורדה"
               />
             </div>
-
+  
             <div className="flex justify-center mt-4">
               <a
                 href="/src/assets/presentations/Herem.pdf"
@@ -206,9 +209,7 @@ const TeacherPage = () => {
           </div>
         </div>
       </section>
-
-
-
+  
       {/* Contact Section */}
       <section className="py-16 bg-[#EFEFD0]">
         <div className="max-w-7xl mx-auto px-4 text-center">
@@ -216,7 +217,7 @@ const TeacherPage = () => {
           <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
             אם נתקלת בשאלה, בעיה, או סתם בא לך לשתף חוויה, צוות SafeNet תמיד זמין עבורך. ביחד, נוכל ללמד את הדור הבא איך לשמור על עצמם ולהפוך את האינטרנט למקום בטוח יותר.
           </p>
-
+  
           <div className="flex flex-col items-center gap-4">
             <a
               href="mailto:support@safenet.co.il"
@@ -235,6 +236,6 @@ const TeacherPage = () => {
       </section>
     </div>
   );
-};
+};  
 
 export default TeacherPage;

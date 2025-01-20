@@ -109,13 +109,4 @@ const signUp = async (req, res) => {
     }
 };
 
-
-        req.session.user = { username }; // שמירת שם המשתמש בסשן
-        res.status(201).json({ message: "User registered successfully" });
-    } catch (err) {
-        console.error("Sign up error:", err);
-        res.status(500).json({ message: "An error occurred during sign up" });
-    }
-};
-
 export { login, signUp };
