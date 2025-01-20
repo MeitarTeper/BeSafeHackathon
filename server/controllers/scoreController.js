@@ -1,4 +1,4 @@
-import {execute, fetchAll} from './dbController.js';
+import {execute, fetchAll} from '../models/db.js';
 
 try {
 await execute(

@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Download, ChevronDown } from 'lucide-react';
+import {getLessons} from "../../services/lessons_api";
 //import Reveal from 'reveal.js';
 //import 'reveal.js/dist/reveal.css';
 //import 'reveal.js/dist/theme/white.css';
 import LessonPlanUpload from "./LessonPlanUpload";
+import LessonPlansList from './LessonPlansList';
 
 const lessonPlan = [
   {
@@ -41,7 +43,17 @@ const lessonPlan = [
 
 const TeacherPage = () => {
   const [isSlideModalOpen, setIsSlideModalOpen] = useState(false);
-  const [lessonPlans, setLessonPlans] = useState([]); // State to store uploaded files
+  const [lessonPlans, setLessonPlans] = useState([]);
+
+  // Fetch lessons when the component mounts
+  useEffect(() => {
+    const fetchLessons = async () => {
+        const lessons = await getLessons();
+        setLessonPlans(lessons || []); // Ensure it defaults to an empty array if no lessons
+    };
+
+    fetchLessons();
+}, []);
 
   // Handler for adding a new lesson plan
   const handleAddLessonPlan = (newLessonPlan) => {
@@ -115,89 +127,52 @@ const TeacherPage = () => {
         </div>
       </section>
 
-      {/* Presentation Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8">מצגת מותאמת למערך השיעור</h2>
-          <p className="text-gray-600 mb-8">
-            כדי להפוך את ההדרכה לפשוטה עבורך, הכנו מצגת שמלווה את השיעור מההתחלה ועד הסוף. המצגת כוללת את כל הנקודות החשובות, שאלות לדיון ודוגמאות ויזואליות.
-          </p>
+   {/* Presentation Section */}
+<section className="py-16 bg-gray-50">
+  <div className="max-w-7xl mx-auto px-4">
+    <h2 className="text-3xl font-bold mb-8">מצגת מותאמת למערך השיעור</h2>
+    <p className="text-gray-600 mb-8">
+      כדי להפוך את ההדרכה לפשוטה עבורך, הכנו מצגת שמלווה את השיעור מההתחלה ועד הסוף. המצגת כוללת את כל הנקודות החשובות, שאלות לדיון ודוגמאות ויזואליות.
+    </p>
 
-          <div className="bg-white rounded-xl shadow-lg p-8 text-center">
-            {/* תצוגת PDF בתוך iframe */}
-            <div className="aspect-video bg-gray-100 mb-8 rounded-lg overflow-hidden">
-              <iframe
-                src="/src/assets/presentations/For_teachers.pdf#toolbar=0" // הוספת #toolbar=0 לכתובת ה-URL
-                width="100%"
-                height="500"
-                className="rounded-lg"
-                title="מצגת בטיחות ברשת"
-              />
-            </div>
+    <div className="bg-white rounded-xl shadow-lg p-8 text-center">
+      {/* תצוגת PDF בתוך iframe */}
+      <div className="aspect-video bg-gray-100 mb-8 rounded-lg overflow-hidden">
+        <iframe
+          src="/src/assets/presentations/For_teachers.pdf#toolbar=0" // הוספת #toolbar=0 לכתובת ה-URL
+          width="100%"
+          height="500"
+          className="rounded-lg"
+          title="מצגת בטיחות ברשת"
+        />
+      </div>
 
-            {/* כפתור להורדת המצגת */}
-            <a
-              href="/src/assets/presentations/For_teachers.pptx" // נתיב ל-PPTX
-              download
-              className="bg-[#1A659E] text-white px-8 py-3 rounded-full hover:bg-[#004E89] transition-colors inline-flex items-center gap-2"
-            >
-              <Download size={20} />
-              להורדת המצגת
-            </a>
-          </div>
-        </div>
-      </section>
-      {/* Lesson Plan Upload Section */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8">העלאת מערכי שיעור</h2>
-          <p className="text-gray-600 mb-8">
-            שתפו את מערכי השיעור שלכם עם מורים אחרים כדי לעזור להם ללמד בצורה יצירתית ומגוונת!
-          </p>
-          <div className="bg-white rounded-xl shadow-lg p-8 text-center">
-            {/* Embed the LessonPlanUpload component here */}
-            <LessonPlanUpload onAddLessonPlan={handleAddLessonPlan} />
+      {/* כפתור להורדת המצגת */}
+      <a
+        href="/src/assets/presentations/For_teachers.pptx" // נתיב ל-PPTX
+        download
+        className="bg-[#1A659E] text-white px-8 py-3 rounded-full hover:bg-[#004E89] transition-colors inline-flex items-center gap-2"
+      >
+        <Download size={20} />
+        להורדת המצגת
+      </a>
+    </div>
+  </div>
+</section>
+{/* Lesson Plan Upload Section */}
+<section className="py-16">
+  <div className="max-w-7xl mx-auto px-4">
+    <h2 className="text-3xl font-bold mb-8">העלאת מערכי שיעור</h2>
+    <p className="text-gray-600 mb-8">
+      שתפו את מערכי השיעור שלכם עם מורים אחרים כדי לעזור להם ללמד בצורה יצירתית ומגוונת!
+    </p>
+    <div className="bg-white rounded-xl shadow-lg p-8 text-center">
+    {/* Embed the LessonPlanUpload component here */}
+    <LessonPlanUpload onAddLessonPlan={handleAddLessonPlan} />
 
-            {/* List of Uploaded Lesson Plans */}
-            <section className="py-16 bg-gray-50">
-              <div className="max-w-7xl mx-auto px-4">
-                <h2 className="text-3xl font-bold mb-8">רשימת מערכי שיעור</h2>
-                {lessonPlans.length > 0 ? (
-                  <ul className="space-y-4">
-                    {lessonPlans.map((plan, index) => (
-                      <li key={index} className="bg-white shadow rounded-lg p-4">
-                        <div className="flex items-center space-x-4">
-                          {plan.previewPhoto && (
-                            <img
-                              src={plan.previewPhoto}
-                              alt={`Preview of ${plan.name}`}
-                              className="w-20 h-20 object-cover rounded-md"
-                            />
-                          )}
-                          <div>
-                            <h3 className="text-xl font-bold">{plan.lessonName}</h3>
-                            <p>גילאים: {plan.ageGroup}</p>
-                            <p>זמן: {plan.time}</p>
-                          </div>
-                          <a
-                            href={plan.url}
-                            download={plan.fileName}
-                            className="bg-[#1A659E] text-white px-8 py-3 rounded-full hover:bg-[#004E89] transition-colors inline-flex items-center gap-2"
-                          >
-                            <Download size={20} />
-                            הורד
-                          </a>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p className="text-gray-600">עדיין לא הועלו מערכי שיעור.</p>
-                )}
-              </div>
-            </section>
-          </div>
-        </div>
+{/* List of Uploaded Lesson Plans */}
+<section className="py-16 bg-gray-50">
+  <LessonPlansList lessonPlans={lessonPlans} />
       </section>
       {/* PDF Section */}
       <section id="pdf-section" className="py-16">
