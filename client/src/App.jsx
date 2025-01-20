@@ -18,6 +18,7 @@ import PasswordGame from './pages/PasswordGame/PasswordGame';
 import SupportPage from './pages/SupportPage/SupportPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import SignupPage from './pages/SignupPage/SignupPage';
+import SocialDilemmas from './pages/SocialDilemmas/SocialDilemmas';
 const totalStages = 3;
 const currentStage = 1;
 
@@ -33,6 +34,8 @@ function App() {
             <Route path="/memory-game" element={<MemoryGame currentStage={currentStage} totalStages={totalStages} />} />
             <Route path="/phishing-hunter" element={<PhishingHunter currentStage={currentStage+1} totalStages={totalStages}  />} />
             <Route path="/password-game" element={<PasswordGame currentStage={currentStage+1} totalStages={totalStages} />} />
+            <Route path="/social-game" element={<SocialDilemmas />} />
+            <Route path="/social-game/teacher" element={<SocialDilemmas isTeacher={true} />} />
             <Route path="/completion" element={<Completion />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
