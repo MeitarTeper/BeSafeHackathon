@@ -7,8 +7,8 @@ import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import lessonsRoutes from './routes/LessonPlans.js';
 import cardsRoutes from './routes/cardsRoutes.js'; // Import the cards routes
-import chatRoutes from './routes/chatRoutes.js'; // Import chat routes
-import path from 'path';
+import chatRoutes from './routes/chat.js'; // Import chat routes
+import session from 'express-session';
 
 // טוען את משתני הסביבה מקובץ .env
 dotenv.config();

@@ -20,6 +20,7 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import SignupPage from './pages/SignupPage/SignupPage';
 import TermsPage from './pages/TermsPage/TermsPage';
 import SocialDilemmas from './pages/SocialDilemmas/SocialDilemmas';
+import ChatPage from './pages/chatbot/chatbot'; // ייבוא עמוד הצ'אט
 const totalStages = 3;
 const currentStage = 1;
 
@@ -48,6 +49,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/terms" element={<TermsPage />} />
+            <Route path="/chat" element={<ChatPage />} /> {/* הוספת עמוד הצ'אט */}
           </Routes>
         </main>
         <Footer />

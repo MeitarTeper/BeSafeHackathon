@@ -102,31 +102,7 @@ const SupportPage = () => {
         </ul>
       </section>
 
-      <section className={styles.section}>
-        <h2>חיבור לצ&apos;אט מותאם</h2>
-        <div className={styles.chatContainer}>
-          {messages.map((msg, index) => (
-            <div
-              key={index}
-              style={{
-                textAlign: msg.sender === 'User' ? 'right' : 'left',
-                color: msg.sender === 'User' ? 'blue' : 'green',
-              }}
-            >
-              <strong>{msg.sender}:</strong> {msg.text}
-            </div>
-          ))}
-        </div>
-        <div className={styles.inputContainer}>
-          <input
-            type="text"
-            value={inputMessage}
-            onChange={(e) => setInputMessage(e.target.value)}
-            placeholder="כתוב הודעה..."
-          />
-          <button onClick={sendMessage}>שלח</button>
-        </div>
-      </section>
+      
     </div>
   );
 };
