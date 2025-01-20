@@ -5,6 +5,7 @@ import { Users } from 'lucide-react';
 import PropTypes from 'prop-types';
 import gameService from './gameService';  // עדכון נתיב הייבוא
 import { Card, CardHeader, CardTitle, CardContent } from '../../components/Card';
+import './SocialDilemmas.css';
 
 // Modified scenarios with single role per scenario
 const scenarios = [
@@ -177,48 +178,88 @@ const SocialDilemmas = ({ isTeacher }) => {
   };
 
   const renderLobby = () => (
-    <Card className="max-w-xl mx-auto">
-      <CardHeader>
-        <CardTitle>דילמות חברתיות - משחק כיתתי</CardTitle>
-      </CardHeader>
-      <CardContent>
-        {error && <div className="text-red-500 mb-4">{error}</div>}
-        
-        {isTeacher ? (
+    <div className="game-card max-w-xl mx-auto p-8 bg-white rounded-2xl shadow-lg">
+      <div className="text-center mb-8">
+        <h1 className="text-4xl font-bold text-[#1A659E] mb-4">דילמות חברתיות</h1>
+        <p className="text-gray-600">משחק אינטראקטיבי ללמידה על התמודדות במצבים חברתיים</p>
+      </div>
+
+      {error && (
+        <div className="bg-red-100 border-2 border-red-400 text-red-700 p-4 rounded-lg mb-6 text-center">
+          {error}
+        </div>
+      )}
+      
+      {isTeacher ? (
+        <button
+          onClick={handleCreateGame}
+          className="button-hover w-full bg-[#1A659E] text-white px-8 py-4 rounded-xl text-xl hover:bg-[#145180] transition-all"
+        >
+          צור משחק חדש
+        </button>
+      ) : (
+        <div className="space-y-6">
+          <input
+            type="text"
+            value={gameCode}
+            onChange={(e) => setGameCode(e.target.value.toUpperCase())}
+            placeholder="קוד משחק"
+            className="w-full text-center text-2xl p-4 border-2 border-[#1A659E] rounded-xl focus:ring-2 focus:ring-[#F7C59F] outline-none transition-all"
+            maxLength="6"
+          />
+          <input
+            type="text"
+            value={playerName}
+            onChange={(e) => setPlayerName(e.target.value)}
+            placeholder="שם משתתף/ת"
+            className="w-full text-center text-2xl p-4 border-2 border-[#1A659E] rounded-xl focus:ring-2 focus:ring-[#F7C59F] outline-none transition-all"
+          />
           <button
-            onClick={handleCreateGame}
-            className="w-full bg-blue-500 text-white px-6 py-3 rounded-lg text-xl hover:bg-blue-600"
+            onClick={handleJoinGame}
+            disabled={!gameCode || !playerName}
+            className="button-hover w-full bg-[#1A659E] text-white px-8 py-4 rounded-xl text-xl hover:bg-[#145180] disabled:bg-gray-400 transition-all"
           >
-            צור משחק חדש
+            הצטרף למשחק
           </button>
-        ) : (
-          <div className="space-y-4">
-            <input
-              type="text"
-              value={gameCode}
-              onChange={(e) => setGameCode(e.target.value.toUpperCase())}
-              placeholder="קוד משחק"
-              className="w-full text-center text-2xl p-3 border-2 border-blue-300 rounded-lg"
-              maxLength="6"
-            />
-            <input
-              type="text"
-              value={playerName}
-              onChange={(e) => setPlayerName(e.target.value)}
-              placeholder="שם משתתף/ת"
-              className="w-full text-center text-2xl p-3 border-2 border-blue-300 rounded-lg"
-            />
-            <button
-              onClick={handleJoinGame}
-              disabled={!gameCode || !playerName}
-              className="w-full bg-blue-500 text-white px-6 py-3 rounded-lg text-xl hover:bg-blue-600 disabled:bg-gray-400"
-            >
-              הצטרף למשחק
-            </button>
+        </div>
+      )}
+    </div>
+  );
+
+  const renderWaiting = () => (
+    <div className="game-card max-w-2xl mx-auto p-8 bg-white rounded-2xl shadow-lg">
+      <div className="text-center">
+        <h2 className="text-3xl font-bold text-[#1A659E] mb-6">חדר המתנה</h2>
+        <div className="text-2xl mb-6">קוד משחק: <span className="font-bold text-[#FF6B35]">{gameCode}</span></div>
+        <div className="mb-8">
+          <Users className="inline-block mr-2 text-[#1A659E]" />
+          <span className="text-xl">{players.length} משתתפים מחוברים</span>
+        </div>
+        
+        {players.length > 0 && (
+          <div className="mb-8">
+            <h3 className="font-bold mb-4">משתתפים:</h3>
+            <div className="flex flex-wrap gap-3 justify-center">
+              {players.map(player => (
+                <div key={player.id} 
+                     className="bg-[#EFEFD0] px-4 py-2 rounded-full text-[#1A659E] font-medium">
+                  {player.name}
+                </div>
+              ))}
+            </div>
           </div>
         )}
-      </CardContent>
-    </Card>
+
+        {isTeacher && (
+          <button
+            onClick={handleStartGame}
+            className="button-hover bg-[#1A659E] text-white px-8 py-3 rounded-xl hover:bg-[#145180] transition-all"
+          >
+            התחל משחק
+          </button>
+        )}
+      </div>
+    </div>
   );
 
   const renderGame = () => {
@@ -227,27 +268,30 @@ const SocialDilemmas = ({ isTeacher }) => {
     return (
       <div className="space-y-6">
         {error && (
-          <div className="bg-red-100 border-red-400 text-red-700 p-4 rounded-lg">
+          <div className="bg-red-100 border-2 border-red-400 text-red-700 p-4 rounded-lg">
             {error}
           </div>
         )}
         
-        <div className="bg-white p-4 rounded-lg shadow-lg flex justify-between items-center">
+        <div className="bg-white p-6 rounded-xl shadow-lg flex justify-between items-center">
           <div className="flex items-center space-x-4">
-            <Users className="w-6 h-6 text-blue-500" />
-            <span>{players.length} משתתפים</span>
+            <Users className="w-6 h-6 text-[#1A659E]" />
+            <span className="text-[#1A659E]">{players.length} משתתפים</span>
           </div>
-          <div className="text-2xl font-bold">תרחיש {currentScenario + 1} מתוך {scenarios.length}</div>
+          <div className="text-2xl font-bold text-[#1A659E]">
+            תרחיש {currentScenario + 1} מתוך {scenarios.length}
+          </div>
         </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>{currentScenarioData.title}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-lg mb-6">{currentScenarioData.description}</p>
-            <p className="text-lg mb-6 font-medium">תפקיד שלך: {currentScenarioData.role === 'target' ? 'נפגע/ת' : 'עד/ה'}</p>
-            <p className="text-lg mb-6">{currentScenarioData.roleDescription}</p>
+        <div className="game-card bg-white rounded-xl shadow-lg overflow-hidden">
+          <div className="bg-[#1A659E] text-white p-6">
+            <h2 className="text-2xl font-bold">{currentScenarioData.title}</h2>
+          </div>
+          
+          <div className="p-6 space-y-6">
+            <p className="text-lg">{currentScenarioData.description}</p>
+            <p className="text-lg font-medium">תפקיד שלך: {currentScenarioData.role === 'target' ? 'נפגע/ת' : 'עד/ה'}</p>
+            <p className="text-lg">{currentScenarioData.roleDescription}</p>
 
             {!showResults ? (
               <div className="space-y-4">
@@ -256,10 +300,10 @@ const SocialDilemmas = ({ isTeacher }) => {
                     key={index}
                     onClick={() => !waitingForOthers && handleAnswer(index)}
                     disabled={waitingForOthers}
-                    className={`w-full text-right p-4 rounded-lg transition-colors ${
+                    className={`w-full text-right p-4 rounded-xl transition-all ${
                       waitingForOthers
                         ? 'bg-gray-100 cursor-not-allowed'
-                        : 'bg-white hover:bg-blue-50 border-2 border-gray-200'
+                        : 'bg-[#EFEFD0] hover:bg-[#F7C59F] hover:text-white'
                     }`}
                   >
                     {option.text}
@@ -277,14 +321,14 @@ const SocialDilemmas = ({ isTeacher }) => {
                       <XAxis dataKey="option" />
                       <YAxis />
                       <Tooltip />
-                      <Bar dataKey="count" fill="#3B82F6" />
+                      <Bar dataKey="count" fill="#1A659E" />
                     </BarChart>
                   </ResponsiveContainer>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {currentScenarioData.options.map((option, index) => (
-                    <div key={index} className="p-4 bg-gray-50 rounded-lg">
+                    <div key={index} className="p-4 bg-[#EFEFD0] rounded-xl">
                       <div className="font-bold mb-2">אפשרות {index + 1}:</div>
                       <div>{option.text}</div>
                       <div className="text-gray-600 mt-2">{option.impact}</div>
@@ -295,7 +339,7 @@ const SocialDilemmas = ({ isTeacher }) => {
                 {isTeacher && (
                   <button
                     onClick={handleNextScenario}
-                    className="w-full bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600"
+                    className="button-hover w-full bg-[#1A659E] text-white px-6 py-3 rounded-xl hover:bg-[#145180] transition-all"
                   >
                     {currentScenario < scenarios.length - 1 ? 'המשך לתרחיש הבא' : 'סיים משחק'}
                   </button>
@@ -304,38 +348,39 @@ const SocialDilemmas = ({ isTeacher }) => {
             )}
 
             {waitingForOthers && (
-              <div className="mt-4 text-center text-gray-600">
+              <div className="mt-4 text-center text-gray-600 animate-pulse">
                 ממתין לשאר המשתתפים...
               </div>
             )}
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     );
   };
 
   const renderCompleted = () => (
-    <Card>
-      <CardHeader>
-        <CardTitle>המשחק הסתיים!</CardTitle>
-      </CardHeader>
-      <CardContent>
+    <div className="game-card bg-white rounded-xl shadow-lg overflow-hidden">
+      <div className="bg-[#1A659E] text-white p-6 text-center">
+        <h2 className="text-3xl font-bold">המשחק הסתיים!</h2>
+      </div>
+      
+      <div className="p-6">
         <div className="space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-4 bg-blue-50 rounded-lg text-center">
-              <Users className="w-8 h-8 mx-auto mb-2 text-blue-500" />
-              <div className="font-bold">משתתפים</div>
-              <div className="text-2xl">{players.length}</div>
+            <div className="p-6 bg-[#EFEFD0] rounded-xl text-center">
+              <Users className="w-12 h-12 mx-auto mb-2 text-[#1A659E]" />
+              <div className="font-bold text-[#1A659E]">משתתפים</div>
+              <div className="text-3xl font-bold text-[#FF6B35]">{players.length}</div>
             </div>
-            <div className="p-4 bg-green-50 rounded-lg text-center">
-              <div className="font-bold">תרחישים</div>
-              <div className="text-2xl">{scenarios.length}</div>
+            <div className="p-6 bg-[#EFEFD0] rounded-xl text-center">
+              <div className="font-bold text-[#1A659E]">תרחישים</div>
+              <div className="text-3xl font-bold text-[#FF6B35]">{scenarios.length}</div>
             </div>
           </div>
 
           {scenarios.map((scenario, index) => (
-            <div key={index} className="border rounded-lg p-4">
-              <h3 className="font-bold text-xl mb-4">{scenario.title}</h3>
+            <div key={index} className="border-2 border-[#EFEFD0] rounded-xl p-6">
+              <h3 className="text-xl font-bold mb-4 text-[#1A659E]">{scenario.title}</h3>
               <div className="h-48">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={scenario.options.map((option, optIndex) => ({
@@ -345,7 +390,7 @@ const SocialDilemmas = ({ isTeacher }) => {
                     <XAxis dataKey="option" />
                     <YAxis />
                     <Tooltip />
-                    <Bar dataKey="count" fill="#3B82F6" />
+                    <Bar dataKey="count" fill="#1A659E" />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -362,57 +407,24 @@ const SocialDilemmas = ({ isTeacher }) => {
                 setShowResults(false);
                 setWaitingForOthers(false);
               }}
-              className="w-full bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600"
+              className="button-hover w-full bg-[#1A659E] text-white px-6 py-3 rounded-xl hover:bg-[#145180] transition-all"
             >
               התחל משחק חדש
             </button>
           )}
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 
   return (
-    <div className="max-w-6xl mx-auto p-4 text-right" dir="rtl">
-      {gameState === 'lobby' && renderLobby()}
-      {gameState === 'waiting' && (
-        <Card>
-          <CardHeader>
-            <CardTitle>חדר המתנה</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-center">
-              <div className="text-2xl mb-4">קוד משחק: {gameCode}</div>
-              <div className="mb-4">
-                <Users className="inline-block mr-2" />
-                {players.length} משתתפים מחוברים
-              </div>
-              {players.length > 0 && (
-                <div className="mb-4">
-                  <h3 className="font-bold mb-2">משתתפים:</h3>
-                  <div className="flex flex-wrap gap-2 justify-center">
-                    {players.map(player => (
-                      <div key={player.id} className="bg-blue-100 px-3 py-1 rounded-full">
-                        {player.name}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-              {isTeacher && (
-                <button
-                  onClick={handleStartGame}
-                  className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600"
-                >
-                  התחל משחק
-                </button>
-              )}
-            </div>
-          </CardContent>
-        </Card>
-      )}
-      {gameState === 'playing' && renderGame()}
-      {gameState === 'completed' && renderCompleted()}
+    <div className="social-dilemmas-container min-h-screen bg-gradient-to-b from-white to-[#EFEFD0] pt-32 pb-8 px-4" dir="rtl">
+      <div className="max-w-6xl mx-auto mt-24">
+        {gameState === 'lobby' && renderLobby()}
+        {gameState === 'waiting' && renderWaiting()}
+        {gameState === 'playing' && renderGame()}
+        {gameState === 'completed' && renderCompleted()}
+      </div>
     </div>
   );
 };

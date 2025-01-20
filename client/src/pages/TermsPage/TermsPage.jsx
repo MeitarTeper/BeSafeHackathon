@@ -76,7 +76,7 @@ const TermsPage = () => {
       <section className="section">
         <h2>9. Disclaimers</h2>
         <p>
-          - The Website and its content are provided "as is" without warranties of any kind, express or implied.<br />
+          - The Website and its content are provided as is without warranties of any kind, express or implied.<br />
           - We do not guarantee the accuracy, completeness, or reliability of the information provided.<br />
           - Use the Website at your own risk.
         </p>

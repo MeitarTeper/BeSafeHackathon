@@ -7,7 +7,6 @@ import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import lessonsRoutes from './routes/LessonPlans.js';
 import cardsRoutes from './routes/cardsRoutes.js'; // Import the cards routes
-import chatRoutes from './routes/chatRoutes.js'; // Import chat routes
 import path from 'path';
 
 // טוען את משתני הסביבה מקובץ .env
@@ -33,16 +32,11 @@ app.use(cors({
   origin: process.env.CLIENT_URL
 }));
 
-// Use the routes file for all `/scores` routes
-app.use('/scores', scoreRoutes);
-// Use the routes file for all `/users` routes
-app.use('/users', userRoutes);
+
 // Use the routes file for all `/lessons` routes
 app.use('/lessons', lessonsRoutes);
 // Use the routes file for all `/cards` routes
 app.use('/cards', cardsRoutes);
-// Use the routes file for all `/chat` routes
-app.use('/chat', chatRoutes);
 app.use(express.json());
 
 // Socket.IO setup
