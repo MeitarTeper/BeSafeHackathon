@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import logo from '../assets/logo.png';
-
+import { FaUser } from 'react-icons/fa'; // ייבוא אייקון
+import logo from '../assets/logo.svg';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -22,8 +22,7 @@ const Header = () => {
     { path: '/teacher', label: 'למורה' },
     { path: '/memory-game', label: 'הסמכה' },
     { path: '/blog', label: 'בלוג' },
-    { path: '/support', label: 'תמיכה' },
-    { path: '/login', label: 'התחברות'}
+    { path: '/support', label: 'תמיכה' }
   ];
 
   const isActive = (path) =>
@@ -39,6 +38,15 @@ const Header = () => {
     >
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
         <nav className="flex items-center gap-8" role="navigation" aria-label="Main Navigation">
+          {/* האייקון מופיע ראשון */}
+          <Link
+            to="/login"
+            className="text-gray-600 hover:text-[#1A659E] transition-colors flex items-center"
+            aria-label="התחברות"
+          >
+            <FaUser className="text-xl" />
+          </Link>
+
           {navItems.map((item) => (
             <Link
               key={item.path}

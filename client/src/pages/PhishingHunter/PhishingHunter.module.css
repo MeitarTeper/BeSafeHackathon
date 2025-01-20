@@ -14,6 +14,21 @@
   box-sizing: border-box;
   direction: rtl;
 }
+.retryButton {
+  margin: 20px;
+  padding: 10px 20px;
+  background-color: #1A659E; /* צבע הרקע */
+  color: white; /* צבע הטקסט */
+  border: none; /* ללא גבול */
+  border-radius: 10px; /* פינות מעוגלות */
+  cursor: pointer; /* סמן מצביע */
+  font-size: 16px; /* גודל טקסט */
+  transition: background-color 0.3s ease; /* אנימציה */
+}
+
+.retryButton:hover {
+  background-color: #144d7e; /* צבע רקע בהיר יותר במעבר */
+}
 
 .title {
   font-size: 2rem;

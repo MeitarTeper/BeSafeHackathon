@@ -1,15 +1,17 @@
 import {execute, fetchAll} from '../models/db.js';
 import { validateUserCredentials, addUser, checkUserExists} from '../models/userModel.js';
+
 try {
     await execute(
         `CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY,
-        username TEXT NOT NULL,
+        username TEXT NOT NULL UNIQUE,
+        email TEXT NOT NULL UNIQUE,
         password TEXT NOT NULL)`
     );
-    } catch (error) {
-        console.log(error);
-    }
+} catch (error) {
+    console.error("Error creating table:", error);
+}
 
 // const login = async (req, res) => {
 //     var {username, password} = req.body;
@@ -107,8 +109,13 @@ const signUp = async (req, res) => {
     }
 };
 
-export {
-    login,
-    signUp
+
+        req.session.user = { username }; // שמירת שם המשתמש בסשן
+        res.status(201).json({ message: "User registered successfully" });
+    } catch (err) {
+        console.error("Sign up error:", err);
+        res.status(500).json({ message: "An error occurred during sign up" });
+    }
 };
 
+export { login, signUp };

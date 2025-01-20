@@ -8,38 +8,38 @@ import LessonPlanUpload from "./LessonPlanUpload";
 import LessonPlansList from './LessonPlansList';
 
 const lessonPlan = [
-    {
-      time: "0-10 דקות",
-      activity: "פתיחה והצגת הנושא",
-      description: "הצגת הנושא- בטיחות ברשת תוך מתן דוגמאות מעולמם של התלמידים",
-      tips: "שאלו את התלמידים כמה זמן הם מבלים באינטרנט ואילו כללים חשובים הם מכירים?"
-    },
-    {
-      time: "10-20 דקות",
-      activity: "משחק זיכרון",
-      description: "משחק זיכרון שבו התלמידים לומדים להבחין בין פריטים מסוכנים ובטוחים ברשת",
-      tips: "בקשו מהתלמידים להסביר לאחר כל התאמה למה הפריט מסוכן"
-    },
-    {
-      time: "20-30 דקות",
-      activity: "אתגר הסיסמא",
-      description: "משחק שמטרתו ללמד את התלמידים כיצד ליצור סיסמאות חזקות ובטוחות",
-      tips: "הסבירו מדוע חשוב לשלב אותיות, מספרים ותווים מיוחדים, קראו איתם את ההוראות ורשמו על הלוח לפני תחילת המשחק"
-    },
-    {
-      time: "30-40 דקות",
-      activity: "צייד הפישינג",
-      description: "משחק זיהוי הודעות פישינג שהילדים עלולים לקבל וצריכים לחשוד",
-      tips: "ציינו את החשיבות של שימת לב לפרטים הקטנים כמו קישורים, שגיאות כתיב ומידע אישי כשנדרש"
-    },
-    {
-      time: "40-45 דקות",
-      activity: "סיכום ותעודת הסמכה",
-      description: "יצירת תעודת הסמכה כיתתית וסיכום החומר",
-      tips: "שאלו את התלמידים מה הם למדו היום, איך יישמו זאת ותמלאו איתם את שם הכיתה"
-    },
-   
-  ];
+  {
+    time: "0-10 דקות",
+    activity: "פתיחה והצגת הנושא",
+    description: "הצגת הנושא- בטיחות ברשת תוך מתן דוגמאות מעולמם של התלמידים",
+    tips: "שאלו את התלמידים כמה זמן הם מבלים באינטרנט ואילו כללים חשובים הם מכירים?"
+  },
+  {
+    time: "10-20 דקות",
+    activity: "משחק זיכרון",
+    description: "משחק זיכרון שבו התלמידים לומדים להבחין בין פריטים מסוכנים ובטוחים ברשת",
+    tips: "בקשו מהתלמידים להסביר לאחר כל התאמה למה הפריט מסוכן"
+  },
+  {
+    time: "20-30 דקות",
+    activity: "אתגר הסיסמא",
+    description: "משחק שמטרתו ללמד את התלמידים כיצד ליצור סיסמאות חזקות ובטוחות",
+    tips: "הסבירו מדוע חשוב לשלב אותיות, מספרים ותווים מיוחדים, קראו איתם את ההוראות ורשמו על הלוח לפני תחילת המשחק"
+  },
+  {
+    time: "30-40 דקות",
+    activity: "צייד הפישינג",
+    description: "משחק זיהוי הודעות פישינג שהילדים עלולים לקבל וצריכים לחשוד",
+    tips: "ציינו את החשיבות של שימת לב לפרטים הקטנים כמו קישורים, שגיאות כתיב ומידע אישי כשנדרש"
+  },
+  {
+    time: "40-45 דקות",
+    activity: "סיכום ותעודת הסמכה",
+    description: "יצירת תעודת הסמכה כיתתית וסיכום החומר",
+    tips: "שאלו את התלמידים מה הם למדו היום, איך יישמו זאת ותמלאו איתם את שם הכיתה"
+  },
+
+];
 
 const TeacherPage = () => {
   const [isSlideModalOpen, setIsSlideModalOpen] = useState(false);
@@ -78,6 +78,20 @@ const TeacherPage = () => {
             בעולם הדיגיטלי של היום, חינוך לשימוש נכון ובטוח ברשת הוא הכרחי. האתר שלנו נבנה במיוחד כדי לספק לך כלים, משחקים ותכנים מעשיים שתוכלי להעביר לתלמידים בצורה חווייתית.
           </p>
         </div>
+        <div className="flex justify-center mt-8">
+      <button
+        className="bg-[#1A659E] text-white px-8 py-3 rounded-full hover:bg-[#004E89] transition-colors inline-flex items-center gap-2"
+        onClick={() => {
+          const pdfSection = document.getElementById("pdf-section");
+          if (pdfSection) {
+            pdfSection.scrollIntoView({ behavior: "smooth" });
+          }
+        }}
+      >
+       
+       פוסטר לזיהוי חרם
+      </button>
+    </div>
       </section>
 
       {/* Lesson Plan Section */}
@@ -160,9 +174,40 @@ const TeacherPage = () => {
 <section className="py-16 bg-gray-50">
   <LessonPlansList lessonPlans={lessonPlans} />
       </section>
-      </div>
-  </div>
-</section>
+      {/* PDF Section */}
+      <section id="pdf-section" className="py-16">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-8">סימנים לזיהוי חרם</h2>
+          <p className="text-gray-600 mb-8">
+            כאן תוכלו למצוא PDF המכיל מידע נוסף שיעזור לכם בהוראה על בטיחות ברשת.
+          </p>
+
+          <div className="bg-white rounded-xl shadow-lg p-8">
+            <div className="w-full h-[500px] bg-gray-100 rounded-lg overflow-hidden">
+              <iframe
+                src="/src/assets/presentations/Herem.pdf#toolbar=0"
+                width="100%"
+                height="100%"
+                className="w-full h-full"
+                title="PDF להורדה"
+              />
+            </div>
+
+            <div className="flex justify-center mt-4">
+              <a
+                href="/src/assets/presentations/Herem.pdf"
+                download
+                className="bg-[#1A659E] text-white px-8 py-3 rounded-full hover:bg-[#004E89] transition-colors inline-flex items-center gap-2"
+              >
+                <Download size={20} />
+                להורדת ה-PDF
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
 
       {/* Contact Section */}
       <section className="py-16 bg-[#EFEFD0]">
@@ -171,7 +216,7 @@ const TeacherPage = () => {
           <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
             אם נתקלת בשאלה, בעיה, או סתם בא לך לשתף חוויה, צוות SafeNet תמיד זמין עבורך. ביחד, נוכל ללמד את הדור הבא איך לשמור על עצמם ולהפוך את האינטרנט למקום בטוח יותר.
           </p>
-          
+
           <div className="flex flex-col items-center gap-4">
             <a
               href="mailto:support@safenet.co.il"

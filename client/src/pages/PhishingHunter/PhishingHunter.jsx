@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef  } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./PhishingHunter.module.css";
-import logoImage from "../../assets/Logo.png"; // ייבוא נכון של התמונה
+import logoImage from "../../assets/Logo.svg";
 import Annie from '../../components/Annie';
 import ProgressBar from '../../components/ProgressBar';
 
@@ -38,8 +38,6 @@ const PhishingHunter = () => {
       annieRef.current.show("שגוי! שים לב יותר.");
     }
 
-
-
     setTimeout(() => {
       annieRef.current.hide();
       if (currentMessageIndex === messages.length - 1) {
@@ -52,22 +50,26 @@ const PhishingHunter = () => {
 
   useEffect(() => {
     if (finished) {
-      const timeout = setTimeout(() => {
-        navigate("/completion"); // מעבר לעמוד התעודה
-      }, 5000);
-      return () => clearTimeout(timeout);
+      if (score >= 8) {
+        const timeout = setTimeout(() => {
+          navigate("/completion"); // מעבר לעמוד התעודה
+        }, 5000);
+        return () => clearTimeout(timeout);
+      }
     }
-  }, [finished, navigate]);
+  }, [finished, navigate, score]);
 
   const restartGame = () => {
     setScore(0);
     setCurrentMessageIndex(0);
     setFinished(false);
-    //setAnnieComment("");
     annieRef.current.hide();
   };
 
   const getFinalMessage = () => {
+    if (score < 8) {
+      return "כדי לעבור לשלב הבא, עליך לענות נכון על לפחות 8 שאלות!";
+    }
     const percentage = (score / messages.length) * 100;
     if (percentage > 70) {
       return "כל הכבוד! אתה מלך הפישינג!";
@@ -115,6 +117,16 @@ const PhishingHunter = () => {
           <div className={styles.messageBox}>
             <img src={logoImage} alt="Logo" className={styles.logo} />
             <p>{getFinalMessage()}</p>
+            {score < 8 ? (
+             <button onClick={restartGame} className={styles.retryButton}>
+             נסה שוב
+           </button>
+           
+            ) : (
+              <button onClick={() => navigate("/completion")} className={styles.nextLevelButton}>
+                המשך לשלב הבא
+              </button>
+            )}
           </div>
         )}
       </div>

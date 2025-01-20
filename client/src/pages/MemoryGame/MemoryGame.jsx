@@ -2,10 +2,12 @@ import { useNavigate } from 'react-router-dom';
 import React, { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import './MemoryGame.css';
 
-import logoImage from "../../assets/Logo.png";
+import logoImage from "../../assets/logo.svg";
 import annieImage from "../../assets/Annie.png"; // ייבוא הדמות
 import Annie from '../../components/Annie';
 import ProgressBar from '../../components/ProgressBar';
+import introBackgroundImage from "../../assets/images/illustration.png";
+
 
 
 const MemoryGame = () => {
@@ -13,7 +15,7 @@ const MemoryGame = () => {
     const [flippedCards, setFlippedCards] = useState([]);
     const [matchedPairs, setMatchedPairs] = useState(0);
     const [currentStage, setCurrentStage] = useState(1);
-    const [showIntro, setShowIntro] = useState(true); // מצב עבור מסך הפתיחה
+    const [showIntro, setShowIntro] = useState(true); 
     const totalStages = 3; 
     const navigate = useNavigate();
     const annieRef = useRef();
@@ -109,20 +111,25 @@ const MemoryGame = () => {
     if (showIntro) {
         return (
             <div className="intro-screen">
-                <div className="annie-intro-container">
-                    <img src={annieImage} alt="Annie" className="annie-intro-image" />
-                    <div className="annie-speech-bubble">
-                        ברוכים הבאים להכשרתכם כמומחי בטיחות ברשת!<br />
-                        במהלך המסלול תלמדו לזהות איומים ולהגן על פרטיותכם ברשת.
-                    </div>
+            <div className="annie-intro-container"   style={{
+                backgroundImage: `url(${introBackgroundImage})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+            }}>
+                
+                <img src={annieImage} alt="Annie" className="annie-intro-image" />
+                <div className="annie-speech-bubble">
+                    ברוכים הבאים להכשרתכם כמומחי בטיחות ברשת!<br />
+                    במהלך המסלול תלמדו לזהות איומים ולהגן על פרטיותכם ברשת.
                 </div>
-                <button
-                    className="start-button"
-                    onClick={() => setShowIntro(false)}
-                >
-                    בואו נתחיל
-                </button>
             </div>
+            <button
+                className="start-button"
+                onClick={() => setShowIntro(false)}
+            >
+                בואו נתחיל
+            </button>
+        </div>
         );
     }
 
