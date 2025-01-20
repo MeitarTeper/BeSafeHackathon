@@ -1,0 +1,53 @@
+.chat-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 90px; /* מרווח מלמעלה */
+    border: 1px solid #ccc;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #fff; /* רקע לבן */
+    z-index: 10;
+    padding: 10px;
+}
+
+.chat-box {
+    height: 300px;
+    overflow-y: auto; /* מאפשר גלילה בתוך תיבת ההודעות */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message {
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 80%;
+    font-family: 'Rubik', sans-serif; /* פונט כמו בעמוד הראשי */
+    font-size: 1rem; /* גודל טקסט */
+}
+
+.input-container {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+.input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.button {
+    padding: 10px;
+    margin-left: 10px;
+    background-color: #1A659E; /* צבע כפתור */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}

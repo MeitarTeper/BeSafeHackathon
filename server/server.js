@@ -7,7 +7,7 @@ import scoreRoutes from './routes/score.js'; // Import the routes
 import userRoutes from './routes/user.js'; // Import the routes
 import lessonsRoutes from './routes/LessonPlans.js';
 import cardsRoutes from './routes/cardsRoutes.js'; // Import the cards routes
-import chatRoutes from './routes/chatRoutes.js'; // Import chat routes
+import chatRoutes from './routes/chat.js'; // Import chat routes
 import session from 'express-session';
 
 // טוען את משתני הסביבה מקובץ .env
