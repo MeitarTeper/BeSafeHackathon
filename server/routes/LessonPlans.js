@@ -1,10 +1,12 @@
-const lessonPlansController = require("../controllers/LessonPlansController")
-const express = require('express');
-var router = express.Router();
+import express from 'express';
+import { getLessons, addLesson } from '../controllers/LessonPlansController.js';
+const router = express.Router();
 
 router.route('/')
-            .get(lessonPlansController.getLessons)
-            .post(lessonPlansController.addLesson)
+            .get(getLessons)
+            .post(addLesson)
 
 // router.route('/:id')
 //             .get
+
+export default router;

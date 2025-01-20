@@ -5,6 +5,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import scoreRoutes from './routes/score.js'; // Import the routes
 import userRoutes from './routes/user.js'; // Import the routes
+import lessonsRoutes from './routes/LessonPlans.js';
 import session from 'express-session';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -29,6 +30,7 @@ app.use(cors({
 app.use('/scores', scoreRoutes);
 // Use the routes file for all `/users` routes
 app.use('/users', userRoutes);
+app.use('/lessons', lessonsRoutes)
 
 // Start server
 const PORT = process.env.PORT;

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import PreviewGenerator from "./PreviewGenerator";
 import PropTypes from "prop-types";
+import {addLesson} from "../../services/lessons_api";
 
 const LessonPlanUpload = ({ onAddLessonPlan }) => {
   const [file, setFile] = useState(null);
@@ -20,10 +21,11 @@ const LessonPlanUpload = ({ onAddLessonPlan }) => {
     setPreviewPhoto(previewUrl); // Store the generated preview
   };
 
-  const handleUpload =  (e) => {
+  const handleUpload = async (e) => {
     e.preventDefault();
     if (!file || !lessonName || !ageGroup || !time) {
-      return alert('Please fill in all fields and select a file.');
+      console.log('Please fill in all fields and select a file.');
+      return;
     }
 
     const newFile = {
@@ -35,15 +37,30 @@ const LessonPlanUpload = ({ onAddLessonPlan }) => {
         url: URL.createObjectURL(file),
         previewPhoto,
       };
-  
-      onAddLessonPlan(newFile); // Pass data to parent
 
-      // Reset fields
-      setFile(null);
-      setLessonName("");
-      setAgeGroup("");
-      setTime("");
-      setPreviewPhoto(null);
+      try {
+          const response = await addLesson(newFile);
+          if (response.status === 200) {
+            onAddLessonPlan(newFile); // Pass data to parent
+            // Reset fields
+            setFile(null);
+            setLessonName("");
+            setAgeGroup("");
+            setTime("");
+            setPreviewPhoto(null);
+          } else {
+            console.log("Error adding lesson. Please try again.");
+          }
+
+        } catch (error) {
+          console.error("Error uploading lesson:", error);
+          //alert("Failed to upload the lesson. Please check the console for more details.");
+        }
+  };
+  
+      
+
+      
 
     // const formData = new FormData();
     // formData.append('file', file);
@@ -67,8 +84,6 @@ const LessonPlanUpload = ({ onAddLessonPlan }) => {
     //   alert('Error uploading lesson plan.');
     // }
 
-    
-  };
 
   return (
     <div>

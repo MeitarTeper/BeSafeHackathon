@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Download, ChevronDown } from 'lucide-react';
+import {getLessons} from "../../services/lessons_api";
 //import Reveal from 'reveal.js';
 //import 'reveal.js/dist/reveal.css';
 //import 'reveal.js/dist/theme/white.css';
@@ -43,6 +44,16 @@ const lessonPlan = [
 const TeacherPage = () => {
   const [isSlideModalOpen, setIsSlideModalOpen] = useState(false);
   const [lessonPlans, setLessonPlans] = useState([]);
+
+  // Fetch lessons when the component mounts
+  useEffect(() => {
+    const fetchLessons = async () => {
+        const lessons = await getLessons();
+        setLessonPlans(lessons || []); // Ensure it defaults to an empty array if no lessons
+    };
+
+    fetchLessons();
+}, []);
 
   // Handler for adding a new lesson plan
   const handleAddLessonPlan = (newLessonPlan) => {
