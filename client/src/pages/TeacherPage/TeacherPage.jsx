@@ -4,6 +4,7 @@ import { Download, ChevronDown } from 'lucide-react';
 //import 'reveal.js/dist/reveal.css';
 //import 'reveal.js/dist/theme/white.css';
 import LessonPlanUpload from "./LessonPlanUpload";
+import LessonPlansList from './LessonPlansList';
 
 const lessonPlan = [
     {
@@ -41,7 +42,7 @@ const lessonPlan = [
 
 const TeacherPage = () => {
   const [isSlideModalOpen, setIsSlideModalOpen] = useState(false);
-  const [lessonPlans, setLessonPlans] = useState([]); // State to store uploaded files
+  const [lessonPlans, setLessonPlans] = useState([]);
 
   // Handler for adding a new lesson plan
   const handleAddLessonPlan = (newLessonPlan) => {
@@ -146,41 +147,7 @@ const TeacherPage = () => {
 
 {/* List of Uploaded Lesson Plans */}
 <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8">רשימת מערכי שיעור</h2>
-          {lessonPlans.length > 0 ? (
-            <ul className="space-y-4">
-              {lessonPlans.map((plan, index) => (
-                <li key={index} className="bg-white shadow rounded-lg p-4">
-                  <div className="flex items-center space-x-4">
-                    {plan.previewPhoto && (
-                      <img
-                        src={plan.previewPhoto}
-                        alt={`Preview of ${plan.name}`}
-                        className="w-20 h-20 object-cover rounded-md"
-                      />
-                    )}
-                    <div>
-                      <h3 className="text-xl font-bold">{plan.lessonName}</h3>
-                      <p>גילאים: {plan.ageGroup}</p>
-                      <p>זמן: {plan.time}</p>
-                    </div>
-                    <a
-                      href={plan.url}
-                      download={plan.fileName}
-                      className="bg-[#1A659E] text-white px-8 py-3 rounded-full hover:bg-[#004E89] transition-colors inline-flex items-center gap-2"
-                    >
-                      <Download size={20} />
-                      הורד
-                    </a>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p className="text-gray-600">עדיין לא הועלו מערכי שיעור.</p>
-          )}
-        </div>
+  <LessonPlansList lessonPlans={lessonPlans} />
       </section>
       </div>
   </div>
