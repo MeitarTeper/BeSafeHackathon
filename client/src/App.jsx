@@ -18,6 +18,7 @@ import PasswordGame from './pages/PasswordGame/PasswordGame';
 import SupportPage from './pages/SupportPage/SupportPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import SignupPage from './pages/SignupPage/SignupPage';
+import TermsPage from './pages/TermsPage';
 const totalStages = 3;
 const currentStage = 1;
 
@@ -43,6 +44,7 @@ function App() {
             <Route path="/support" element={<SupportPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
+            <Route path="/terms" element={<TermsPage />} />
           </Routes>
         </main>
         <Footer />
