@@ -1,15 +1,16 @@
-// server.js
 import express from 'express';
 import { createServer } from 'http';
 import cors from 'cors';
 import { Server } from 'socket.io';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
+import path from 'path'; // הוסף ייבוא של path
 import lessonsRoutes from './routes/LessonPlans.js';
-import cardsRoutes from './routes/cardsRoutes.js'; // Import the cards routes
-import chatRoutes from './routes/chat.js'; // Import chat routes
+import cardsRoutes from './routes/cardsRoutes.js';
+import chatRoutes from './routes/chat.js';
+import scoreRoutes from './routes/score.js'; // הוסף ייבוא של scoreRoutes
+import userRoutes from './routes/user.js'; // הוסף ייבוא של userRoutes
 import session from 'express-session';
-
 // טוען את משתני הסביבה מקובץ .env
 dotenv.config();
 

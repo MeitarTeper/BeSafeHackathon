@@ -13,37 +13,37 @@ const MemoryGame = () => {
     const [flippedCards, setFlippedCards] = useState([]);
     const [matchedPairs, setMatchedPairs] = useState(0);
     const [currentStage, setCurrentStage] = useState(1);
-    const [showIntro, setShowIntro] = useState(true); 
-    const totalStages = 3; 
+    const [showIntro, setShowIntro] = useState(true);
+    const totalStages = 3;
     const navigate = useNavigate();
     const annieRef = useRef();
 
     // Fetch cards data from the server
     const fetchCardsFromServer = async () => {
         try {
-          const response = await fetch('http://localhost:5000/cards');
-          const data = await response.json();
-      
-          if (data && data.length === 12) {
-            const shuffledCards = data
-              .map((card, index) => ({ ...card, id: index, flipped: false })) // הוסף ID ייחודי
-              .sort(() => Math.random() - 0.5); // ערבב את הקלפים
-      
-            setCards(shuffledCards); // עדכון הקלפים
-            setMatchedPairs(0); // אפס זוגות תואמים
-          } else {
-            console.error('Unexpected card data:', data);
-          }
+            const response = await fetch('http://localhost:5000/cards');
+            const data = await response.json();
+
+            if (data && data.length === 12) {
+                const shuffledCards = data
+                    .map((card, index) => ({ ...card, id: index, flipped: false })) // הוסף ID ייחודי
+                    .sort(() => Math.random() - 0.5); // ערבב את הקלפים
+
+                setCards(shuffledCards); // עדכון הקלפים
+                setMatchedPairs(0); // אפס זוגות תואמים
+            } else {
+                console.error('Unexpected card data:', data);
+            }
         } catch (error) {
-          console.error('Error fetching cards:', error);
+            console.error('Error fetching cards:', error);
         }
-      };
-      
-      useEffect(() => {
+    };
+
+    useEffect(() => {
         fetchCardsFromServer();
-      }, []);
-      
-      
+    }, []);
+
+
 
     const handleCardClick = (index) => {
         if (flippedCards.length === 2 || cards[index].flipped) return;
@@ -125,12 +125,25 @@ const MemoryGame = () => {
                         במהלך המסלול תלמדו לזהות איומים ולהגן על פרטיותכם ברשת.
                     </div>
                 </div>
-                <button className="start-button" onClick={() => setShowIntro(false)}>
-                    בואו נתחיל
-                </button>
+                <div className="intro-buttons">
+                    <button
+                        className="intro-button"
+                        onClick={() => setShowIntro(false)}
+                    >
+                        למשחק בטיחות ברשת
+                    </button>
+                    <button
+                        className="intro-button"
+                        onClick={() => navigate('/social-game')}
+                    >
+                        למשחק בריונות ברשת
+                    </button>
+                </div>
+
             </div>
         );
     }
+
 
     return (
         <div className="game-frame">

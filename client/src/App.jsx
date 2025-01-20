@@ -21,6 +21,8 @@ import SignupPage from './pages/SignupPage/SignupPage';
 import TermsPage from './pages/TermsPage/TermsPage';
 import SocialDilemmas from './pages/SocialDilemmas/SocialDilemmas';
 import ChatPage from './pages/chatbot/chatbot'; // ייבוא עמוד הצ'אט
+
+
 const totalStages = 3;
 const currentStage = 1;
 
