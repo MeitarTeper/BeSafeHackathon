@@ -18,9 +18,10 @@ app.use(session({
   secret: 'keyboard cat',
   cookie: {}
 }));
+app.use(express.json({ limit: '20mb' })); // עבור JSON
+app.use(express.urlencoded({ limit: '20mb', extended: true })); // עבור קידוד URL
 
-app.use(express.json());
-app.use('/images', express.static(path.join(__dirname, 'images'))); // Serve static images
+
 
 app.use(cors({
   origin: process.env.CLIENT_URL
