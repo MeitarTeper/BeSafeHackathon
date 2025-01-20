@@ -1,53 +1,69 @@
 import React, { useState } from 'react';
 import { login } from "../../services/user_api";
 import { Link } from 'react-router-dom';
+import './LoginPage.css'; // חיבור לקובץ CSS המותאם
 
 function LoginForm() {
-    const [username, setusername] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState(''); // מצב עבור הודעות שגיאה
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log('Login submitted:', { username, password });
-        login(username, password);
+        setErrorMessage(''); // איפוס הודעת השגיאה
+        try {
+            const response = await login(username, password);
+            if (!response.success) {
+                setErrorMessage('משתמש לא קיים.');
+            } else {
+                console.log('Login successful');
+                // ניתן לנתב את המשתמש לעמוד אחר כאן
+            }
+        } catch (error) {
+            setErrorMessage('משתמש לא קיים.');
+        }
     };
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-            <form onSubmit={handleSubmit} style={{ padding: '20px', border: '1px solid #ccc', borderRadius: '10px', width: '300px' }}>
-                <h2 style={{ textAlign: 'center' }}>התחברות</h2>
-                <div style={{ marginBottom: '15px' }}>
-                    <label htmlFor="username" style={{ display: 'block', marginBottom: '5px' }}>משתמש:</label>
+        <div className="login-container section-animate delay-1">
+            <form onSubmit={handleSubmit} className="login-form">
+                <h2 className="login-title">התחברות</h2>
+                <div className="login-input-group">
+                    <label htmlFor="username" className="login-label">משתמש:</label>
                     <input
-                        type="username"
+                        type="text"
                         id="username"
                         value={username}
-                        onChange={(e) => setusername(e.target.value)}
+                        onChange={(e) => setUsername(e.target.value)}
                         required
-                        style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+                        className="login-input"
                     />
                 </div>
-                <div style={{ marginBottom: '15px' }}>
-                    <label htmlFor="password" style={{ display: 'block', marginBottom: '5px' }}>סיסמה:</label>
+                <div className="login-input-group">
+                    <label htmlFor="password" className="login-label">סיסמה:</label>
                     <input
                         type="password"
                         id="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
-                        style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
+                        className="login-input"
                     />
                 </div>
+                {errorMessage && ( // הצגת הודעת השגיאה אם קיימת
+                    <div className="error-message">
+                        {errorMessage}
+                    </div>
+                )}
                 <button
                     type="submit"
-                    style={{ width: '100%', padding: '10px', backgroundColor: '#007BFF', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}
+                    className="login-button button-hover"
                 >
                     להתחברות
                 </button>
-                <div>
-
-                </div>
-                <Link key='/signup' to='/signup'>להרשמה</Link>
+                <Link to="/signup" className="signup-button button-hover">
+                    להרשמה
+                </Link>
             </form>
         </div>
     );
