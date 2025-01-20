@@ -18,7 +18,7 @@ import PasswordGame from './pages/PasswordGame/PasswordGame';
 import SupportPage from './pages/SupportPage/SupportPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import SignupPage from './pages/SignupPage/SignupPage';
-import TermsPage from './pages/TermsPage';
+import TermsPage from './pages/TermsPage/TermsPage';
 const totalStages = 3;
 const currentStage = 1;
 

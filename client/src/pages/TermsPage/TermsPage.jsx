@@ -1,28 +1,27 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import './TermsPage.css'; // ייבוא הקובץ שהוספת
 
-
-const Terms = () => {
+const TermsPage = () => {
   return (
-    <div>
-      <h1>Website Terms and Conditions</h1>
-      <p><strong>Last Updated: [Insert Date]</strong></p>
+    <div className="container">
+      <h1 className="header">Website Terms and Conditions</h1>
+      <p><strong>Last Updated: 20/1/2025</strong></p>
 
-      <section>
+      <section className="section">
         <h2>1. Acceptance of Terms</h2>
         <p>
           By using the Website, you confirm that you are at least 8 years old or have the permission of a parent or guardian to use the Website. If you are under 8, please do not use this Website.
         </p>
       </section>
 
-      <section>
+      <section className="section">
         <h2>2. Purpose of the Website</h2>
         <p>
           The Website is designed to educate children and parents about internet safety. All content is provided for informational and educational purposes only.
         </p>
       </section>
 
-      <section>
+      <section className="section">
         <h2>3. User Responsibilities</h2>
         <p>When using the Website, you agree to:</p>
         <ul>
@@ -33,7 +32,7 @@ const Terms = () => {
         </ul>
       </section>
 
-      <section>
+      <section className="section">
         <h2>4. Prohibited Activities</h2>
         <p>You agree not to:</p>
         <ul>
@@ -44,14 +43,14 @@ const Terms = () => {
         </ul>
       </section>
 
-      <section>
+      <section className="section">
         <h2>5. Intellectual Property</h2>
         <p>
-          All content, materials, and features on the Website, including text, graphics, logos, and software, are the intellectual property of [SafeNet] or its licensors. You may not copy, reproduce, distribute, or use any content without prior written consent.
+          All content, materials, and features on the Website, including text, graphics, logos, and software, are the intellectual property of SafeNet or its licensors. You may not copy, reproduce, distribute, or use any content without prior written consent.
         </p>
       </section>
 
-      <section>
+      <section className="section">
         <h2>6. User-Generated Content</h2>
         <p>If the Website allows user-generated content, such as comments or submissions:</p>
         <ul>
@@ -60,21 +59,21 @@ const Terms = () => {
         </ul>
       </section>
 
-      <section>
+      <section className="section">
         <h2>7. Privacy</h2>
         <p>
           Your privacy is important to us. Please review our <a href="/privacy-policy">Privacy Policy</a> for details on how we collect, use, and protect your information.
         </p>
       </section>
 
-      <section>
+      <section className="section">
         <h2>8. Third-Party Links</h2>
         <p>
           The Website may include links to third-party websites. These links are provided for convenience and do not signify endorsement. We are not responsible for the content or practices of these third-party sites.
         </p>
       </section>
 
-      <section>
+      <section className="section">
         <h2>9. Disclaimers</h2>
         <p>
           - The Website and its content are provided "as is" without warranties of any kind, express or implied.<br />
@@ -83,43 +82,43 @@ const Terms = () => {
         </p>
       </section>
 
-      <section>
+      <section className="section">
         <h2>10. Limitation of Liability</h2>
         <p>
-          To the fullest extent permitted by law, [Website Name] and its affiliates shall not be liable for any damages arising from your use of the Website.
+          To the fullest extent permitted by law, SafeNet and its affiliates shall not be liable for any damages arising from your use of the Website.
         </p>
       </section>
 
-      <section>
+      <section className="section">
         <h2>11. Changes to Terms</h2>
         <p>
           We reserve the right to modify these Terms at any time. Changes will be effective upon posting to the Website. Continued use of the Website signifies your acceptance of updated Terms.
         </p>
       </section>
 
-      <section>
+      <section className="section">
         <h2>12. Termination</h2>
         <p>
           We may terminate or suspend your access to the Website at our sole discretion, without notice, if you violate these Terms.
         </p>
       </section>
 
-      <section>
+      <section className="section">
         <h2>13. Governing Law</h2>
         <p>
-          These Terms are governed by the laws of [Your Jurisdiction]. Any disputes shall be resolved exclusively in the courts of [Your Jurisdiction].
+          These Terms are governed by the laws. Any disputes shall be resolved exclusively in the courts.
         </p>
       </section>
 
-      <section>
+      <section className="section">
         <h2>14. Contact Us</h2>
         <p>
           If you have any questions about these Terms, please contact us at:
         </p>
         <address>
-          [Website Name] <br />
-          [Contact Email Address] <br />
-          [Contact Phone Number (Optional)]
+          SafeNet <br />
+          info@safenet.co.il <br />
+          03-1234567
         </address>
       </section>
 
@@ -130,4 +129,4 @@ const Terms = () => {
   );
 };
 
-export default Terms;
+export default TermsPage;
