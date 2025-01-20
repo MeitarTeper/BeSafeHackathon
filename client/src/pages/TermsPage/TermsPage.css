@@ -1,0 +1,81 @@
+/* Style for the Terms Page */
+.container {
+    max-width: 1200px;
+    margin: 50px auto; /* Add top margin */
+    padding: 20px;
+    font-family: 'Rubik', sans-serif; /* Using Rubik font */
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    direction: ltr;
+  }
+  
+  .header {
+    text-align: center;
+    color: #1A659E; /* Title color */
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  .section {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .section h2 {
+    color: #1A659E; /* Secondary title color */
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .section ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .section ul li {
+    margin: 10px 0;
+    font-size: 1rem;
+    color: #5A3E36; /* Text color */
+  }
+  
+  .section ul li a {
+    color: #1A659E;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  .section ul li a:hover {
+    color: #FF6B35; /* Hover color */
+  }
+  
+  p {
+    font-size: 1.2rem;
+    color: #5A3E36;
+  }
+  
+  address {
+    font-style: normal;
+    color: #1A659E;
+  }
+  
+  a {
+    color: #1A659E;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #FF6B35;
+  }
+  
+  /* Add spacing for the footer and other sections */
+  footer {
+    margin-top: 50px;
+  }
+  
