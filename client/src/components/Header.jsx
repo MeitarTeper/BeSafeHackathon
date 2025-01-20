@@ -22,7 +22,8 @@ const Header = () => {
     { path: '/teacher', label: 'למורה' },
     { path: '/memory-game', label: 'הסמכה' },
     { path: '/blog', label: 'בלוג' },
-    { path: '/support', label: 'תמיכה' }
+    { path: '/support', label: 'תמיכה' },
+    { path: '/login', label: 'התחברות'}
   ];
 
   const isActive = (path) =>
