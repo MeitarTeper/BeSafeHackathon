@@ -137,14 +137,14 @@ const PasswordGame = () => {
                         <form onSubmit={handleSubmit}>
                             <input
                                 type="text"
-                                className="input-group"
+                                className="username-input"
                                 value={userName}
                                 onChange={handleUserNameChange}
                                 placeholder="הכנס שם משתמש" />
                             <div className="password-wrapper">
                                 <input
                                     type={showPassword ? "text" : "password"}
-                                    className="input-group"
+                                    className="password-input"
                                     value={password}
                                     onChange={handlePasswordChange}
                                     placeholder="הכנס סיסמה" />

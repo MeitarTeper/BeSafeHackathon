@@ -1,0 +1,70 @@
+.lesson-upload-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Rubik', sans-serif;
+  }
+  
+  .lesson-upload-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #1A659E;
+    margin-bottom: 8px;
+  }
+  
+  .form-input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-input:focus {
+    border-color: #1A659E;
+    outline: none;
+  }
+  
+  .file-note {
+    font-size: 0.9rem;
+    color: #FF6B35;
+    margin-left: 5px;
+  }
+  
+  .file-input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+  
+  .upload-button {
+    padding: 12px 20px;
+    background-color: #1A659E;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .upload-button:hover {
+    background-color: #144d7e;
+  }
+  

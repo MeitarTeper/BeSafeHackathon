@@ -22,7 +22,41 @@ body, html {
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  padding: 20px;
+  border-radius: 20px; /* פינות מעוגלות */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* הצללה */
+  background-color: rgba(255, 255, 255, 0.8); /* רקע לבן חצי שקוף */
 }
+
+.memory-game-container {
+  width: 90%;
+  max-width: 1200px;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.start-button {
+  margin-top: 20px;
+  padding: 15px 30px;
+  background-color: #1A659E;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.start-button:hover {
+  background-color: #144d7e;
+}
+
 
 .annie-intro-image {
   width: 700px; /* גודל גדול לדמות */
@@ -207,13 +241,13 @@ body, html {
 }
 
 .memory-card .front-face {
-  background-color: #1A659E;
-  color: #fff;
+  background-color: #F7C59F;
+  color: #F7C59F;
 }
 
 .memory-card .back-face {
-  background-color: #F7C59F;
-  color: #1A659E;
+  background-color: #1A659E;
+  color: #fff; /* צבע הטקסט */
   transform: rotateY(180deg);
   border: 2px solid #032a44;
 }
