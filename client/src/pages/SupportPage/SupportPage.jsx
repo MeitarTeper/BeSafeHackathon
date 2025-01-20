@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import styles from "./SupportPage.module.css";
 
-
 const SupportPage = () => {
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
@@ -36,8 +35,31 @@ const SupportPage = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.header}>תמיכה רגשית</h1>
-      <p>כאן תוכלו למצוא מידע חשוב, קישורים לשירותי חירום, עמותות, פסיכולוגים, וגם אפשרות לשוחח עם מומחה בצ&apos;אט אישי.</p>
+        <h1 style={{ fontSize: '2.5rem', marginBottom: '10px', fontWeight: 'bold',  color: '#1A659E' }}>
+          SafeNet כאן בשבילכם!
+        </h1>
+
+      <div
+        style={{
+          textAlign: 'center',
+          color: '#1A659E', 
+          backgroundColor: '#EFEFD0',
+          padding: '15px',
+          borderRadius: '8px',
+          fontSize: '1.25rem',
+          marginBottom: '20px',
+        }}
+      >
+         <p style={{ fontSize: '1.25rem', lineHeight: '1.6' }}>
+          אנחנו מבינים את חשיבות התמיכה הרגשית
+          ואת הצורך במקום בטוח לשתף ולבקש עזרה. נשמח לעמוד לצדכם ולספק לכם את הכלים הנדרשים
+          להתמודדות בצורה בריאה וחיובית.
+        </p>
+      </div>
+
+      <p>
+        כאן תוכלו למצוא מידע חשוב, קישורים לשירותי חירום, עמותות, פסיכולוגים, וגם אפשרות לשוחח עם מומחה בצ&apos;אט אישי.
+      </p>
 
       <section className={styles.section}>
         <h2>שירותי חירום</h2>
