@@ -1,134 +1,185 @@
 # QueenB X AppsFlyer - BeSafe Hackathon 2025
 
-This project template is designed for junior developers aimed at gaining hands-on experience in full-stack development. 
-This project includes a Node.js server with Express and a React client (powered by Vite), providing an opportunity to engage in frontend development, backend development, and API integration.
-Specifically the template is a full-stack MERN application for managing a library of rubber ducks - but you can modify it and build a library application of your choice.
+
+<div id="header" align="center">
+    <h1>SafeNet - Promoting Online Safety</h1>
+</div>
+
+Welcome to **SafeNet**, an innovative platform developed as part of the **BeSafe Hackathon 2025** in collaboration with **QueenB** and **AppsFlyer**. SafeNet's mission is to educate and empower users to navigate the internet safely through interactive games, structured lesson plans, and real-time support. The platform integrates cutting-edge technologies to provide an engaging and informative user experience.
+
+![Main board image](screenshots/Screenshot%202025-01-21%20165530.png)
+
+---
+
+### Table of Contents
+
+- [Introduction](#introduction)
+- [Features](#features)
+- [Technologies](#technologies)
+- [Showcase](#showcase)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Authors](#authors)
+- [Conclusion](#conclusion)
+
+---
 
 ## Introduction
-This template includes a simple feature to display a random rubber duck from example READ ONLY database. 
-This feature demonstrates the integration of the frontend with the backend and can be used to test if your setup is working correctly.
 
-1. Client:
-   - The home page contains a button labeled `Show Random Duck`.
-   - When clicked, this button sends a request to the backend to fetch a random rubber duck.
-   - The details of the random rubber duck, including its name and image, are displayed on the page.
-2. Backend:
-   - The server has an endpoint `/api/rubberDucks/random` that selects a random rubber duck from the database and returns its details in the response.
-   - The server contains more endpoints, but without corresponding implementation in the client. These endpoints are to set example of more types of requests.
+SafeNet is an educational platform designed to promote digital literacy and online safety. By combining interactive tools, real-time interactions, and curated content, the platform serves as a comprehensive solution for educators, students, and parents to address challenges in the digital space.
+
+---
+
+## Features
+
+- **Interactive Games**:
+  - **Memory Game**: Improves memory and awareness of online threats.
+  - **Password Challenge**: Educates users on creating strong passwords.
+  - **Phishing Hunter**: Teaches users to identify phishing attempts.
+  - **Social Dilemmas**: A multiplayer game powered by WebSocket, simulating ethical scenarios online.
+- **Lesson Plans for Teachers**: Tools for uploading, sharing, and accessing structured lesson plans.
+- **Dynamic Blog**: Regular updates and insights on online safety.
+- **Real-Time Chat Support**: WebSocket-powered chatbot for addressing user concerns.
+- **Progress Tracking**: Leaderboard and progress bar for user engagement.
+
+---
+
+## Technologies
+
+- **Frontend**:
+  - React.js: Builds the dynamic user interface.
+  - React Router: Enables seamless navigation.
+  - Tailwind CSS: Provides a responsive and modern design.
+- **Backend**:
+  - Node.js and Express.js: Handles server-side logic and API requests.
+  - SQLite: Lightweight database management.
+  - WebSocket: Enables real-time multiplayer interactions in Social Dilemmas.
+- **Other Tools**:
+  - PDF.js: Previews uploaded lesson plans.
+  - CORS: Ensures secure communication between frontend and backend.
+
+---
+
+## Showcase
+
+### Home Page
+![Home Page](screenshots/Screenshot%202025-01-21%20165254.png)
+
+### For teachers
+![Lesson Plans](screenshots/Screenshot%202025-01-21%20165320.png)
+
+![Presention](screenshots/Screenshot%202025-01-21%20165416.png)
+
+![Upload Lessons](screenshots/Screenshot%202025-01-21%20165450.png)
+
+
+### Memory Game
+
+![Memomry Geme](screenshots/Screenshot%202025-01-21%20165609.png)
+
+### Password challenge
+
+![Password challenge](screenshots/Screenshot%202025-01-21%20165711.png)
+
+### Pishing Hunter
+
+![Pishing Hunter](screenshots/Screenshot%202025-01-21%20165742.png)
+
+### Social Dilemmas
+
+![Leaderboard](screenshots/Screenshot%202025-01-21%20165826.png)
+
+### ChatBot
+
+![Chat Support](screenshots/Screenshot%202025-01-21%20165856.png)
+
+
+
+---
 
 ## Installation
 
-### Prerequisites
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/SafeNet.git
+   cd SafeNet
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Set up the database:
+   ```bash
+   sqlite3 database.db < init.sql
+   ```
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-- [Node.js](https://nodejs.org/en) 
-  - Version 20.x or higher required (latest LTS recommended)
-- `npm` (will be typically installed automatically when you install Node.js above)
-  -  Version 10.x or higher required (get the latest by running `npm install -g npm@latest --no-optional`)
-
-### Clone the Repository
-To get started with this project, you need to clone the repository to your local machine. Follow these steps:
-1. Create a project from this repository by clicking on `Use this template` -> `Create a new repository` (more info [here](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)) - only ONCE per project
-1. Clone the new Repository: https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository
-
-### Server Setup
-1. Navigate to the server directory: `cd server`
-1. Install server dependencies: `npm install`
-
-### Client Setup
-1. Navigate to the client directory: `cd ../client`
-1. Install client dependencies: `npm install`
-
-## Configuration
-
-### Environment Variables
-Environment variables are used to configure your application without hardcoding sensitive information into your code. For this project, you need to set up the following environment variables in `.env` files located both in the `server` directory and `client` directory.
-
-#### Configure the Backend (server)
-
-Make a copy of the `.env.example` file under the `server` folder and name it `.env`. This file contains the following environment variables (you don't need to touch them at this point):
-   - `CLIENT_URL` - this should match the URL of the client, which is what you'll see at the address bar of your browser after running your client (via `npm start`).
-   - `PORT` - This variable defines the port on which your Express server will run. By default, this is set to `5000`, but you can change it to any available port number.
-
-#### Configure the Frontend (client)
-
-Make a copy of the `.env.example` file under the `client` folder and name it `.env`. 
-This file contains the following environment variable (you don't need to touch them at this point):
-
-* `VITE_SERVER_API_URL`: This variable contains the URL of your backend API. It tells your client where to send requests to interact with the server. By default, this should be set to http://localhost:5000/, but you should change it to match your server's actual URL if different (where 5000 is the `PORT` you defined in the server `.env` file above).
+---
 
 ## Usage
 
-This section explains how to use the application once it’s set up and configured. Follow these steps to interact with both the client and server components of the application.
+1. **Run the Server**:
+   Navigate to the server directory and start the Express server:
 
-### Start the Server
-1. Open a terminal in the root folder of the cloned repository, and navigate to the `server` directory: `cd server`
-1. Start the Express server in development mode: `npm run dev`
-   - By default, the server will run on `http://localhost:5000` (see configuration section above)
+   ```bash
+   cd server
+   npm run dev
+   ```
 
-### Run the Client
-1. Open a **new** terminal in the root folder of the cloned repository, and navigate to the `client` directory: `cd client`
+   The server will run on `http://localhost:5000` by default.
 
-2. Run the Frontend Client: `npm run dev`
-   - A new browser window with the client application should open (if you close the tab, you can return to it by navigating to http://localhost:3000/ by default)
+2. **Run the Client**:
+   Open a new terminal, navigate to the client directory, and start the React client:
 
-### Test the Application
+   ```bash
+   cd client
+   npm run dev
+   ```
 
-   - Click the `Show Random Duck` button to retrieve a random duck from the database and display its details on the screen.
-   - This feature helps verify that your frontend can communicate with the backend. If you see the random duck's details displayed on the page, your setup is working properly.
-   - You may also use an API client (like [Postman](https://www.postman.com/)) to directly test your API endpoints.
+   The client will open in your default browser at `http://localhost:3000`.
 
-**Please report any issues or provide feedback for further improvements!**
+3. **Interact with the Platform**:
 
-### Stopping the Servers
+   - Explore games, lesson plans, and other features through the client interface.
+   - Participate in multiplayer games like Social Dilemmas.
 
-- **Stop the Express Server**: In the terminal where the server is running, press `Ctrl + C` to stop the server.
-- **Stop the React Client**: In the terminal where the client is running, press `Ctrl + C` to stop the client.
-
-### Troubleshooting
-
-Ensure backend and frontend configurations (`.env` files) are correct.
-
-- **Server Issues**:
-  - Ensure that the React development server is running and that you have no conflicting applications using port 3000.
-  - Check the terminal for error messages 
-
-- **Client Issues**:
-  - Check the browser dev tools console for errors if the client is not displaying correctly (recommended: https://reactjs.org/link/react-devtools).
-  - Check the browser dev tools network logs for failed requests
+---
 
 ## Project Structure
 
 ### Client Directory (`client/`)
-Contains the React (Vite) frontend application.
-- `package.json`: Lists the client-side dependencies and scripts for managing the React application.
-- `.env`: Stores environment variables like the API endpoint URL.
-- `index.html`: Main HTML page hosting all the React components of the application (frontend entry point)
-- `public/`: static assets that do not need to be processed by Vite's build pipeline. These files are copied as-is to the build output directory. In our case, the HTML's favicon.
-- `src/`: Contains the source code for the React application.
-   - `assets/`: assets that are part of the source code and need to be processed by Vite's build pipeline. This includes images, fonts, and other files that might be imported into your JS or CSS files. In our case, the QueenB summer camp logo.
-   - `components/`: Reusable UI components such as buttons, forms, and other elements.
-   - `context/`: Contains the React context for the ducks, responsible for pulling the current duck from the API
-   - `pages/`: Page components that represent different routes in the application.
-   - `services/`: Services for making API calls and handling business logic.
-   - `styles/`: CSS and styling files for the application.
-   - `App.jsx`: The main React component that sets up routing and renders the application.
-   - `index.jsx`: The entry point for the React application, responsible for rendering the App component into the DOM.
-      
+
+Contains the React frontend application.
+
+- `public/`: Static assets like logos and icons.
+- `src/`: Source code including components, pages, and services.
+- `App.jsx`: The main React component.
+- `index.jsx`: Entry point for rendering the app.
+
 ### Server Directory (`server/`)
-Contains the Node.js / Express backend application.
-- `package.json`: Lists the server-side dependencies and scripts for managing the Node.js application.
-- `.env`: Stores environment variables like database connection strings and server port.
-- `server.js`: The main server file that sets up Express, connects to the database, and starts the server (backend entry point).
-- `controllers/`: Contains the logic for handling API requests and responses.
-- `data/`: Contains the initial duck data (readonly database)
-- `images/`: Contains the duck images referenced by the duck data above
-- `routes/`: Defines the API endpoints and maps them to controller functions.
 
-## Best practices & Teamwork
-[Full guide](BestPractices.md)
+Contains the Node.js backend application.
 
-## Support
+- `controllers/`: Logic for handling API requests.
+- `routes/`: API endpoints.
+- `server.js`: Entry point for starting the server.
+- `websocketServer.js`: Manages WebSocket interactions for Social Dilemmas.
 
-For any issues please contact us via [mail](queenb.community@gmail.com) or open an issue.
+---
 
-**Happy Coding! :)**
+## Authors
+-**Noa Moscato**
+- **Estee Cohen**
+- **Hadar Danish**
+- **Meitar Teper**
+- **Chen Kushelevitch**
+
+---
+
+## Conclusion
+
+SafeNet is a robust platform designed to educate users on online safety while fostering engagement through interactive games and tools. With its comprehensive approach and innovative features, SafeNet is a valuable resource for educators, parents, and students. If you have any feedback or encounter issues, please open an issue in the repository.
