@@ -174,7 +174,7 @@ Contains the Node.js backend application.
 ## Authors
 -**Noa Moscato**
 - **Estee Cohen**
-- **Hadar Danish**
+- **Hadar Dabush**
 - **Meitar Teper**
 - **Chen Kushelevitch**
 
